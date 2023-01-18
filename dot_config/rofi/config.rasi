@@ -1,0 +1,18 @@
+configuration {
+	modi: "combi";
+	lines: 5;
+	bw: 2;
+	padding: 0;
+	yoffset: 0;
+	fixed-num-lines: false;
+	terminal: "alacritty";
+	sorting-method: "fzf";
+	combi-modi: "drun,run";
+	hide-scrollbar: true;
+	combi-hide-mode-prefix: true;
+	display-combi: "Search";
+	kb-cancel: "Escape,Alt+F1,Alt+F2";
+}
+
+/* @theme "/usr/share/rofi/themes/fancy.rasi" */
+ @theme "/home/forbi/.config/rofi/toto.rasi"
