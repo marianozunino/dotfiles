@@ -1,0 +1,6 @@
+Domain,Executable
+default,/opt/firefox/nightly/firefox
+stuzo.com,/usr/bin/google-chrome-stable
+stuzo.atlassian.net,/usr/bin/google-chrome-stable
+atlassian.net,/usr/bin/google-chrome-stable
+meet.google.com,/usr/bin/google-chrome-stable
