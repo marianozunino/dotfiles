@@ -1,0 +1,92 @@
+alias src='omz reload'
+alias dc="cd"
+alias ls="ls --color"
+alias ll="ls -thor"
+
+alias orphan="doas pacman -Rns (pacman -Qtdq)"
+alias syncRepo="git fetch --all; git reset --hard origin/master"
+alias sistra="cd ~/dev/sistra ; npm run dev"
+
+#fuck mkdir
+alias mkdir="mkdir -pv"
+# Donwload youtube audio
+alias yta="youtube-dl --add-metadata -xic" 
+#
+alias tmux='TERM=xterm-256color tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
+alias ts="tmux ls"
+alias ta="tmux attach -t default || tmux new -s default"
+
+#cd folder
+alias gD="cd ~/Desktop"
+alias gd="cd ~/Downloads"
+alias gr="cd ~/Development/"
+alias gs="cd ~/Sync"
+alias gdot="cd ~/dotfiles/"
+alias gkey="cd ~/.local/share/keyrings/"
+alias gt="cd ~/Development/"
+alias gc="cd ~/CLionProjects/"
+
+#edit files
+alias vim='nvim'
+alias zshrc="vim $ZDOTDIR/.zshrc"
+alias tmuxconf="vim ~/.tmux.conf"
+alias doomconf="vim ~/.config/gzdoom/gzdoom.ini"
+alias vimrc="cd ~/.config/nvim/ && vim init.lua"
+alias pluginconf="vim ~/.config/nvim/plugins.vim"
+alias i3conf="vim ~/.config/i3/config"
+alias rangerconf="vim ~/.config/ranger/rc.conf"
+alias cssh="vim ~/.ssh/config"
+
+alias syu='yay -Syyu'
+alias g='git'
+alias next='feh -z --bg-scale ~/Pictures/*'
+
+alias gpi='cd ~/Development/pi'
+alias gtt='cd ~/Development/tecnologo'
+alias nubceo='cd ~/Development/nubceo'
+alias vairix='cd ~/Development/vairix'
+alias seekr='cd ~/Development/seekr'
+
+# show sym links
+alias lll='ls -l `find . -maxdepth 1 -type l -print`'
+alias v='vim'
+alias fd='/bin/fd'
+#
+# launch diary from command line:
+alias vd='vim -c ":VimwikiMakeDiaryNote"'
+## launch index page from command line
+alias vw='vim -c ":VimwikiIndex"'
+alias tf='terraform'
+alias copy="xclip -sel clip"
+alias paste="xclip -sel clip -o"
+
+
+open () {
+    for i in $*
+    do
+        setsid nohup xdg-open $i > /dev/null 2> /dev/null
+    done
+}
+
+
+transfer() {
+    curl --progress-bar --upload-file "$1" http://mzunino.com.uy/$(basename "$1") | tee /dev/null;
+    # curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
+    echo
+}
+
+
+wacom() {
+	# if Pen is not in the list, then create it
+	if ! xinput list | grep -q "Pen pointer"; then
+		xinput create-master "Pen"
+		xinput reattach "Wacom One by Wacom S Pen stylus" "Pen pointer"
+	fi
+
+	xsetwacom set 'Wacom One by Wacom S Pen stylus' MapToOutput DisplayPort-0; xsetwacom set 'Wacom One by Wacom S Pen stylus' Rotate half
+
+	if ! pgrep -x "gromit-mpx" > /dev/null; then
+		gromit-mpx -o 1 > /dev/null 2> /dev/null &
+		disown
+	fi
+}
