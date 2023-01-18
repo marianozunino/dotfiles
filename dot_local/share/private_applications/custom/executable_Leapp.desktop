@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=Leapp
+GenericName=AWS Profile Manager
+Exec=/home/forbi/.bin/leapp.sh
+Categories=IDE;Development
+StartupWMClass=Leapp
+StartupNotify=true
+Icon=/home/forbi/Downloads/leapp.svg

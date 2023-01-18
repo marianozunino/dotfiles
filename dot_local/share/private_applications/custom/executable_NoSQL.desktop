@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=NoSQL Booster
+Exec=/home/forbi/.bin/nosql.sh
+Icon=~/.local/share/applications/custom/mongo.png
+Version=1.0
+Type=Application
+Terminal=0
+

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=Redis
+GenericName=Redis Viewer 
+Exec=/home/forbi/.bin/redis.sh
+Categories=IDE;Development
+StartupWMClass=Redis
+StartupNotify=true
+Icon=/home/forbi/.local/share/applications/custom/redis.png
