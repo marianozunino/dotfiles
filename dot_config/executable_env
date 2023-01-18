@@ -1,0 +1,27 @@
+#!/bin/sh
+export GOPATH="$HOME/go"
+export PATH=~/.bin:~/.dotnet/tools:~/.cargo/bin:$GOPATH/bin:~/.local/share/gem/ruby/3.0.0/bin:$(yarn global bin):$PATH
+
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+
+export LANG=en_US.UTF-8
+
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
+export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
+
+export LESSHISTFILE="-"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export GNUHOME="$XDG_DATA_HOME/gnupg"
+export JAVA_HOME="/usr/lib/jvm/default"
+
+#export BROWSER="/opt/firefox/nightly/firefox-bin"
+export BROWSER="/home/forbi/.local/bin/openw.py"
+
+xhost +local:
