@@ -120,8 +120,13 @@ set -g status-position bottom
 #set -g status-style bg=colour234, fg=colour137, dim
 set -g status-style dim
 set -g status-left ''
+
+{{ if eq .chezmoi.hostname "T14" }}
+set -g status-right '#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S #{battery_status_bg} Battery: #{battery_icon} #{battery_percentage} #{battery_remain} '
+{{ else }}
 set -g status-right '#(gitmux "#{pane_current_path}") #[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=colour245,bold] %H:%M:%S'
-# {battery_status_bg} Batt: #{battery_icon} #{battery_percentage} #{battery_remain} '
+{{ end }}
+
 set -g status-right-length 50
 set -g status-left-length 20
 setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '

@@ -90,3 +90,7 @@ wacom() {
 		disown
 	fi
 }
+
+# chezmoi shorthand aliases
+alias ch='chezmoi'
+

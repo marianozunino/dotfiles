@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+# if no	argument is given, use the current directory
+if [ $# -eq 0 ]; then
+    DIR="."
+    file_name=$DIR
+else
+    # if the is a file, use the directory of the file
+    if [ -f $1 ]; then
+        file_name=$1
+        DIR=$(dirname $1)
+    else
+        DIR=$1
+        file_name=$DIR
+    fi
+fi
+
+directory_name=`basename $DIR`
+
+# if --tmux flag is passed, run in tmux
+if [ "$2" = "--tmux" ]; then
+    title="nvim ~ $directory_name"
+    command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
+    i3-msg "[title=\"${title}\"] focus" >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        alacritty --working-directory "${DIR}" --title "$title" -e $command &
+        disown
+    fi
+    exit
+fi
+
+alacritty --working-directory "${DIR}" --title "nvim ~ $directory_name" -e nvim $file_name &
+disown
