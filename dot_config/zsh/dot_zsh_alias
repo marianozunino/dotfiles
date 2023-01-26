@@ -28,7 +28,14 @@ alias gc="cd ~/CLionProjects/"
 
 #edit files
 alias vim='nvim'
-alias zshrc="vim $ZDOTDIR/.zshrc"
+
+# if chezmoi is installed use it to edit dotfiles
+if command -v chezmoi &> /dev/null; then
+  alias zshrc="chezmoi edit $ZDOTDIR/.zshrc"
+else
+  alias zshrc="vim $ZDOTDIR/.zshrc"
+fi
+
 alias tmuxconf="vim ~/.tmux.conf"
 alias doomconf="vim ~/.config/gzdoom/gzdoom.ini"
 alias vimrc="cd ~/.config/nvim/ && vim init.lua"
