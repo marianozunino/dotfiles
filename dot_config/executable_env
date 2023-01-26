@@ -24,4 +24,8 @@ export JAVA_HOME="/usr/lib/jvm/default"
 #export BROWSER="/opt/firefox/nightly/firefox-bin"
 export BROWSER="/home/forbi/.local/bin/openw.py"
 
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+unset SSH_AGENT_PID
+
 xhost +local:

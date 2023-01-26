@@ -10,7 +10,7 @@
     support = support/
     versiontag = v
 [user]
-	email = marianoz@zoho.com
+	email = marianoz@posteo.net
 	name = Mariano Z.
 [include]
     path = ~/.config/git/gitalias.txt

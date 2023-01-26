@@ -92,3 +92,8 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 3
 vim.g.netrw_localrmdir = "rm -r"
+
+local cmd = vim.cmd
+cmd([[
+  autocmd BufWritePost ~/.local/share/chezmoi/* silent! ! chezmoi apply --source-path "%"
+]])

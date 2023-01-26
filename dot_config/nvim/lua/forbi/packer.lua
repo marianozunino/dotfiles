@@ -44,7 +44,7 @@ return require("packer").startup(function()
 	--
 	-- LSP stuff
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
-	use("~/Development/mzunino/null-ls.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- Completion stuff
 	use("hrsh7th/nvim-cmp")
