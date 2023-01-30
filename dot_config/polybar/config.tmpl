@@ -18,7 +18,13 @@ alert = #e60053
 
 
 [bar/rigth]
+
+{{ if eq .chezmoi.hostname "T14" }}
 monitor = eDP
+{{ end }}
+{{ if eq .chezmoi.hostname "Main" }}
+monitor = HDMI-A-0
+{{ end }}
 width = 100%
 height = 20
 
@@ -59,7 +65,12 @@ tray-padding = 5
 #tray-background = ${colors.primary}
 #tray-reparent = true
 [bar/left]
+{{ if eq .chezmoi.hostname "T14" }}
 monitor = eDP
+{{ end }}
+{{ if eq .chezmoi.hostname "Main" }}
+monitor = DisplayPort-0
+{{ end }}
 width = 100%
 height = 20
 
