@@ -19,7 +19,8 @@ asdf install bitwarden v1.22.1
 echo "nodejs 16.10.0
 chezmoi 2.29.2
 bitwarden v1.22.1
-golang 1.19.5" > ~/.tool-versions
+golang 1.19.5
+python system" > ~/.tool-versions
 
 
 ~/.asdf/shims/bw logout 2> /dev/null
