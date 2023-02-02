@@ -6,7 +6,7 @@ yarn
 npm-check
 cspell@latest
 @nestjs/cli
-npm-check-updatesA
+npm-check-updates
 prettier
 nodemon
 
