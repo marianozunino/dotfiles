@@ -18,7 +18,7 @@ fi
 directory_name=`basename $DIR`
 
 # if --tmux flag is passed, run in tmux
-if [ "$2" = "--tmux" ]; then
+# if [ "$2" = "--tmux" ]; then
     title="nvim ~ $directory_name"
     command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
     i3-msg "[title=\"${title}\"] focus" >/dev/null 2>&1
@@ -27,7 +27,7 @@ if [ "$2" = "--tmux" ]; then
         disown
     fi
     exit
-fi
+# fi
 
-alacritty --working-directory "${DIR}" --title "nvim ~ $directory_name" -e nvim $file_name &
+# alacritty --working-directory "${DIR}" --title "nvim ~ $directory_name" -e nvim $file_name &
 disown
