@@ -54,11 +54,18 @@ local function config(_config)
 	}, _config or {})
 end
 
-require("lspconfig").tsserver.setup(config())
+require("lspconfig").tsserver.setup(config({
+	init_options = {
+		preferences = {
+			importModuleSpecifierPreference = "project-relative",
+		},
+	},
+}))
+
 require("lspconfig").solargraph.setup(config())
 require("lspconfig").gopls.setup(config())
 require("lspconfig").graphql.setup(config())
-require("lspconfig").sumneko_lua.setup(config({
+require("lspconfig").lua_ls.setup(config({
 	settings = {
 		Lua = {
 			runtime = {

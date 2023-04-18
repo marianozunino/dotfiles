@@ -2,7 +2,16 @@ local dap = require("dap")
 local dapui = require("dapui")
 local nnoremap = require("forbi.keymap").nnoremap
 
-require("dap-go").setup()
+require("dap-go").setup({
+	dap_configurations = {
+		{
+			type = "go",
+			name = "cmd/app/app.go",
+			request = "launch",
+			program = "${workspaceFolder}/cmd/app/app.go",
+		},
+	},
+})
 
 local home = os.getenv("HOME")
 

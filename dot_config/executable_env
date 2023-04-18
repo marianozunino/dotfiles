@@ -1,6 +1,4 @@
 #!/bin/sh
-export GOPATH="$HOME/go"
-export PATH=~/.bin:~/.dotnet/tools:~/.cargo/bin:$GOPATH/bin:~/.local/share/gem/ruby/3.0.0/bin:$(yarn global bin):$PATH
 
 export EDITOR="nvim"
 export TERMINAL="alacritty"
@@ -11,14 +9,44 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
 export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
+export XDG_STATE_HOME=${XDG_STATE_HOME:-~/.local/state}
+
 export ZDOTDIR=${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}
+export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
+# export WINEPREFIX=$XDG_DATA_HOME/wine
+export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
+export ZSH_WAKATIME_BIN=$XDG_CONFIG_HOME/wakatime/.wakatime/wakatime-cli
+export W3M_DIR=$XDG_DATA_HOME/w3m
+export RANDFILE=$XDG_CACHE_HOME/.rnd
+export SOLARGRAPH_CACHE=$XDG_CACHE_HOMEmsolargraph
+
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
+
+export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
+export GOPATH=$XDG_DATA_HOME/go
+export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+
+# bash history
+export HISTFILE=${XDG_STATE_HOME}/bash/history
+
+# export AWS_SHARED_CREDENTIALS_FILE=$XDG_CONFIG_HOME/aws/credentials
+# export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
+
+export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdf/asdfrc
+export ASDF_DIR=${XDG_DATA_HOME}/asdf
+export ASDF_DATA_DIR=${XDG_DATA_HOME}/asdf
+
+export PATH=~/.bin:$GOPATH/bin:~/.local/share/gem/ruby/3.0.0/bin:$(yarn global bin):$PATH
+
 
 export LESSHISTFILE="-"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export GNUHOME="$XDG_DATA_HOME/gnupg"
+# export GNUHOME="$XDG_DATA_HOME/gnupg"
 export JAVA_HOME="/usr/lib/jvm/default"
 
 #export BROWSER="/opt/firefox/nightly/firefox-bin"
@@ -31,4 +59,4 @@ fi
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
-xhost +local:
+xrdb -load $XDG_CONFIG_HOME/X11/xresources

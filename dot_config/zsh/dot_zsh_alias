@@ -1,3 +1,4 @@
+alias fly='flyctl'
 alias src='omz reload'
 alias dc="cd"
 alias ls="ls --color"
@@ -6,6 +7,7 @@ alias ll="ls -thor"
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
+alias pm="pnpm"
 
 #fuck mkdir
 alias mkdir="mkdir -pv"
@@ -46,7 +48,7 @@ alias cssh="vim ~/.ssh/config"
 
 alias syu='yay -Syyu'
 alias g='git'
-alias next='feh -z --bg-scale ~/Pictures/*'
+alias next='feh --no-fehbg -z --bg-scale ~/Pictures/*'
 
 alias gpi='cd ~/Development/pi'
 alias gtt='cd ~/Development/tecnologo'
@@ -77,7 +79,7 @@ open () {
 
 
 transfer() {
-    curl --progress-bar --upload-file "$1" http://mzunino.com.uy/$(basename "$1") | tee /dev/null;
+    curl --progress-bar --upload-file "$1" https://transfer.mzunino.com.uy/$(basename "$1") | tee /dev/null;
     # curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
     echo
 }

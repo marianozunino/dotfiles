@@ -4,9 +4,8 @@ ts-node
 diff-so-fancy
 yarn
 npm-check
-cspell@latest
 @nestjs/cli
 npm-check-updates
 prettier
 nodemon
-
+cspell
