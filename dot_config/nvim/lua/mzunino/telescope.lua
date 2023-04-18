@@ -5,41 +5,6 @@ local utils = require("telescope.utils")
 local action_state = require("telescope.actions.state")
 local actions = require("telescope.actions")
 
--- To get telescope-file-browser loaded and working with telescope,
--- you need to call load_extension, somewhere after setup function:
---
--- require("telescope").load_extension("file_browser")
-require("telescope").setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<esc>"] = actions.close,
-			},
-		},
-		layout_strategy = "vertical",
-	},
-	pickers = {
-		buffers = {
-			sort_lastused = true,
-		},
-	},
-	extensions = {
-		file_browser = {
-			theme = "ivy",
-			-- disables netrw and use telescope-file-browser in its place
-			hijack_netrw = true,
-			mappings = {
-				["i"] = {},
-				["n"] = {},
-			},
-		},
-	},
-})
-
-require("telescope").load_extension("lsp_handlers")
--- require("telescope").load_extension("emoji")
-require("telescope.builtin").quickfix()
-
 local M = {}
 
 function M.dev_folders()

@@ -16,7 +16,6 @@ vim.opt.ignorecase = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
-vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus" -- Global clipboard
 vim.opt.mouse = "a" -- Allow to use mouse from terminal
 vim.opt.colorcolumn = "80"
@@ -78,12 +77,6 @@ vim.opt.guifont = { "Fira Code Retina", ":h11" }
 vim.opt.title = true
 vim.opt.titlestring = "Code - %{substitute(getcwd(), $HOME, '~', '')}"
 
--- Theme
-vim.opt.background = "dark"
-vim.g.gruvbox_material_background = "hard"
-vim.g.gruvbox_material_better_performance = 1
-vim.cmd("colorscheme gruvbox-material")
-
 vim.opt.listchars = "tab:→ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 vim.g.go_doc_keywordprg_enabled = 0
 
@@ -97,3 +90,9 @@ local cmd = vim.cmd
 cmd([[
   autocmd BufWritePost ~/.local/share/chezmoi/* silent! ! chezmoi apply --source-path "%"
 ]])
+cmd([[
+  autocmd FileType netrw lua vim.diagnostic.disable(0)
+]])
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
