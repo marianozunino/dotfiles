@@ -1,6 +1,7 @@
+require("dressing").setup()
+
 local dap = require("dap")
 local dapui = require("dapui")
-local nnoremap = require("forbi.keymap").nnoremap
 
 require("dap-go").setup({
 	dap_configurations = {
@@ -101,43 +102,43 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
 end
 
-nnoremap("<Home>", function()
+vim.keymap.set("n", "<Home>", function()
 	dapui.toggle(1)
 end)
 
-nnoremap("<End>", function()
+vim.keymap.set("n", "<End>", function()
 	dapui.toggle(2)
 end)
 
--- nnoremap("<leader><leader>", function()
+-- vim.keymap.set("n", "<leader><leader>", function()
 -- 	dap.close()
 -- end)
 
-nnoremap("<Up>", function()
+vim.keymap.set("n", "<Up>", function()
 	dap.continue()
 end)
 
-nnoremap("<Down>", function()
+vim.keymap.set("n", "<Down>", function()
 	dap.step_over()
 end)
 
-nnoremap("<Right>", function()
+vim.keymap.set("n", "<Right>", function()
 	dap.step_into()
 end)
 
-nnoremap("<Left>", function()
+vim.keymap.set("n", "<Left>", function()
 	dap.step_out()
 end)
 
-nnoremap("<Leader>b", function()
+vim.keymap.set("n", "<Leader>b", function()
 	dap.toggle_breakpoint()
 end)
 
-nnoremap("<Leader>B", function()
+vim.keymap.set("n", "<Leader>B", function()
 	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end)
 
-nnoremap("<leader>rc", function()
+vim.keymap.set("n", "<leader>rc", function()
 	dap.run_to_cursor()
 end)
 

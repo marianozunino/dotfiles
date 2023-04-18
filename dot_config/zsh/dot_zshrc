@@ -8,10 +8,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 #####################################
 #               BASE16              #
 #####################################
-BASE16_SHELL="$HOME/dotfiles/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-    eval "$("$BASE16_SHELL/profile_helper.sh")"
+source ~/.bin/base16-rose-pine-scheme.sh
 
 
 #####################################
@@ -120,29 +117,6 @@ tmuxLauncher(){
 zle -N tmuxLauncher
 bindkey "^f" tmuxLauncher
 bindkey "^t" tmuxLauncher
-
-tmuxSwitcher(){
-    tmux-switcher
-    zle reset-prompt
-}
-zle -N tmuxSwitcher
-bindkey "^g" tmuxSwitcher
-
-sdmPortFinder(){
-		sdm status | grep -v "not connected" | grep connected | tr -s ' ' | cut -d ' ' -f 2,4 | fzf | cut -d ' ' -f 2 | xargs -I {} echo {} | xclip -selection clipboard
-		zle reset-prompt
-}
-zle -N sdmPortFinder
-bindkey "^p" sdmPortFinder
-
-sdmConnect(){
-		sdm status | grep "not connected" | tr -s ' ' | cut -d ' ' -f 2 | fzf | xargs -I {} sdm connect {}
-		zle reset-prompt
-}
-zle -N sdmConnect
-bindkey "^n" sdmConnect
-
-
 
 #ssh?
 # if VIMRUNTIME is set, then we're in vim, so don't do anything

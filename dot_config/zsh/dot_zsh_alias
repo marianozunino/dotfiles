@@ -12,7 +12,7 @@ alias pm="pnpm"
 #fuck mkdir
 alias mkdir="mkdir -pv"
 # Donwload youtube audio
-alias yta="youtube-dl --add-metadata -xic" 
+alias yta="youtube-dl --add-metadata -xic"
 #
 alias tmux='TERM=xterm-256color tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 alias ts="tmux ls"
@@ -37,7 +37,7 @@ else
   alias zshrc="vim $ZDOTDIR/.zshrc"
 fi
 
-alias tmuxconf="vim ~/.tmux.conf"
+alias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias doomconf="vim ~/.config/gzdoom/gzdoom.ini"
 alias vimrc="cd ~/.config/nvim/ && vim init.lua"
 alias pluginconf="vim ~/.config/nvim/plugins.vim"
@@ -110,3 +110,5 @@ function gc {
     git clone "https://github.com/marianozunino/$1" "${@:2}"
   fi
 }
+
+alias gh-clone='gc'

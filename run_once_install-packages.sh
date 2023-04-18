@@ -32,19 +32,24 @@ PRESENT_GPG=$(gpg --list-secret-keys | grep marianoz@posteo.net)
 if [ -z "$PRESENT_GPG" ]; then
   echo "GPG key not found, importing it"
   SESSION=`$BW_BIN login | grep -oP 'export BW_SESSION="\K[^"]+'`
-  GPG_KEY=`$BW_BIN get notes "GPG<marianoz@posteo.net>" --session $SESSION`
+  $BW_BIN get attachment master-key.gpg --itemid c7e9128b-4c75-4952-8660-af8e0137e9f0 --session $SESSION
+  $BW_BIN get attachment sub-key.gpg --itemid c7e9128b-4c75-4952-8660-af8e0137e9f0 --session $SESSION
 
-  if echo "$GPG_KEY" | awk '{if($0 ~ /^-----BEGIN PGP PRIVATE KEY BLOCK-----/) {print "valid"} else {print "invalid"}}' | grep -q "valid"; then
+  if [ -f "master-key.gpg" ] && [ -f "sub-key.gpg" ]; then
     echo "The GPG key was read successfully"
   else
-    echo "Error: Invalid GPG key format, it should starts with -----BEGIN PGP PRIVATE KEY BLOCK-----"
+    echo "The GPG key was not read successfully"
     exit 1
   fi
 
   read -sp "GPG Secret>" PASSWORD
-  echo "$GPG_KEY" | gpg --import --batch --yes
-  PASSWORD=""
+  gpg --import --batch --yes --passphrase $PASSWORD master-key.gpg
+  gpg --import --batch --yes sub-key.gpg
+  rm master-key.pgp
+  rm sub-key.pgp
+
   echo -e "trust\n5\ny\n" | gpg --command-fd 0 --edit-key marianoz@posteo.net
+  gpg-connect-agent "scd serialno" "learn --force" /bye
   exit 0
 else
   echo "GPG key already present"
