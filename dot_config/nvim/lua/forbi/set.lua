@@ -23,7 +23,7 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 vim.opt.undofile = true
 
 vim.opt.termguicolors = true
@@ -67,7 +67,7 @@ vim.g.copilot_filetypes = {
 	["markdown"] = true,
 	["yaml"] = true,
 }
-vim.g.copilot_node_command = "~/.asdf/shims/node"
+vim.g.copilot_node_command = "~/.local/share/asdf/shims/node"
 
 --
 -- neovide

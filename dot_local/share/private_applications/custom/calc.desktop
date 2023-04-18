@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Categories=GNOME;GTK;Network;WebBrowser;
+Name= Calculator
+Comment=The 100% fresh free-range ethical browser
+Exec=/usr/bin/rofi -show calc -modi calc -no-show-match -no-sort
+Icon=/usr/share/icons/ePapirus-Dark/48x48/apps/calc.svg

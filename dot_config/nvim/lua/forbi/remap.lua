@@ -116,3 +116,6 @@ nnoremap("yl", function()
 end)
 
 nnoremap("<Leader>x", "<cmd>!chmod +x %<cr>")
+
+-- let g:user_emmet_leader_key='<C-Z>'
+vim.g.user_emmet_leader_key = ","

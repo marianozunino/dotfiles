@@ -16,3 +16,8 @@ nm-applet &
 locker.sh &
 insync start
 greenclip daemon &
+
+# noisetorch -i -s "echoCancel_source"
+# pacmd set-default-source nui_mic_remap
+easyeffects --gapplication-service &
+sudo quadcastrgb solid &

@@ -236,12 +236,13 @@
 
 #Startup stuff
         exec --no-startup-id /usr/bin/lxpolkit
+        exec --no-startup-id /usr/bin/lxsession
         exec --no-startup-id ~/.bin/monitor.sh
         exec --no-startup-id ~/.bin/fileOrganizer.py
         exec --no-startup-id ~/.config/polybar/launch.sh
         exec --no-startup-id alacritty --class dropdown
         exec_always --no-startup-id numlockx on
-        exec_always --no-startup-id feh --randomize --bg-scale ~/Pictures/*
+        exec_always --no-startup-id feh --randomize --bg-scale ~/Pictures/* --no-fehbg
         exec --no-startup-id i3Autostart.sh
         exec --no-startup-id feh --randomize --bg-scale ~/Pictures/*
         exec --no-startup-id slack

@@ -1,4 +1,7 @@
-. $HOME/.asdf/asdf.sh
+export ZSH_WAKATIME_PROJECT_DETECTION=true
+
+. $ASDF_DIR/asdf.sh
+
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
 
@@ -172,3 +175,11 @@ source /usr/share/git-flow/git-flow-completion.zsh
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+# pnpm
+export PNPM_HOME="/home/forbi/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
