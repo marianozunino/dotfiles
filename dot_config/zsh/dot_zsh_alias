@@ -26,7 +26,6 @@ alias gs="cd ~/Sync"
 alias gdot="cd ~/dotfiles/"
 alias gkey="cd ~/.local/share/keyrings/"
 alias gt="cd ~/Development/"
-alias gc="cd ~/CLionProjects/"
 
 #edit files
 alias vim='nvim'
@@ -103,3 +102,11 @@ wacom() {
 # chezmoi shorthand aliases
 alias ch='chezmoi'
 
+function gc {
+  if [[ "$1" == */* ]]
+  then
+    git clone "https://github.com/$1" "${@:2}"
+  else
+    git clone "https://github.com/marianozunino/$1" "${@:2}"
+  fi
+}

@@ -44,8 +44,10 @@ return require("packer").startup(function()
 	--
 	-- LSP stuff
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
-	use("jose-elias-alvarez/null-ls.nvim")
-	
+	-- use("jose-elias-alvarez/null-ls.nvim")
+  use {
+	  "davidmh/null-ls.nvim", brach="cspell-code-action-custom-dictionaries"
+  }
 	-- Completion stuff
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-nvim-lsp")
