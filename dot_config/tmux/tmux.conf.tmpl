@@ -1,3 +1,6 @@
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.local/share/tmux/plugins'
+run '~/.local/share/tmux/plugins/tpm/tpm'
+
 # =====================================
 # ===         Preference            ===
 # =====================================
@@ -48,10 +51,6 @@ bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
-
-bind P new-window -n 'Proyecto 📋' -c '/home/forbi/Development/tecnologo/proyecto'
-bind N new-window -n 'Nubceo 🔵' -c '/home/forbi/Development/nubceo'
-bind V new-window -n 'Vairix 🟢' -c '/home/forbi/Development/vairix'
 
 #bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-h) || tmux select-pane -L"
 #bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-j) || tmux select-pane -D"
@@ -129,8 +128,10 @@ set -g status-right '#(gitmux "#{pane_current_path}") #[fg=colour233,bg=colour24
 
 set -g status-right-length 50
 set -g status-left-length 20
-setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '
-setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
+setw -g window-status-current-format '#[bg=colour168, fg=black] #I #[bg=default, fg=colour250, fg=colour255] #W#[fg=colour50]#F '
+setw -g window-status-format '#[bg=colour12, fg=black] #I #[bg=default, fg=colour237, fg=colour250] #W#[fg=colour245]#F '
+
+
 setw -g window-status-bell-style bg=colour1,fg=colour255,bold
 setw -g window-status-current-style bg=colour238,fg=colour81,bold
 setw -g window-status-style bg=colour235,fg=colour138,none
