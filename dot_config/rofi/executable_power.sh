@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-OPTIONS="\tLogout\n\tShutdown\n\tReboot"
+OPTIONS="\tLogout\n⏻\tShutdown\n\tReboot"
 
 option=`echo -e $OPTIONS | awk '{print $1}' | tr -d '\r\n\t'`
 if [ "$@" ]
