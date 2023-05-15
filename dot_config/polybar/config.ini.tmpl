@@ -22,14 +22,12 @@ ALTCYAN = #ebbcba
 ALTWHITE = #e0def4
 
 [bar/rigth]
-
 {{ if eq .chezmoi.hostname "T14" }}
 monitor = eDP
 {{ end }}
 {{ if eq .chezmoi.hostname "Main" }}
 monitor = HDMI-A-0
 {{ end }}
-
 
 width = 100%
 height = 20
@@ -72,8 +70,8 @@ tray-position = right
 tray-padding = 5
 #tray-background = ${colors.primary}
 #tray-reparent = true
-[bar/left]
 
+[bar/left]
 {{ if eq .chezmoi.hostname "T14" }}
 monitor = eDP
 {{ end }}
@@ -81,16 +79,11 @@ monitor = eDP
 monitor = DisplayPort-0
 {{ end }}
 
-
 width = 100%
 height = 20
 
-font-0 = FontAwesome:size=11;2
-font-1 = Font Awesome 5 Free:style=Regular:size=11;2
-font-2 = Font Awesome 5 Free:style=Solid:size=11;2
-font-3 = RobotoMono Nerd Font:size=11;2
-font-4 = M+ 1m:size=10;1
-font-5 = Agave:size=11;1
+font-0 = "Inter:size=10:weight=bold;3"
+font-1 = "Iosevka Nerd Font:size=12;3"
 
 background = #19141D
 foreground = ${colors.foreground}
