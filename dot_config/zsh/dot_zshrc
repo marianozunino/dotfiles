@@ -6,12 +6,6 @@ export ZSH_WAKATIME_PROJECT_DETECTION=true
 fpath=(${ASDF_DIR}/completions $fpath)
 
 #####################################
-#               BASE16              #
-#####################################
-source ~/.bin/base16-rose-pine-scheme.sh
-
-
-#####################################
 #               ZGEN                #
 #####################################
 if [[ ! -d ~/.config/zgen ]];then
@@ -48,9 +42,6 @@ if _has fzf; then
     zgen load junegunn/fzf shell/key-bindings.zsh
 fi
 
-#
-#
-#
 #####################################
 #               ALIAS               #
 #####################################
@@ -60,6 +51,10 @@ if [ -f ~/dotfiles/zsh_local_alias ]; then
     source ~/dotfiles/zsh_local_alias
 fi
 
+#####################################
+#           BASE16 THEME            #
+#####################################
+source $ZDOTDIR/rose-pine.sh
 
 #####################################
 #               FZF                 #
