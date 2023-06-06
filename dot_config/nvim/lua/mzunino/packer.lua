@@ -16,7 +16,17 @@ return require("packer").startup(function(use)
 	})
 	use("gbrlsnchs/telescope-lsp-handlers.nvim")
 
-	use("tamago324/lir.nvim")
+	-- use("tamago324/lir.nvim")
+
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
+		config = function()
+			require("nvim-tree").setup({})
+		end,
+	})
 
 	use({
 		"rose-pine/neovim",
