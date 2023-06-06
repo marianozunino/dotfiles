@@ -4,7 +4,7 @@ local file_browser = require("mzunino.telescope").file_browser
 
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<space>n", ":lua require'lir.float'.toggle()<CR>", { noremap = true })
+vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>")
 
 vim.keymap.set("n", "Y", "yy")
 vim.keymap.set("n", "?", "?\\v")
