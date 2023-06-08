@@ -3,7 +3,7 @@
 [global]
     ### Display ###
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    monitor = 1
     follow = none
     ### Geometry ###
     width = 300
@@ -111,7 +111,7 @@
 
     # Specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
-    ellipsize = middle
+    ellipsize = end
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no

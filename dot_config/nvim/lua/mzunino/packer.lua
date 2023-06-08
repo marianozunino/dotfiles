@@ -19,13 +19,13 @@ return require("packer").startup(function(use)
 	-- use("tamago324/lir.nvim")
 
 	use({
-		"nvim-tree/nvim-tree.lua",
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
 		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
 		},
-		config = function()
-			require("nvim-tree").setup({})
-		end,
 	})
 
 	use({
