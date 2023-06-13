@@ -43,17 +43,17 @@ local sources = {
 	}),
 	cspell.diagnostics.with({
 		condition = function(utils)
-			-- return utils.root_has_file({ "cspell.json" })
+			return utils.root_has_file({ "cspell.json" })
 			-- if not lua file, return true
-			return vim.bo.filetype ~= "lua"
+			-- return vim.bo.filetype ~= "lua"
 		end,
-		config = {},
+		-- config = {},
 	}),
 	cspell.code_actions.with({
-		-- condition = function(utils)
-		-- 	return utils.root_has_file({ "cspell.json" })
-		-- end,
-		config = {},
+		condition = function(utils)
+			return utils.root_has_file({ "cspell.json" })
+		end,
+		-- config = {},
 	}),
 }
 
