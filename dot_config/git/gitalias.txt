@@ -133,7 +133,16 @@
   ci = commit --interactive
 
   # commit with a message
-  cm = commit --message
+  ; cm = commit --message
+  cm = "!f() { \
+        if git symbolic-ref --short HEAD | grep -E '^OCST-[0-9]{2,5}-' >/dev/null 2>&1; then \
+            branch_name=$(git symbolic-ref --short HEAD); \
+            ticket_number=$(echo \"$branch_name\" | sed -E 's/^(OCST-[0-9]{2,5}).*$/\\1/'); \
+            git commit --message \"$1\" -m \"$ticket_number\" ${@:2}; \
+        else \
+            git commit --message \"$1\" ${@:2}; \
+        fi; \
+        }; f"
 
   ### checkout ###
 
