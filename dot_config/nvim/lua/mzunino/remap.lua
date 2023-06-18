@@ -2,8 +2,6 @@ local dev_folders = require("mzunino.telescope").dev_folders
 local tmux_switcher = require("mzunino.telescope").tmux_switcher
 local file_browser = require("mzunino.telescope").file_browser
 
-vim.g.mapleader = " "
-
 vim.keymap.set("n", "<space>n", ":NeoTreeFloatToggle<CR>")
 
 vim.keymap.set("n", "Y", "yy")
@@ -53,7 +51,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- undo tree
-vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>")
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- tmux navigation
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check the status of Dunst notifications
+status=$(dunstctl is-paused)
+
+# Check if status is "true" (paused)
+if [ "$status" = "true" ]; then
+    # If paused, resume notifications
+    dunstctl set-paused false
+    # message with emoji
+    notify-send -u critical "Notifications Resumed " -t 1000
+else
+    # If not paused, pause notifications
+    # message with emoji cancel notifcation after 1 second
+    notify-send -u critical "Notifications Paused " -t 1000
+    sleep 2
+    dunstctl set-paused true
+fi
