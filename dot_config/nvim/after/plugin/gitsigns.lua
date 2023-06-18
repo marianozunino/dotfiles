@@ -52,31 +52,3 @@ require("gitsigns").setup({
 		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })
-
-function git_commit_message()
-	-- Get the current branch name
-	local branch = vim.fn.systemlist("git symbolic-ref --short HEAD")[1]
-
-	-- Check if the branch name starts with the pattern ocst-<number>-whatever or OCST-<number>-whatever
-	local pattern = "^%a%a%a%a%-%d%d%d%d"
-	local ocst_number = string.match(branch, pattern)
-	local cmd = 'Git commit -m "'
-
-	if ocst_number ~= nil then
-		-- Remove the prefix and hyphen from the matched string
-		ocst_number = string.gsub(ocst_number, "^%a%a%a%a%-", "")
-		-- make ocst_number lowercase
-		ocst_number = string.lower(ocst_number)
-		-- command
-		input = vim.fn.input("Commit message: ")
-		cmd = cmd .. "feat(ocst-" .. ocst_number .. "): " .. input .. '"'
-	else
-		-- command
-		-- request user input
-		input = vim.fn.input("Commit message: ")
-		cmd = cmd .. input .. '"'
-	end
-	vim.api.nvim_feedkeys(":" .. cmd, "n", true)
-end
-
-vim.keymap.set("n", "<leader>cc", git_commit_message, { noremap = true, silent = true })

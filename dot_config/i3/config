@@ -28,8 +28,8 @@
         new_float pixel 1
 
         #gaps
-        gaps inner 10 
-        gaps outer 5 
+        gaps inner 10
+        gaps outer 5
 
         #enable popup
         popup_during_fullscreen smart
@@ -163,12 +163,15 @@
                 bindsym Return mode "default"
                 bindsym Escape mode "default"
                 bindsym $mod+r mode "default"
-                
+
 
         }
 
 
         bindsym $mod+p exec --no-startup-id flameshot gui
+
+        # mod + F5 executes the script ~/.bin/pause-notifications
+        bindsym $mod+F5 exec --no-startup-id ~/.bin/pause-notifications
 
         # The middle button over a titlebar kills the window
         bindsym --release button2 kill
@@ -232,7 +235,7 @@
         # Sreen brightness controls
         bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
         bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
-#        
+#
 
 #Startup stuff
         exec --no-startup-id /usr/bin/lxpolkit
