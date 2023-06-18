@@ -1,5 +1,6 @@
 return {
   "davidmh/cspell.nvim",
+  lazy = true,
   dependencies = { "jose-elias-alvarez/null-ls.nvim" },
   config = function()
     local null_ls = require("null-ls")
