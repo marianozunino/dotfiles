@@ -1,4 +1,4 @@
-nodejs 16.15.0
+nodejs lts-hydrogen
 chezmoi 2.31.0
 bitwarden v1.22.1
 golang 1.19.6 system
