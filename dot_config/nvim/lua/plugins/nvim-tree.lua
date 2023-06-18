@@ -46,6 +46,7 @@ return {
 						-- use escape to close
 						["<Esc>"] = "close",
 						["l"] = "open",
+						["h"] = "open",
 					},
 				},
 			},
