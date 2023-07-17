@@ -12,12 +12,15 @@ local mason_config = function()
 		"graphql-language-service-cli",
 		"gopls",
 		"solargraph",
+		"clangd",
+		"json-lsp",
 
 		-- Fixers/Linters
 		"stylua",
 		"eslint_d",
 		"prettierd",
 		"rubocop",
+		"latexindent",
 
 		-- dap
 		"node-debug2-adapter",
@@ -110,7 +113,7 @@ local lsp_zero_config = function()
 			timeout_ms = 10000,
 		},
 		servers = {
-			["null-ls"] = { "javascript", "typescript", "lua", "tex" },
+			["null-ls"] = { "javascript", "typescript", "lua", "tex", "c", "json", "html", "typescriptreact" },
 		},
 	})
 
