@@ -35,6 +35,7 @@ return {
 			null_ls.builtins.code_actions.refactoring,
 			null_ls.builtins.formatting.gofmt,
 			null_ls.builtins.formatting.latexindent,
+			null_ls.builtins.formatting.clang_format,
 			null_ls.builtins.code_actions.eslint_d.with({
 				condition = function(utils)
 					return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.yml", ".eslintrc.yaml" })

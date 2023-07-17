@@ -2,5 +2,5 @@ nodejs lts-hydrogen
 chezmoi 2.31.0
 bitwarden v1.22.1
 golang 1.19.6 system
-flyctl 0.1.34
+flyctl 0.1.58
 pnpm 7.32.0

@@ -1,40 +1,45 @@
 #!/bin/bash
-EMAIL=mariano.zunino@stuzo.com
+
+EMAIL="mariano.zunino@stuzo.com"
 DISCONNECT_MODE=false
 MODE_TEXT="[Connect Mode]"
+NOTIFICATION_TITLE="$MODE SDM"
 
-# check if flag -d is present
-if [ "$1" == "-d" ]; then
+# Check if flag -d is present
+if [[ "$1" == "-d" ]]; then
   DISCONNECT_MODE=true
   MODE_TEXT="[Disconnect Mode]"
 fi
 
-NOTIFICATION_TITLE="$MODE SDM"
-
-# $1: Email
+# Store the password securely
 function store_password() {
-  local password=$(zenity --entry --title="SDM Password" --text="Enter your SDM password" --hide-text)
-  echo $EMAIL | secret-tool store --label="SDM UI" email $password type sdm-credential
+  local password
+  password=$(zenity --entry --title="SDM Password" --text="Enter your SDM password" --hide-text)
+  echo "$EMAIL" | secret-tool store --label="SDM UI" email "$password" type sdm-credential
   echo "$password"
 }
 
-# $1: email
+# Retrieve the password
 function get_password() {
-  local password=$(secret-tool lookup type sdm-credential email $EMAIL)
-  # if no password is found, then ask for it
-  if [ -z "$password" ]; then
-    password=$(store_password $EMAIL)
+  local password
+  password=$(secret-tool lookup type sdm-credential email "$EMAIL")
+  # If no password is found, then ask for it
+  if [[ -z "$password" ]]; then
+    password=$(store_password "$EMAIL")
   fi
   echo "$password"
 }
 
+# Authenticate the user
 function authenticate() {
+  local data
   data=$(sdm status 2>/dev/null)
-  if [ $? -ne 0 ]; then
+  if [[ $? -ne 0 ]]; then
     notify-send -u normal "$NOTIFICATION_TITLE" "No session was found, signing in... 🔑"
-    local password=`get_password`
-    echo "$password" | sdm login --email $EMAIL > /dev/null
-    if [ $? -ne 0 ]; then
+    local password
+    password=$(get_password)
+    echo "$password" | sdm login --email "$EMAIL" > /dev/null
+    if [[ $? -ne 0 ]]; then
       notify-send -u critical "$NOTIFICATION_TITLE" "Login failed! 😱"
       exit 1
     fi
@@ -42,52 +47,75 @@ function authenticate() {
   fi
 }
 
-
+# Get the status data
 function get_status_data() {
-  local data=$(sdm status |\
-    grep -v "eks" |\
-    sed 's/not connected/not_connected/g' |\
-    grep connected |\
-    tr -s ' ' |\
-    cut -d ' ' -f 2,3,4 |\
-    sort -k 2 |\
-    awk '{print $2,$1,$3}' |\
-    sed 's/^connected/⚡/g' |\
-    column -t -s ' ' -o ' '
-  )
+  local data
+  data=$(sdm status |
+    grep -v "eks" |
+    sed 's/not connected/not_connected/g' |
+    grep connected |
+    tr -s ' ' |
+    cut -d ' ' -f 2,3,4 |
+    sort -k 2 |
+    awk '{print $2,$1,$3}' |
+    sed 's/^connected/⚡/g' |
+    column -t -s ' ' -o ' ')
   echo "$data"
 }
 
+# Show the menu for disconnect mode
+function show_disconnect_menu() {
+  local status_data
+  status_data=$(get_status_data)
+  # Remove the "not_connected" lines
+  status_data=$(echo "$status_data" | grep -v not_connected)
+  show_menu "$status_data"
+}
+
+# Show the menu for connect mode
+function show_connect_menu() {
+  local status_data
+  status_data=$(get_status_data)
+  # Replace the "not_connected" lines with the "🔌" emoji
+  status_data=$(echo "$status_data" | sed 's/not_connected/🔌/g')
+  show_menu "$status_data"
+}
+
+# Show the main menu
 function show_menu() {
-  local status_data=$1
-  local selected_option=$(echo "$status_data" | rofi -dmenu -p "Select Service" -i -sort -matching fuzzy -markup-rows)
+  local status_data="$1"
+  local selected_option
+  selected_option=$(echo "$status_data" | rofi -dmenu -p "Select Service" -i -sort -matching fuzzy -markup-rows)
 
-  local status=$(echo $selected_option | cut -d ' ' -f 1)
-  local cluster=$(echo $selected_option | cut -d ' ' -f 2)
-  local port=$(echo $selected_option | cut -d ' ' -f 3)
+  local status
+  local cluster
+  local port
+  status=$(echo "$selected_option" | cut -d ' ' -f 1)
+  cluster=$(echo "$selected_option" | cut -d ' ' -f 2)
+  port=$(echo "$selected_option" | cut -d ' ' -f 3)
 
-  if [ -z "$cluster" ]; then
+  if [[ -z "$cluster" ]]; then
     exit 0
   fi
 
-  if [ $DISCONNECT_MODE = true ]; then
+  if [[ $DISCONNECT_MODE = true ]]; then
     notify-send -u normal "$NOTIFICATION_TITLE" "Disconnecting from $cluster...⏳"
-    sdm disconnect $cluster > /dev/null
-    if [ $? -ne 0 ]; then
+    sdm disconnect "$cluster" > /dev/null
+    if [[ $? -ne 0 ]]; then
       notify-send -u critical "$NOTIFICATION_TITLE" "Disconnect failed! 😱"
       exit 1
     fi
     notify-send -u normal "$NOTIFICATION_TITLE" "❌ Disconnected successfully!"
     exit 0
   else
-    if [ "$status" = "⚡" ]; then
+    if [[ "$status" = "⚡" ]]; then
       notify-send -u normal "$NOTIFICATION_TITLE" "Copying port <b>$port</b> to clipboard... 📋"
       xclip -selection clipboard -i <<< "$port"
       exit 0
     fi
     notify-send -u normal "$NOTIFICATION_TITLE" "Connecting to <b>$cluster</b> 🔌"
-    sdm connect $cluster
-    if [ $? -eq 0 ]; then
+    sdm connect "$cluster"
+    if [[ $? -eq 0 ]]; then
       notify-send -u normal "$NOTIFICATION_TITLE" "Connected to <b>$cluster</b> on port <b>$port</b> ⚡"
       xclip -selection clipboard -i <<< "$port"
     else
@@ -96,54 +124,41 @@ function show_menu() {
   fi
 }
 
-function show_disconnect_menu() {
-  local status_data=$(get_status_data)
-  # remove the "not_connected" lines
-  status_data=$(echo "$status_data" | grep -v not_connected)
-  show_menu "$status_data"
-}
-
-function show_connect_menu() {
-  local status_data=$(get_status_data)
-  # replace the "not_connected" lines with the "🔌" emoji
-  status_data=$(echo "$status_data" | sed 's/not_connected/🔌/g')
-  show_menu "$status_data"
-}
-
-
-function main() {
-  authenticate
-  notify-send -u normal "$NOTIFICATION_TITLE" "Getting results from SDM...⏳" -t 1700
-  if [ $DISCONNECT_MODE = true ]; then
-    show_disconnect_menu
-  else
-    show_connect_menu
-  fi
-}
-
-# check if every dependency is installed
-function check_dependencies(){
+# Check if every dependency is installed
+function check_dependencies() {
   local dependencies=(
-    "sdm" 
+    "sdm"
     "rofi"
-    "xclip" 
-    "zenity" 
-    "awk" 
-    "cut" 
-    "grep" 
-    "sed" 
-    "sort" 
+    "xclip"
+    "zenity"
+    "awk"
+    "cut"
+    "grep"
+    "sed"
+    "sort"
     "tr"
-    "notify-send" 
+    "notify-send"
     "secret-tool"
   )
   for dependency in "${dependencies[@]}"; do
-    if ! command -v $dependency &> /dev/null; then
+    if ! command -v "$dependency" &>/dev/null; then
       echo "$dependency could not be found"
       exit 1
     fi
   done
 }
 
+# Main entry point
+function main() {
+  authenticate
+  notify-send -u normal "$NOTIFICATION_TITLE" "Getting results from SDM...⏳" -t 1700
+  if [[ $DISCONNECT_MODE = true ]]; then
+    show_disconnect_menu
+  else
+    show_connect_menu
+  fi
+}
+
+# Check dependencies and execute the main function
 check_dependencies
 main
