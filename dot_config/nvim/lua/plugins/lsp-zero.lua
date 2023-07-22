@@ -113,7 +113,7 @@ local lsp_zero_config = function()
 			timeout_ms = 10000,
 		},
 		servers = {
-			["null-ls"] = { "javascript", "typescript", "lua", "tex", "c", "json", "html", "typescriptreact" },
+			["null-ls"] = { "javascript", "typescript", "lua", "tex", "c", "json", "html", "typescriptreact", "go" },
 		},
 	})
 

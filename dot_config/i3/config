@@ -194,7 +194,6 @@
         bindsym $mod+minus scratchpad show
 
         bindsym $mod+Shift+p [instance="keepassxc"] scratchpad show, move position center
-#
 
 # App 2 WS
         for_window [class="Evolution-alarm-notify"] floating enable
@@ -207,9 +206,9 @@
         assign [class="^nvim ~ "] 3
         assign [title="^nvim ~ "] 3
         assign [class="^firefox-nightly$"] 2
-        assign [class="^Brave-browser$"] 2
-        assign [class="^GitKraken$"] 4
-        assign [class="^Sublime_merge$"] 4
+
+        assign [class="Sm"] 4
+
         assign [class="^Evolution$"] 7
         assign [class="^org.remmina.Remmina"] 10
 
@@ -224,7 +223,6 @@
         for_window [instance="dropdown"] border pixel 5
         for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
         for_window [class=".*"] border pixel 0
-#
 
 # multimedia
         # Pulse Audio controls
@@ -235,7 +233,6 @@
         # Sreen brightness controls
         bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
         bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
-#
 
 #Startup stuff
         exec --no-startup-id /usr/bin/lxpolkit
@@ -254,6 +251,3 @@
         exec --no-startup-id /opt/firefox/nightly/firefox-bin
 
 
-        # Transparency
-        #exec_always --no-startup-id compton
-#
