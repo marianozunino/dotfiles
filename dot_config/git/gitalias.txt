@@ -1503,6 +1503,8 @@
   frs = "!f() { if [ ! -z $1 ] ; then git flow release start $1 ${2:-master}; else echo 'Invalid name'; exit 1; fi; }; f"
   frf = !git flow release finish -F $(git fcb)
   frp = !git flow release publish $(git fcb)
+  # rms =  restore --staged
+  rms = "!f() { git reset HEAD -- $1; }; f"
 
   rs = restore --staged
   remove-tags = "!f() { git tag -l ${1} | xargs -I % echo \"git tag -d % && git push --delete origin %\" | sh; }; f"

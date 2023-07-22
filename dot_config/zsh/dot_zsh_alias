@@ -112,3 +112,4 @@ function gc {
 }
 
 alias gh-clone='gc'
+alias task='go-task'

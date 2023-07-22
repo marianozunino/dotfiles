@@ -46,6 +46,15 @@ vim.api.nvim_create_user_command("Q", function()
 	vim.api.nvim_command("bd!|qall!")
 end, { nargs = 0 })
 
+-- create a user command to save without formatting :noa w
+vim.api.nvim_create_user_command("W", function()
+	-- if buffer is empty, don't save
+	if vim.fn.empty(vim.fn.expand("%:t")) == 1 then
+		return vim.notify("Buffer is empty, not saving", vim.log.levels.ERROR)
+	end
+	vim.api.nvim_command("noa w")
+end, { nargs = 0 })
+
 -- move lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
