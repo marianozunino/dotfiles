@@ -32,4 +32,11 @@ return {
 	"theHamsta/nvim-dap-virtual-text",
 	"leoluz/nvim-dap-go",
 	"David-Kunz/jester",
+	{
+		"olexsmir/gopher.nvim",
+		requires = { -- dependencies
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 }
