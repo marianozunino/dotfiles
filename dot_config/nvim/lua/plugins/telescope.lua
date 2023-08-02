@@ -7,6 +7,7 @@ return {
 
 	config = function()
 		local actions = require("telescope.actions")
+		local trouble = require("trouble.providers.telescope")
 
 		require("telescope").setup({
 			defaults = {
@@ -14,7 +15,10 @@ return {
 				mappings = {
 					i = {
 						["<esc>"] = actions.close,
+						["<c-t>"] = trouble.open_with_trouble,
+						["<c-e>"] = actions.to_fuzzy_refine,
 					},
+					n = { ["<c-t>"] = trouble.open_with_trouble },
 				},
 				layout_strategy = "horizontal",
 				file_ignore_patterns = { "^undodir/" },
