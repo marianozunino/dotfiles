@@ -118,3 +118,13 @@ vim.g.user_emmet_leader_key = ","
 vim.keymap.set("n", "<leader>gs", "<CMD>G<CR>")
 vim.keymap.set("n", "<leader>gq", "<CMD>G<CR><CMD>q<CR>")
 vim.keymap.set("n", "<leader>gp", "<CMD>Git push<CR>")
+
+vim.keymap.set("n", "]t", function()
+	-- jump to the previous item, skipping the groups
+	require("trouble").next({ skip_groups = true, jump = true })
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+	-- jump to the first item, skipping the groups
+	require("trouble").previous({ skip_groups = true, jump = true })
+end, { desc = "Previous todo comment" })
