@@ -4,6 +4,7 @@ alias dc="cd"
 alias ls="ls --color"
 alias ll="ls -thor"
 
+
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
@@ -42,7 +43,6 @@ alias doomconf="vim ~/.config/gzdoom/gzdoom.ini"
 alias vimrc="cd ~/.config/nvim/ && vim init.lua"
 alias pluginconf="vim ~/.config/nvim/plugins.vim"
 alias i3conf="vim ~/.config/i3/config"
-alias rangerconf="vim ~/.config/ranger/rc.conf"
 alias cssh="vim ~/.ssh/config"
 
 alias syu='yay -Syyu'
@@ -113,3 +113,14 @@ function gc {
 
 alias gh-clone='gc'
 alias task='go-task'
+
+
+lf () {
+	LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
+	LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
+	if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
+		cd "$(cat "$LF_TEMPDIR/lastdir")"
+	fi
+	/bin/rm -fr "$LF_TEMPDIR"
+	unset LF_TEMPDIR
+}
