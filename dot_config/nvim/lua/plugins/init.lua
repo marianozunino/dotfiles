@@ -48,4 +48,9 @@ return {
 			-- refer to the configuration section below
 		},
 	},
+	{
+		"barrett-ruth/live-server.nvim",
+		build = "npm i -g live-server",
+		config = true,
+	},
 }

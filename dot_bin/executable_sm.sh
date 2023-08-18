@@ -14,6 +14,9 @@ if [ ! -f $FILENAME ]; then
   # wget only if file does not exist
   wget -nc $URL
   tar -xvf $FILENAME
+fi
+
+if [ ! -f $bin ]; then
   ln -fs $PWD/sublime_merge/sublime_merge $bin
 fi
 
