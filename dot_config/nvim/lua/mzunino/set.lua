@@ -93,5 +93,5 @@ cmd([[
   autocmd FileType netrw lua vim.diagnostic.disable(0)
 ]])
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
