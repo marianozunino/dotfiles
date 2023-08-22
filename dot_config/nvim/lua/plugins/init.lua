@@ -4,7 +4,25 @@ return {
 	-- "tamago324/lir.nvim",
 
 	"theprimeagen/harpoon",
-	"theprimeagen/refactoring.nvim",
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("refactoring").setup({
+				-- prompt for return type
+				prompt_func_return_type = {
+					go = true,
+				},
+				-- prompt for function parameters
+				prompt_func_param_type = {
+					go = true,
+				},
+			})
+		end,
+	},
 
 	"tpope/vim-fugitive",
 	"lewis6991/gitsigns.nvim",
@@ -53,4 +71,7 @@ return {
 		build = "npm i -g live-server",
 		config = true,
 	},
+
+	"b0o/builder.vim",
+	"b0o/quicktemplate.vim",
 }
