@@ -1,8 +1,6 @@
 return {
 	"nvim-lua/popup.nvim",
 
-	-- "tamago324/lir.nvim",
-
 	"theprimeagen/harpoon",
 	{
 		"ThePrimeagen/refactoring.nvim",
@@ -74,4 +72,5 @@ return {
 
 	"b0o/builder.vim",
 	"b0o/quicktemplate.vim",
+	"MunifTanjim/nui.nvim",
 }

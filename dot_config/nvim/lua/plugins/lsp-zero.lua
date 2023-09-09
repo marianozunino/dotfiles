@@ -14,6 +14,7 @@ local mason_config = function()
 		"solargraph",
 		"clangd",
 		"json-lsp",
+		"svelte-language-server",
 
 		-- Fixers/Linters
 		"stylua",
@@ -124,6 +125,7 @@ local lsp_zero_config = function()
 				"typescriptreact",
 				"go",
 				"graphql",
+				"svelte",
 			},
 		},
 	})
