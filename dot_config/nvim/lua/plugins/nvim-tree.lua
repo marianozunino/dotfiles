@@ -1,63 +1,34 @@
 return {
-	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v2.x",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-		"MunifTanjim/nui.nvim",
-	},
+	"stevearc/oil.nvim",
+	opts = {},
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local HEIGHT_RATIO = 0.8 -- You can change this
-		local WIDTH_RATIO = 0.5 -- You can change this too
+		require("oil").setup({
+			keymaps = {
+				["<C-p>"] = false,
+				["g?"] = "actions.show_help",
+				["<CR>"] = "actions.select",
+				["<C-s>"] = "actions.select_vsplit",
+				["<C-h>"] = "actions.select_split",
+				["<C-t>"] = "actions.select_tab",
+				["<C-c>"] = "actions.close",
+				["<C-l>"] = "actions.refresh",
+				["-"] = "actions.parent",
+				["_"] = "actions.open_cwd",
+				["`"] = "actions.cd",
+				["~"] = "actions.tcd",
+				["g."] = "actions.toggle_hidden",
+			},
+		})
 
-		require("neo-tree").setup({
-			filesystem = {
-				hijack_netrw_behavior = "open_default",
-				components = {
-					harpoon_index = function(config, node)
-						local Marked = require("harpoon.mark")
-						local path = node:get_id()
-						local succuss, index = pcall(Marked.get_index_of, path)
-						if succuss and index and index > 0 then
-							return {
-								text = string.format(" %d", index),
-								highlight = config.highlight or "NeoTreeDirectoryIcon",
-							}
-						else
-							return {}
-						end
-					end,
-				},
-				renderers = {
-					file = {
-						{ "icon" },
-						{ "name", use_git_status_colors = true },
-						{ "diagnostics" },
-						{ "git_status", highlight = "NeoTreeDimText" },
-						{ "harpoon_index" }, --> This is what actually adds the component in where you want it
-					},
-				},
-				filtered_items = {
-					hide_dotfiles = false,
-				},
-				window = {
-					mappings = {
-						-- use escape to close
-						["<Esc>"] = "close",
-						["l"] = "open",
-						["h"] = "open",
-					},
-				},
-			},
-			event_handlers = {
-				{
-					event = "file_opened",
-					handler = function()
-						--auto close
-						require("neo-tree").close_all()
-					end,
-				},
-			},
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "OilEnter",
+			callback = vim.schedule_wrap(function(args)
+				local oil = require("oil")
+				if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() then
+					oil.select({ preview = true })
+				end
+			end),
 		})
 	end,
 }

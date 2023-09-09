@@ -8,6 +8,7 @@ return {
 		local sources = {
 			null_ls.builtins.formatting.prettier.with({
 				filetypes = {
+					"svelte",
 					"javascript",
 					"typescript",
 					"typescriptreact",
@@ -26,6 +27,7 @@ return {
 					"gohtmltmpl",
 					"jinja.html",
 					"jinja",
+					"qtpl",
 				},
 			}),
 			null_ls.builtins.formatting.rustfmt,

@@ -2,7 +2,7 @@ local dev_folders = require("mzunino.telescope").dev_folders
 local tmux_switcher = require("mzunino.telescope").tmux_switcher
 local file_browser = require("mzunino.telescope").file_browser
 
-vim.keymap.set("n", "<space>n", ":NeoTreeFloatToggle<CR>")
+vim.keymap.set("n", "<space>n", ":Oil<CR>")
 
 vim.keymap.set("n", "Y", "yy")
 vim.keymap.set("n", "?", "?\\v")
