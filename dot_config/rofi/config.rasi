@@ -1,3 +1,4 @@
+/*
 configuration {
 	modi: "combi";
 	lines: 5;
@@ -14,5 +15,46 @@ configuration {
 	kb-cancel: "Escape,Alt+F1,Alt+F2";
 }
 
-/* @theme "/usr/share/rofi/themes/fancy.rasi" */
+ @theme "/usr/share/rofi/themes/fancy.rasi"
  @theme "/home/forbi/.config/rofi/toto.rasi"
+ */
+
+configuration {
+  modi: "drun,run,ssh,filebrowser,powermenu:~/.config/rofi/powermenu.lua";
+
+  me-accept-entry: "MousePrimary";
+  me-select-entry: "";
+  show-icons: true;
+  icon-theme: "ePapirus";
+  application-fallback-icon: "run-build";
+
+  drun-display-format: " {name} ";
+  run-shell-command: "foot {cmd}";
+  ssh-command: "foot --term=xterm ssh {host}";
+  sidebar-mode: true;
+  matching: "fuzzy";
+  scroll-method: 0;
+  disable-history: false;
+
+  display-drun: "󱓞 Apps";
+  display-run: " Run";
+  display-ssh: "󰀂 SSH";
+  display-filebrowser: " Files";
+  display-powermenu: " Power";
+
+  combi-modi: "drun,run";
+  sort: true;
+  sorting-method: "fzf";
+
+  timeout {
+    action: "kb-cancel";
+    delay: 30;
+  }
+
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+}
+
+@theme "theme.rasi"

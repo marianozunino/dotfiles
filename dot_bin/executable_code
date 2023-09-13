@@ -21,7 +21,7 @@ directory_name=`basename $DIR`
 # if [ "$2" = "--tmux" ]; then
     title="nvim ~ $directory_name"
     command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
-    i3-msg "[title=\"${title}\"] focus" >/dev/null 2>&1
+    swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
     if [ $? -ne 0 ]; then
         alacritty --working-directory "${DIR}" --title "$title" -e $command &
         disown

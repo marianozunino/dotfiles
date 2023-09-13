@@ -5,6 +5,8 @@ export TERMINAL="alacritty"
 
 export LANG=en_US.UTF-8
 
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
@@ -57,4 +59,3 @@ fi
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
-xrdb -load $XDG_CONFIG_HOME/X11/xresources

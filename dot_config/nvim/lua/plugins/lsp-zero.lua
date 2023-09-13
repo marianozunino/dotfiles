@@ -11,8 +11,6 @@ local mason_config = function()
 		"typescript-language-server",
 		"graphql-language-service-cli",
 		"gopls",
-		"solargraph",
-		"clangd",
 		"json-lsp",
 		"svelte-language-server",
 
@@ -20,12 +18,7 @@ local mason_config = function()
 		"stylua",
 		"eslint_d",
 		"prettierd",
-		"rubocop",
 		"latexindent",
-
-		-- dap
-		"node-debug2-adapter",
-		"go-debug-adapter",
 	}) do
 		local ok, pkg = pcall(registry.get_package, pkg_name)
 		if ok then
