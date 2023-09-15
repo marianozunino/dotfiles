@@ -69,3 +69,39 @@ return {
 		})
 	end,
 }
+-- return {
+-- 	{
+-- 		"stevearc/conform.nvim",
+-- 		opts = {
+-- 			notify_on_error = true,
+-- 			formatters_by_ft = {
+-- 				lua = { "stylua" },
+-- 				go = { { "gofmt", "goimports" } },
+-- 				javascript = { { "eslint_d", "prettier", "prettierd" } },
+-- 				typescript = { { "eslint_d", "prettier", "prettierd" } },
+-- 				typescriptreact = { { "eslint_d", "prettier", "prettierd" } },
+-- 				["*"] = { "trim_whitespace" },
+-- 			},
+-- 			format_on_save = {
+-- 				-- These options will be passed to conform.format()
+-- 				timeout_ms = 500,
+-- 				lsp_fallback = true,
+-- 			},
+-- 		},
+-- 	},
+-- 	{
+-- 		"mfussenegger/nvim-lint",
+-- 		config = function()
+-- 			require("lint").linters_by_ft = {
+-- 				javascript = { "eslint_d" },
+-- 				typescript = { "eslint_d" },
+-- 				typescriptreact = { "eslint_d" },
+-- 			}
+-- 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 				callback = function()
+-- 					require("lint").try_lint()
+-- 				end,
+-- 			})
+-- 		end,
+-- 	},
+-- }
