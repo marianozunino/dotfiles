@@ -23,7 +23,7 @@ directory_name=`basename $DIR`
     command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
     swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
     if [ $? -ne 0 ]; then
-        alacritty --working-directory "${DIR}" --title "$title" -e $command &
+        footclient -D "${DIR}" -T "$title" -e $command &
         disown
     fi
     exit

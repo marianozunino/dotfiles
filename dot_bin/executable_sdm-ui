@@ -110,14 +110,14 @@ function show_menu() {
   else
     if [[ "$status" = "⚡" ]]; then
       notify-send -u normal "$NOTIFICATION_TITLE" "Copying port <b>$port</b> to clipboard... 📋"
-      xclip -selection clipboard -i <<< "$port"
+      wl-copy "$port"
       exit 0
     fi
     notify-send -u normal "$NOTIFICATION_TITLE" "Connecting to <b>$cluster</b> 🔌"
     sdm connect "$cluster"
     if [[ $? -eq 0 ]]; then
       notify-send -u normal "$NOTIFICATION_TITLE" "Connected to <b>$cluster</b> on port <b>$port</b> ⚡"
-      xclip -selection clipboard -i <<< "$port"
+      wl-copy "$port"
     else
       notify-send -u critical "$NOTIFICATION_TITLE" "Failed to connect to <b>$cluster</b> 😱"
     fi
@@ -128,8 +128,8 @@ function show_menu() {
 function check_dependencies() {
   local dependencies=(
     "sdm"
+    "wl-copy"
     "rofi"
-    "xclip"
     "zenity"
     "awk"
     "cut"
