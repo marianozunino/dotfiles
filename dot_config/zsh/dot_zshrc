@@ -99,12 +99,12 @@ zle redisplay
 # bindkey "^I" expand-or-complete-with-dots
 
 tmuxLauncher(){
-	x=$(/bin/fd --base-directory ~/Development --search-path .  -t d -d 2 | fzf)
+	x=$(/bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | fzf)
 	git rev-parse --git-dir 2> /dev/null
 	if [[ $? -ne 0 ]] ;then
-		tmux rename-window $x; cd "/home/forbi/Development/$x"
+		tmux rename-window $x; cd "/home/forbi/Dev/$x"
 	else
-		tmux new-window -n $x -c "/home/forbi/Development/$x"
+		tmux new-window -n $x -c "/home/forbi/Dev/$x"
 	fi
 	zle reset-prompt
 }
@@ -120,9 +120,10 @@ if [ "$VIMRUNTIME" ]; then
 	#     echo "VSCODE"
 elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 	echo "Welcome stranger..."
-	#startx?
-# elif [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-# 	exec sway
+#startx?
+elif [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+ 	startx
+  exit
 elif [ -z $TMUX ]; then
 	tmux ls 2> /dev/null
 	if [ $? -ne 0 ]; then
