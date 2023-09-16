@@ -9,6 +9,8 @@ slack &
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
 
+swaymsg -t get_outputs -r | jq -r ".[].name" | parallel 'swaybg -o {} -i $(find ~/Pictures/* -type f | shuf -n 1) &'
+
 foot --server &
 # wait for foot server to start
 sleep 1;
