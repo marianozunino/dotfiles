@@ -237,16 +237,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease 
 #Startup stuff
 set $term footclient
 
-# exec --no-startup-id autotiling
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 exec --no-startup-id autostart
-exec --no-startup-id feh --randomize --bg-scale ~/Pictures/*
 exec --no-startup-id GTK_THEME=Mist evolution
 exec --no-startup-id /opt/firefox/firefox-bin
-exec swaybg -o DP-1 -i `find ~/Pictures/* -type f | shuf -n 1`
-exec swaybg -o HDMI-A-1 -i `find ~/Pictures/* -type f | shuf -n 1`
 
 
 workspace 1 output  DP-1
