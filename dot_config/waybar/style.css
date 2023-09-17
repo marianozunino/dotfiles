@@ -35,6 +35,16 @@ window#waybar {
     border-radius: 16px;
 }
 
+#workspaces button.focused {
+  background: #A3BE8C;
+  color: #000000;
+}
+
+#workspaces button.urgent {
+  background: #BF616A;
+  color: #000000;
+}
+
 #workspaces button:hover {
 	background-color: #E6B9C6;
 	color: black;
