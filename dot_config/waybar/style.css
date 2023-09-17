@@ -36,7 +36,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  background: #A3BE8C;
+  background: #c4a7e7;
   color: #000000;
 }
 
@@ -112,12 +112,9 @@ window#waybar {
 }
 
 #backlight {
-    background-color: #24283b;
-    color: #db4b4b;
+    color: #f6c177;
     border-radius: 0px 0px 0px 0px;
     margin: 5px;
-    margin-left: 0px;
-    margin-right: 0px;
     padding: 0px 0px;
 }
 
