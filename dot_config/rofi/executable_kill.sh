@@ -7,5 +7,5 @@ then
 	echo "$pid"
 	kill "$pid"
 else
-	ps -U $UID --no-headers -o "%p: %c"
+	ps -U $UID --no-headers -o "%p %c"
 fi

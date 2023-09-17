@@ -8,8 +8,11 @@ slack &
 
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
+vorta &
 
 swaymsg -t get_outputs -r | jq -r ".[].name" | parallel 'swaybg -o {} -i $(find ~/Pictures/* -type f | shuf -n 1) &'
+
+./randwall
 
 foot --server &
 # wait for foot server to start

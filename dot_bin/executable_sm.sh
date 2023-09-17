@@ -5,7 +5,6 @@ FILENAME=sublime_merge_build_"$VERSION"_x64.tar.xz
 bin=~/.bin/sm
 
 # set current working directory to ~/.bin
-
 cd ~/.bin
 
 # if FILENAME exists, then exit

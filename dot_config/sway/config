@@ -58,7 +58,7 @@ bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | 
 bindsym $mod+n exec ~/.bin/sdm-ui
 bindsym $mod+Shift+n exec ~/.bin/sdm-ui -d
 # Power
-bindsym XF86PowerOff exec rofi -show Power -modi Power:$HOME/.config/rofi/power.sh
+bindsym XF86PowerOff exec wlogout -p layer-shell
 bindsym $mod+x exec rofi -show Power -modi Power:$HOME/.config/rofi/kill.sh
 
 # change focus
@@ -134,8 +134,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c exec swaymsg reload && notify-send "Reloaded sway config"
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id wlogout
 
@@ -197,11 +196,15 @@ for_window [app_id="sm"] move to workspace 4, workspace --no-auto-back-and-forth
 for_window [title="JetBrains Toolbox"] floating enable
 for_window [app_id="Spotify"] move to workspace 5, workspace --no-auto-back-and-forth 5
 
+# yubikey
+for_window [app_id="authenticator"] floating enable
+for_window [app_id="authenticator"] resize set 400 800
+
 for_window [title="File Operation Progress"] floating enable
-for_window [title="Do Not Panic"] floating enable;
-for_window [title="File Operation Progress"] floating enable;
-for_window [title="Unlock Keyring"] floating enable;
-for_window [title="Confirm to replace files"] floating enable;
+for_window [title="Do Not Panic"] floating enable
+for_window [title="File Operation Progress"] floating enable
+for_window [title="Unlock Keyring"] floating enable
+for_window [title="Confirm to replace files"] floating enable
 
 assign [app_id="^discord$"] 10
 assign [app_id="^jetbrains-idea$"] 3
@@ -233,6 +236,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
+
+bindsym $mod+Shift+r  exec --no-startup-id ~/.bin/wlrecord.sh -s
 
 #Startup stuff
 set $term footclient

@@ -1,0 +1,30 @@
+{
+    "label" : "lock",
+    "action" : "swaylock --screenshot --clock --indicator --indicator-radius 200 --indicator-thickness 7 --effect-blur 7x5 --fade-in 0.2",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Shutdown",
+    "keybind" : "s"
+}
+{
+    "label" : "logout",
+    "action" : "swaymsg exit",
+    "text" : "Logout",
+    "keybind" : "e"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "u"
+}

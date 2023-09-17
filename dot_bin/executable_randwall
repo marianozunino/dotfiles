@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pkill swaybg
+
+swaymsg -t get_outputs -r | jq -r ".[].name" | parallel 'swaybg -o {} -i $(find ~/Pictures/* -type f | shuf -n 1) &'
