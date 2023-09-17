@@ -8,18 +8,13 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-
     "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
-    "modules-center": ["cpu", "memory", "disk"],
-
     "clock": {
       "format": " {:%H:%M}",
       "tooltip": "true",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format-alt": " {:%d/%m}"
     },
-
-
     "sway/workspaces": {
       "disable-scroll": true,
       "format": "{icon}",
@@ -29,12 +24,12 @@
         "3": "",
         "4": "",
         "7": "",
+        "10": "󰙯",
         "urgent": "",
         "active": "",
         "default": "󰧞"
       }
     },
-
     "custom/playerctl": {
       "format": "{icon}",
       "return-type": "json",
@@ -59,41 +54,36 @@
       "format-icons": {
         "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
         "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
+      }
     },
-
     "battery": {
       "states": {
         "good": 95,
         "warning": 30,
         "critical": 15
       },
-      "format":"{icon}  {capacity}%",
+      "format": "{icon}  {capacity}%",
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
       "format-icons": ["", "", "", "", ""]
     },
-
     "memory": {
       "format": "󰍛 {}%",
       "format-alt": "󰍛 {used}/{total} GiB",
       "interval": 5
     },
-
     "cpu": {
       "format": "󰻠 {usage}%",
       "format-alt": "󰻠 {avg_frequency} GHz",
       "interval": 5
     },
-
     "disk": {
       "format": "󰋊 {percentage_used}%",
       "format-alt": "󰋊 {used}/{total} GiB",
       "interval": 5,
       "path": "/home"
     },
-
     "network": {
       "format-wifi": "󰤨",
       "format-ethernet": " {ifname}: Main",
@@ -103,17 +93,14 @@
       "tooltip-format": "{essid}",
       "on-click-right": "nm-connection-editor"
     },
-
     "tray": {
       "icon-size": 16,
       "spacing": 5
     },
-
     "backlight": {
       "format": "{icon} {percent}%",
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
-
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
@@ -122,7 +109,7 @@
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
-      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/randwall": {
       "format": "󰏘",
@@ -137,7 +124,6 @@
       "interval": 1,
       "on-click": "wlrecord.sh -s"
     },
-
     "sway/window": {
       "all-outputs": true,
       "format": "{}",
@@ -157,11 +143,18 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-
     "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
-    "modules-center": [ "custom/playerctl", "custom/playerlabel"],
-    "modules-right": ["custom/wf-recorder",  "custom/randwall", "network", "pulseaudio","tray", "clock"],
-
+    "modules-center": ["custom/playerctl", "custom/playerlabel"],
+    "modules-right": [
+      "cpu",
+      "memory",
+      "disk",
+      "custom/wf-recorder",
+      "custom/randwall",
+      "pulseaudio",
+      "tray",
+      "clock"
+    ],
     "sway/window": {
       "all-outputs": true,
       "format": "{}",
@@ -171,14 +164,12 @@
         "(.*) - zsh": "> [$1]"
       }
     },
-
     "clock": {
       "format": " {:%H:%M}",
       "tooltip": "true",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format-alt": " {:%d/%m}"
     },
-
     "sway/workspaces": {
       "disable-scroll": true,
       "format": "{icon}",
@@ -188,12 +179,12 @@
         "3": "",
         "4": "",
         "7": "",
+        "10": "󰙯",
         "urgent": "",
         "active": "",
         "default": "󰧞"
       }
     },
-
     "custom/playerctl": {
       "format": "{icon}",
       "return-type": "json",
@@ -207,7 +198,6 @@
         "Paused": "<span foreground='#928374'>󰐌</span>"
       }
     },
-
     "custom/playerlabel": {
       "format": "<span>{}</span>",
       "return-type": "json",
@@ -219,42 +209,36 @@
       "format-icons": {
         "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
         "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
+      }
     },
-
-
     "battery": {
       "states": {
         "good": 95,
         "warning": 30,
         "critical": 15
       },
-      "format":"{icon}  {capacity}%",
+      "format": "{icon}  {capacity}%",
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
       "format-icons": ["", "", "", "", ""]
     },
-
     "memory": {
       "format": "󰍛 {}%",
       "format-alt": "󰍛 {used}/{total} GiB",
       "interval": 5
     },
-
     "cpu": {
       "format": "󰻠 {usage}%",
       "format-alt": "󰻠 {avg_frequency} GHz",
       "interval": 5
     },
-
     "disk": {
       "format": "󰋊 {percentage_used}%",
       "format-alt": "󰋊 {used}/{total} GiB",
       "interval": 5,
       "path": "/home"
     },
-
     "network": {
       "format-wifi": "󰤨",
       "format-ethernet": " {ifname}: Main",
@@ -264,17 +248,14 @@
       "tooltip-format": "{essid}",
       "on-click-right": "nm-connection-editor"
     },
-
     "tray": {
       "icon-size": 16,
       "spacing": 5
     },
-
     "backlight": {
       "format": "{icon} {percent}%",
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
-
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
@@ -283,7 +264,7 @@
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
-      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/randwall": {
       "format": "󰏘",
@@ -308,8 +289,13 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-
-    "modules-left": ["sway/workspaces", "sway/window", "sway/mode", "custom/playerctl", "custom/playerlabel"],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/window",
+      "sway/mode",
+      "custom/playerctl",
+      "custom/playerlabel"
+    ],
     "modules-right": [
       "custom/wf-recorder",
       "custom/randwall",
@@ -320,15 +306,12 @@
       "tray",
       "clock"
     ],
-
     "clock": {
       "format": " {:%H:%M}",
       "tooltip": "true",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format-alt": " {:%d/%m}"
     },
-
-
     "sway/workspaces": {
       "disable-scroll": true,
       "format": "{icon}",
@@ -338,12 +321,12 @@
         "3": "",
         "4": "",
         "7": "",
+        "10": "󰙯",
         "urgent": "",
         "active": "",
         "default": "󰧞"
       }
     },
-
     "custom/playerctl": {
       "format": "{icon}",
       "return-type": "json",
@@ -357,7 +340,6 @@
         "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
       }
     },
-
     "custom/playerlabel": {
       "format": "<span>{}</span>",
       "return-type": "json",
@@ -369,42 +351,36 @@
       "format-icons": {
         "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
         "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
+      }
     },
-
     "battery": {
       "states": {
         "good": 95,
         "warning": 30,
         "critical": 15
       },
-      "format":"{icon}  {capacity}%",
+      "format": "{icon}  {capacity}%",
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
       "format-icons": ["", "", "", "", ""]
     },
-
     "memory": {
       "format": "󰍛 {}%",
       "format-alt": "󰍛 {used}/{total} GiB",
       "interval": 5
     },
-
     "cpu": {
       "format": "󰻠 {usage}%",
       "format-alt": "󰻠 {avg_frequency} GHz",
       "interval": 5
     },
-
     "disk": {
       "format": "󰋊 {percentage_used}%",
       "format-alt": "󰋊 {used}/{total} GiB",
       "interval": 5,
       "path": "/home"
     },
-
-
     "network": {
       "format-wifi": "󰤨",
       "format-ethernet": " {ifname}: Main",
@@ -414,17 +390,14 @@
       "tooltip-format": "{essid}",
       "on-click-right": "nm-connection-editor"
     },
-
     "tray": {
       "icon-size": 16,
       "spacing": 5
     },
-
     "backlight": {
       "format": "{icon} {percent}%",
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
-
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
@@ -433,7 +406,7 @@
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
-      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/randwall": {
       "format": "󰏘",
@@ -447,6 +420,6 @@
       "exec-if": "pgrep 'wf-recorder'",
       "interval": 1,
       "on-click": "wlrecord.sh -s"
-    },
+    }
   }
 ]
