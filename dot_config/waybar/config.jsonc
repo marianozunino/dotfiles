@@ -1,0 +1,441 @@
+[
+  {
+    "output": ["DP-1"],
+    "position": "top",
+    "layer": "top",
+    "height": 16,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
+    "modules-center": ["cpu", "memory", "disk"],
+
+    "clock": {
+      "format": " {:%H:%M}",
+      "tooltip": "true",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": " {:%d/%m}"
+    },
+
+
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "format": "{icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "7": "",
+        "urgent": "",
+        "active": "",
+        "default": "󰧞"
+      }
+    },
+
+    "custom/playerctl": {
+      "format": "{icon}",
+      "return-type": "json",
+      "max-length": 64,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      }
+    },
+    "custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      },
+    },
+
+    "battery": {
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format":"{icon}  {capacity}%",
+      "format-charging": "{capacity}% ",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{icon} {time}",
+      "format-icons": ["", "", "", "", ""]
+    },
+
+    "memory": {
+      "format": "󰍛 {}%",
+      "format-alt": "󰍛 {used}/{total} GiB",
+      "interval": 5
+    },
+
+    "cpu": {
+      "format": "󰻠 {usage}%",
+      "format-alt": "󰻠 {avg_frequency} GHz",
+      "interval": 5
+    },
+
+    "disk": {
+      "format": "󰋊 {percentage_used}%",
+      "format-alt": "󰋊 {used}/{total} GiB",
+      "interval": 5,
+      "path": "/home"
+    },
+
+    "network": {
+      "format-wifi": "󰤨",
+      "format-ethernet": " {ifname}: Main",
+      "format-linked": " {ifname} (No IP)",
+      "format-disconnected": "󰤭",
+      "format-alt": " {ifname}: {ipaddr}/{cidr}",
+      "tooltip-format": "{essid}",
+      "on-click-right": "nm-connection-editor"
+    },
+
+    "tray": {
+      "icon-size": 16,
+      "spacing": 5
+    },
+
+    "backlight": {
+      "format": "{icon} {percent}%",
+      "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-muted": "󰝟",
+      "format-icons": {
+        "default": ["󰕿", "󰖀", "󰕾"]
+      },
+      "scroll-step": 5,
+      "on-click-right": "pavucontrol",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    },
+    "custom/randwall": {
+      "format": "󰏘",
+      "on-click": "$HOME/.bin/randwall",
+      "on-click-right": "$HOME/.bin/randwall"
+    },
+    "custom/wf-recorder": {
+      "format": "{}",
+      "exec": "echo ''",
+      "tooltip": "false",
+      "exec-if": "pgrep 'wf-recorder'",
+      "signal": 8
+    },
+
+    "sway/window": {
+      "all-outputs": true,
+      "format": "{}",
+      "max-length": 50,
+      "rewrite": {
+        "(.*) - Mozilla Firefox": "🌎 $1",
+        "(.*) - zsh": "> [$1]"
+      }
+    }
+  },
+  {
+    "output": ["HDMI-A-1"],
+    "position": "top",
+    "layer": "top",
+    "height": 16,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
+    "modules-center": [ "custom/playerctl", "custom/playerlabel"],
+    "modules-right": ["custom/wf-recorder",  "custom/randwall", "network", "pulseaudio","tray", "clock"],
+
+    "sway/window": {
+      "all-outputs": true,
+      "format": "{}",
+      "max-length": 50,
+      "rewrite": {
+        "(.*) - Mozilla Firefox": "🌎 $1",
+        "(.*) - zsh": "> [$1]"
+      }
+    },
+
+    "clock": {
+      "format": " {:%H:%M}",
+      "tooltip": "true",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": " {:%d/%m}"
+    },
+
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "format": "{icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "7": "",
+        "urgent": "",
+        "active": "",
+        "default": "󰧞"
+      }
+    },
+
+    "custom/playerctl": {
+      "format": "{icon}",
+      "return-type": "json",
+      "max-length": 64,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl play-pause",
+      "on-click-right": "playerctl play-pause",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰏥</span>",
+        "Paused": "<span foreground='#928374'>󰐌</span>"
+      }
+    },
+
+    "custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      },
+    },
+
+
+    "battery": {
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format":"{icon}  {capacity}%",
+      "format-charging": "{capacity}% ",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{icon} {time}",
+      "format-icons": ["", "", "", "", ""]
+    },
+
+    "memory": {
+      "format": "󰍛 {}%",
+      "format-alt": "󰍛 {used}/{total} GiB",
+      "interval": 5
+    },
+
+    "cpu": {
+      "format": "󰻠 {usage}%",
+      "format-alt": "󰻠 {avg_frequency} GHz",
+      "interval": 5
+    },
+
+    "disk": {
+      "format": "󰋊 {percentage_used}%",
+      "format-alt": "󰋊 {used}/{total} GiB",
+      "interval": 5,
+      "path": "/home"
+    },
+
+    "network": {
+      "format-wifi": "󰤨",
+      "format-ethernet": " {ifname}: Main",
+      "format-linked": " {ifname} (No IP)",
+      "format-disconnected": "󰤭",
+      "format-alt": " {ifname}: {ipaddr}/{cidr}",
+      "tooltip-format": "{essid}",
+      "on-click-right": "nm-connection-editor"
+    },
+
+    "tray": {
+      "icon-size": 16,
+      "spacing": 5
+    },
+
+    "backlight": {
+      "format": "{icon} {percent}%",
+      "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-muted": "󰝟",
+      "format-icons": {
+        "default": ["󰕿", "󰖀", "󰕾"]
+      },
+      "scroll-step": 5,
+      "on-click-right": "pavucontrol",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    },
+    "custom/randwall": {
+      "format": "󰏘",
+      "on-click": "$HOME/.bin/randwall",
+      "on-click-right": "$HOME/.bin/randwall"
+    },
+    "custom/wf-recorder": {
+      "format": "{}",
+      "exec": "echo 'Recording '",
+      "tooltip": "false",
+      "exec-if": "pgrep 'wf-recorder'",
+      "interval": 1,
+      "on-click": "wlrecord.sh -s"
+    }
+  },
+  {
+    "output": ["eDP-1"],
+    "position": "top",
+    "layer": "top",
+    "height": 16,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    "modules-left": ["sway/workspaces", "sway/window", "sway/mode", "custom/playerctl", "custom/playerlabel"],
+    "modules-right": [ "custom/wf-recorder", "custom/randwall", "network", "pulseaudio","tray", "clock"],
+
+    "clock": {
+      "format": " {:%H:%M}",
+      "tooltip": "true",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": " {:%d/%m}"
+    },
+
+
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "format": "{icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "7": "",
+        "urgent": "",
+        "active": "",
+        "default": "󰧞"
+      }
+    },
+
+    "custom/playerctl": {
+      "format": "{icon}",
+      "return-type": "json",
+      "max-length": 64,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      }
+    },
+
+    "custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      },
+    },
+
+    "battery": {
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format":"{icon}  {capacity}%",
+      "format-charging": "{capacity}% ",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{icon} {time}",
+      "format-icons": ["", "", "", "", ""]
+    },
+
+    "memory": {
+      "format": "󰍛 {}%",
+      "format-alt": "󰍛 {used}/{total} GiB",
+      "interval": 5
+    },
+
+    "cpu": {
+      "format": "󰻠 {usage}%",
+      "format-alt": "󰻠 {avg_frequency} GHz",
+      "interval": 5
+    },
+
+    "disk": {
+      "format": "󰋊 {percentage_used}%",
+      "format-alt": "󰋊 {used}/{total} GiB",
+      "interval": 5,
+      "path": "/home"
+    },
+
+
+    "network": {
+      "format-wifi": "󰤨",
+      "format-ethernet": " {ifname}: Main",
+      "format-linked": " {ifname} (No IP)",
+      "format-disconnected": "󰤭",
+      "format-alt": " {ifname}: {ipaddr}/{cidr}",
+      "tooltip-format": "{essid}",
+      "on-click-right": "nm-connection-editor"
+    },
+
+    "tray": {
+      "icon-size": 16,
+      "spacing": 5
+    },
+
+    "backlight": {
+      "format": "{icon} {percent}%",
+      "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-muted": "󰝟",
+      "format-icons": {
+        "default": ["󰕿", "󰖀", "󰕾"]
+      },
+      "scroll-step": 5,
+      "on-click-right": "pavucontrol",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    },
+    "custom/randwall": {
+      "format": "󰏘",
+      "on-click": "$HOME/.bin/randwall",
+      "on-click-right": "$HOME/.bin/randwall"
+    },
+    "custom/wf-recorder": {
+      "format": "{}",
+      "exec": "echo ''",
+      "tooltip": "false",
+      "exec-if": "pgrep 'wf-recorder'",
+      "signal": 8
+    },
+  }
+]

@@ -5,9 +5,12 @@ bin=~/.bin/leapp
 # if leapp binary is not found, download it
 
 if [ ! -f $bin ]; then
-	echo "Downloading leapp binary..."
-	url="https://asset.noovolari.com/latest/Leapp-0.14.3.AppImage"
-	wget -q -O $bin $url
+  notify-send -u normal "⏬ Leapp" "Downloading Leapp..."
+	url="https://asset.noovolari.com/latest/Leapp-appImage.zip"
+	wget -q -O /tmp/leapp.zip $url
+  unzip -o /tmp/leapp.zip
+  # release/Leapp-0.20.0.AppImage
+  mv release/Leapp-0.20.0.AppImage $bin
 	chmod +x $bin
 fi
 
