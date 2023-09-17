@@ -28,7 +28,7 @@ default_border pixel 1
 default_floating_border pixel 1
 
 #gaps
-gaps inner 10
+gaps inner 5
 gaps outer 5
 
 #enable popup
@@ -206,7 +206,7 @@ for_window [title="File Operation Progress"] floating enable
 for_window [title="Unlock Keyring"] floating enable
 for_window [title="Confirm to replace files"] floating enable
 
-assign [app_id="^discord$"] 10
+assign [class="^discord$"] 10
 assign [app_id="^jetbrains-idea$"] 3
 assign [title="^win0$"] 3
 assign [title=".*Visual Studio Code*."] 3
