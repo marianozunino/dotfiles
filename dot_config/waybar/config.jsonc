@@ -131,10 +131,11 @@
     },
     "custom/wf-recorder": {
       "format": "{}",
-      "exec": "echo ''",
+      "exec": "echo 'Recording '",
       "tooltip": "false",
       "exec-if": "pgrep 'wf-recorder'",
-      "signal": 8
+      "interval": 1,
+      "on-click": "wlrecord.sh -s"
     },
 
     "sway/window": {
@@ -309,7 +310,16 @@
     "margin-right": 0,
 
     "modules-left": ["sway/workspaces", "sway/window", "sway/mode", "custom/playerctl", "custom/playerlabel"],
-    "modules-right": [ "custom/wf-recorder", "custom/randwall", "network", "pulseaudio","tray", "clock"],
+    "modules-right": [
+      "custom/wf-recorder",
+      "custom/randwall",
+      "backlight",
+      "battery",
+      "network",
+      "pulseaudio",
+      "tray",
+      "clock"
+    ],
 
     "clock": {
       "format": " {:%H:%M}",
@@ -411,7 +421,7 @@
     },
 
     "backlight": {
-      "format": "{icon} {percent}%",
+      "format": " {icon} {percent}%",
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 
@@ -432,10 +442,11 @@
     },
     "custom/wf-recorder": {
       "format": "{}",
-      "exec": "echo ''",
+      "exec": "echo 'Recording '",
       "tooltip": "false",
       "exec-if": "pgrep 'wf-recorder'",
-      "signal": 8
+      "interval": 1,
+      "on-click": "wlrecord.sh -s"
     },
   }
 ]
