@@ -9,6 +9,7 @@ alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
 alias pm="pnpm"
+alias chmox="chmod +x"
 
 #fuck mkdir
 alias mkdir="mkdir -pv"
@@ -85,18 +86,8 @@ transfer() {
 
 
 wacom() {
-	# if Pen is not in the list, then create it
-	if ! xinput list | grep -q "Pen pointer"; then
-		xinput create-master "Pen"
-		xinput reattach "Wacom One by Wacom S Pen stylus" "Pen pointer"
-	fi
-
-	xsetwacom set 'Wacom One by Wacom S Pen stylus' MapToOutput DisplayPort-0; xsetwacom set 'Wacom One by Wacom S Pen stylus' Rotate half
-
-	if ! pgrep -x "gromit-mpx" > /dev/null; then
-		gromit-mpx -o 1 > /dev/null 2> /dev/null &
-		disown
-	fi
+  systemctl --user enable opentabletdriver --now
+  otd loadsettings ~/Sync/wacom/wacom.json
 }
 
 # chezmoi shorthand aliases

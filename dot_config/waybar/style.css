@@ -52,12 +52,21 @@ window#waybar {
 	border-radius: 16px;
 }
 
-#custom-date, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher {
+#custom-date, #clock, #battery, #network, #custom-launcher {
 	background: transparent;
 	padding: 5px 5px 5px 5px;
 	margin: 5px 5px 5px 5px;
   border-radius: 8px;
   border: solid 0px #f4d9e1;
+}
+
+
+#custom-randwall, #pulseaudio {
+    background-color: #282828;
+    border-radius: 16px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 16px;
+    padding: 0px 5px;
 }
 
 #custom-date {

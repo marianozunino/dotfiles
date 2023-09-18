@@ -225,7 +225,6 @@ for_window [app_id="dropdown"] floating enable
 for_window [app_id="dropdown"] resize set 1366 768
 for_window [app_id="dropdown"] move scratchpad
 for_window [app_id="dropdown"] border pixel 5
-for_window [instance="keepassxc"] floating enable, resize set 800 800, move scratchpad, border pixel 5
 for_window [class=".*"] border pixel 0
 
 # multimedia
