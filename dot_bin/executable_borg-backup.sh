@@ -28,8 +28,7 @@ REPOSITORY="/mnt/borg/borg_backups/forbi_borg_$(hostname)"
   /home/forbi/.bin \
   /home/forbi/.ssh \
   /home/forbi/.config/evolution \
-  /home/forbi/.local/share/evolution \
-  /home/forbi/Development/mzunino/hosting/transfer
+  /home/forbi/.local/share/evolution
 
 sleep 5
 
