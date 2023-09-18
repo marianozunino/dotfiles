@@ -4,10 +4,13 @@ dunst &
 waybar.sh &
 blueman-applet &
 nm-applet &
+firewall-applet &
 slack &
 
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
+cliphist wipe
+
 vorta &
 
 swaymsg -t get_outputs -r | jq -r ".[].name" | parallel 'swaybg -o {} -i $(find ~/Pictures/* -type f | shuf -n 1) &'

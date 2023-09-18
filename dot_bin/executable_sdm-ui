@@ -35,15 +35,15 @@ function authenticate() {
   local data
   data=$(sdm status 2>/dev/null)
   if [[ $? -ne 0 ]]; then
-    notify-send -u normal "$NOTIFICATION_TITLE" "No session was found, signing in... 🔑"
+    notify-send -u normal -a "$NOTIFICATION_TITLE" "No session was found, signing in... 🔑"
     local password
     password=$(get_password)
     echo "$password" | sdm login --email "$EMAIL" > /dev/null
     if [[ $? -ne 0 ]]; then
-      notify-send -u critical "$NOTIFICATION_TITLE" "Login failed! 😱"
+      notify-send -u critical -a "$NOTIFICATION_TITLE" "Login failed! 😱"
       exit 1
     fi
-    notify-send -u normal "$NOTIFICATION_TITLE" "Logged in successfully! 🎉"
+    notify-send -u normal -a "$NOTIFICATION_TITLE" "Logged in successfully! 🎉"
   fi
 }
 
@@ -99,27 +99,27 @@ function show_menu() {
   fi
 
   if [[ $DISCONNECT_MODE = true ]]; then
-    notify-send -u normal "$NOTIFICATION_TITLE" "Disconnecting from $cluster...⏳"
+    notify-send -u normal -a "$NOTIFICATION_TITLE" "Disconnecting from $cluster...⏳"
     sdm disconnect "$cluster" > /dev/null
     if [[ $? -ne 0 ]]; then
-      notify-send -u critical "$NOTIFICATION_TITLE" "Disconnect failed! 😱"
+      notify-send -u critical -a "$NOTIFICATION_TITLE" "Disconnect failed! 😱"
       exit 1
     fi
-    notify-send -u normal "$NOTIFICATION_TITLE" "❌ Disconnected successfully!"
+    notify-send -u normal -a "$NOTIFICATION_TITLE" "❌ Disconnected successfully!"
     exit 0
   else
     if [[ "$status" = "⚡" ]]; then
-      notify-send -u normal "$NOTIFICATION_TITLE" "Copying port <b>$port</b> to clipboard... 📋"
+      notify-send -u normal -a "$NOTIFICATION_TITLE" "Copying port <b>$port</b> to clipboard... 📋"
       wl-copy "$port"
       exit 0
     fi
-    notify-send -u normal "$NOTIFICATION_TITLE" "Connecting to <b>$cluster</b> 🔌"
+    notify-send -u normal -a "$NOTIFICATION_TITLE" "Connecting to <b>$cluster</b> 🔌"
     sdm connect "$cluster"
     if [[ $? -eq 0 ]]; then
-      notify-send -u normal "$NOTIFICATION_TITLE" "Connected to <b>$cluster</b> on port <b>$port</b> ⚡"
+      notify-send -u normal -a "$NOTIFICATION_TITLE" "Connected to <b>$cluster</b> on port <b>$port</b> ⚡"
       wl-copy "$port"
     else
-      notify-send -u critical "$NOTIFICATION_TITLE" "Failed to connect to <b>$cluster</b> 😱"
+      notify-send -u critical -a "$NOTIFICATION_TITLE" "Failed to connect to <b>$cluster</b> 😱"
     fi
   fi
 }
@@ -151,7 +151,7 @@ function check_dependencies() {
 # Main entry point
 function main() {
   authenticate
-  notify-send -u normal "$NOTIFICATION_TITLE" "Getting results from SDM...⏳" -t 1700
+  notify-send -u normal -a "$NOTIFICATION_TITLE" "Getting results from SDM...⏳" -t 1700
   if [[ $DISCONNECT_MODE = true ]]; then
     show_disconnect_menu
   else

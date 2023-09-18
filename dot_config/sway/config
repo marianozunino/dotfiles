@@ -207,6 +207,8 @@ for_window [title="Unlock Keyring"] floating enable
 for_window [title="Confirm to replace files"] floating enable
 
 assign [class="^discord$"] 10
+assign [class="^WebCord$"] 10
+
 assign [app_id="^jetbrains-idea$"] 3
 assign [title="^win0$"] 3
 assign [title=".*Visual Studio Code*."] 3
@@ -241,6 +243,7 @@ bindsym $mod+Shift+r  exec --no-startup-id ~/.bin/wlrecord.sh -s
 #Startup stuff
 set $term footclient
 
+exec /usr/bin/lxpolkit
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
