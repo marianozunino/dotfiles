@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=Screen Recorder
+GenericName=Screen Recorder
+Exec= /home/forbi/.bin/wlrecord.sh -s
+Categories=Utility;Application;
+StartupWMClass=Screen Recorder
+StartupNotify=true
+Icon=/usr/share/icons/ePapirus/24x24/actions/kdenlive-hide-video.svg
