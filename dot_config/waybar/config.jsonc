@@ -1,6 +1,8 @@
 [
   {
-    "output": ["DP-1"],
+    "output": [
+      "DP-1"
+    ],
     "position": "top",
     "layer": "top",
     "height": 16,
@@ -8,7 +10,11 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/window",
+      "sway/mode"
+    ],
     "clock": {
       "format": " {:%H:%M}",
       "tooltip": "true",
@@ -66,7 +72,13 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "memory": {
       "format": "󰍛 {}%",
@@ -99,13 +111,27 @@
     },
     "backlight": {
       "format": "{icon} {percent}%",
-      "format-icons": ["", "", "", "", "", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
@@ -135,7 +161,9 @@
     }
   },
   {
-    "output": ["HDMI-A-1"],
+    "output": [
+      "HDMI-A-1"
+    ],
     "position": "top",
     "layer": "top",
     "height": 16,
@@ -143,8 +171,15 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
-    "modules-center": ["custom/playerctl", "custom/playerlabel"],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/window",
+      "sway/mode"
+    ],
+    "modules-center": [
+      "custom/playerctl",
+      "custom/playerlabel"
+    ],
     "modules-right": [
       "cpu",
       "memory",
@@ -221,7 +256,13 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "memory": {
       "format": "󰍛 {}%",
@@ -254,13 +295,27 @@
     },
     "backlight": {
       "format": "{icon} {percent}%",
-      "format-icons": ["", "", "", "", "", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
@@ -281,7 +336,9 @@
     }
   },
   {
-    "output": ["eDP-1"],
+    "output": [
+      "eDP-1"
+    ],
     "position": "top",
     "layer": "top",
     "height": 16,
@@ -292,7 +349,9 @@
     "modules-left": [
       "sway/workspaces",
       "sway/window",
-      "sway/mode",
+      "sway/mode"
+    ],
+    "modules-center": [
       "custom/playerctl",
       "custom/playerlabel"
     ],
@@ -333,11 +392,11 @@
       "max-length": 64,
       "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
       "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
+      "on-click": "playerctl play-pause",
+      "on-click-right": "playerctl play-pause",
       "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+        "Playing": "<span foreground='#E5B9C6'>󰏥</span>",
+        "Paused": "<span foreground='#928374'>󰐌</span>"
       }
     },
     "custom/playerlabel": {
@@ -363,7 +422,13 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "memory": {
       "format": "󰍛 {}%",
@@ -396,13 +461,27 @@
     },
     "backlight": {
       "format": "{icon} {percent}%",
-      "format-icons": ["", "", "", "", "", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
