@@ -27,7 +27,7 @@ alias gr="cd ~/Development/"
 alias gs="cd ~/Sync"
 alias gdot="cd ~/dotfiles/"
 alias gkey="cd ~/.local/share/keyrings/"
-alias gt="cd ~/Development/"
+alias gt="cd ~/Dev/"
 
 #edit files
 alias vim='nvim'
