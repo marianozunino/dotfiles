@@ -4,7 +4,8 @@
 #   borg init --encryption=none /mnt/C1/borg_backups/ja_borg
 # then run this script
 #
-REPOSITORY=/mnt/borg/borg_backups/forbi_borg
+
+REPOSITORY="/mnt/borg/borg_backups/forbi_borg_$(hostname)"
 
 /usr/bin/borg create \
   --list \
