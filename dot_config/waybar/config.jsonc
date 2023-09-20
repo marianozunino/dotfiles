@@ -294,7 +294,9 @@
     "modules-left": [
       "sway/workspaces",
       "sway/window",
-      "sway/mode",
+      "sway/mode"
+    ],
+    "modules-center": [
       "custom/playerctl",
       "custom/playerlabel"
     ],
