@@ -1,23 +1,28 @@
 #!/bin/sh
 gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
+# Random wallpaper
+./randwall
+
 dunst &
 waybar.sh &
+
+# Applets
 blueman-applet &
 nm-applet &
 firewall-applet &
-slack &
 
+# Clipboard manager
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
 cliphist wipe
 
-vorta &
-
-swaymsg -t get_outputs -r | jq -r ".[].name" | parallel 'swaybg -o {} -i $(find ~/Pictures/* -type f | shuf -n 1) &'
-
-./randwall
 
 foot --server &
 # wait for foot server to start
 sleep 1;
 footclient -a dropdown
+
+# Low Priority
+vorta &
+slack &

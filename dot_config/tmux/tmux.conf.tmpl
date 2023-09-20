@@ -113,9 +113,8 @@ set -g @rose_pine_host 'on' # Enables hostname in the status bar
 set -g @rose_pine_date_time '%a %d-%h %H:%M'
 # set -g @rose_pine_user 'on' # Turn on the username component in the statusbar
 set -g @rose_pine_bar_bg_disable 'on'
-set -g @rose_pine_battery 'on'
-set -g @rose_pine_show_current_program 'off'
-
+set -g @rose_pine_battery {{ if eq .chezmoi.hostname "T14" }}'on'{{ else }}'off'{{ end }}
+set -g @rose_pine_disable_active_window_menu 'on'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 if "test ! -d $XDG_CONFIG_HOME/tmux/plugins/tpm" \
