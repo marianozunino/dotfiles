@@ -1,7 +1,5 @@
-{{ if eq .chezmoi.hostname "T14" }}font=FiraCode Nerd Font:size=8{{ else }}font=FiraCode Nerd Font:size=12{{ end }}
+font=JetBrains Mono:size={{ if eq .chezmoi.hostname "T14" }}8{{ else }}11.5{{ end }}
 
-font-italic=VictorMono Nerd Font:style=SemiBold Italic
-initial-window-size-chars=80x32
 dpi-aware=yes
 
 # -*- conf -*-
