@@ -17,17 +17,12 @@ fi
 
 directory_name=`basename $DIR`
 
-# if --tmux flag is passed, run in tmux
-# if [ "$2" = "--tmux" ]; then
-    title="nvim ~ $directory_name"
-    command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
-    swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        footclient -D "${DIR}" -T "$title" -e $command &
-        disown
-    fi
-    exit
-# fi
+title="nvim ~ $directory_name"
+command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
 
-# alacritty --working-directory "${DIR}" --title "nvim ~ $directory_name" -e nvim $file_name &
-disown
+swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  exec footclient -D "${DIR}" -T "$title" -e $command
+  sleep 0.2
+fi
+swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
