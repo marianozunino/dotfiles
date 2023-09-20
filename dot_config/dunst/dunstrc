@@ -90,7 +90,7 @@ line_height = 0
 # Markup is allowed
 font = "FiraCode Nerd Font 10"
 markup = full
-format = "<b>%a</b>\n%s"
+format = "<b>%s</b>\n%b"
 
 # Alignment of message text.
 # Possible values are "left", "center" and "right".
