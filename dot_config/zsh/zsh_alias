@@ -115,3 +115,12 @@ lf () {
 	/bin/rm -fr "$LF_TEMPDIR"
 	unset LF_TEMPDIR
 }
+
+croc-send () {
+  croc send --code mzunino "$@"
+}
+
+croc-receive () {
+  croc --yes mzunino
+}
+
