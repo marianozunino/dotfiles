@@ -18,6 +18,7 @@ run 0 waybar.sh
 run 0 blueman-applet
 run 0 nm-applet
 run 0 firewall-applet
+run 0 easyeffects --gapplication-service
 
 # Random wallpaper
 run 0 randwall
