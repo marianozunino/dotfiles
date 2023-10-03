@@ -25,7 +25,7 @@ alias gD="cd ~/Desktop"
 alias gd="cd ~/Downloads"
 alias gr="cd ~/Development/"
 alias gs="cd ~/Sync"
-alias gdot="cd ~/dotfiles/"
+alias gdot="cd ~/.local/share/chezmoi/"
 alias gkey="cd ~/.local/share/keyrings/"
 alias gt="cd ~/Dev/"
 

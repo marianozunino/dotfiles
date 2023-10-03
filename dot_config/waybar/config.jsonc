@@ -259,14 +259,16 @@
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "pulseaudio": {
+      "ignored-sinks": ["Easy Effects Sink", "HyperX DuoCast Analog Stereo"],
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
         "default": ["󰕿", "󰖀", "󰕾"]
       },
-      "scroll-step": 5,
       "on-click-right": "pavucontrol",
-      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+      "on-scroll-up": "pamixer --sink 77 -ui 5",
+      "on-scroll-down": "pamixer --sink 77 -ud 5",
+      "on-click": "pamixer --sink 77 -t"
     },
     "custom/randwall": {
       "format": "󰏘",

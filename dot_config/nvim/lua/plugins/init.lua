@@ -73,7 +73,5 @@ return {
 		config = true,
 	},
 
-	"b0o/builder.vim",
-	"b0o/quicktemplate.vim",
 	"MunifTanjim/nui.nvim",
 }

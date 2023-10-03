@@ -11,6 +11,7 @@ local mason_config = function()
 		"typescript-language-server",
 		"graphql-language-service-cli",
 		"gopls",
+		"templ",
 		"json-lsp",
 		"svelte-language-server",
 
@@ -32,6 +33,7 @@ end
 
 local lsp_zero_config = function()
 	local lsp = require("lsp-zero")
+	require("lspconfig").templ.setup({})
 
 	lsp.preset("recommended")
 
@@ -39,6 +41,7 @@ local lsp_zero_config = function()
 		"tsserver",
 		"rust_analyzer",
 		"lua_ls",
+		"templ",
 	})
 
 	-- Fix Undefined global 'vim'
