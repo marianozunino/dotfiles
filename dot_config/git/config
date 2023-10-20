@@ -53,18 +53,19 @@
 [push]
 	autoSetupRemote = true
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+; [url "git@github.com:"]
+; 	insteadOf = https://github.com/
 
 # avoid issues where the cargo-edit tool tries to clone from a repo you do not have WRITE access to.
 # we already use SSH for every github repo, and so this puts the clone back to using HTTPS.
-[url "https://github.com/rust-lang/crates.io-index"]
-  insteadOf = https://github.com/rust-lang/crates.io-index
+; [url "https://github.com/rust-lang/crates.io-index"]
+;   insteadOf = https://github.com/rust-lang/crates.io-index
 
 # avoid issues where the `cargo audit` command tries to clone from a repo you do not have WRITE access to.
 # we already use SSH for every github repo, and so this puts the clone back to using HTTPS.
 [url "https://github.com/RustSec/advisory-db"]
   insteadOf = https://github.com/RustSec/advisory-db
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

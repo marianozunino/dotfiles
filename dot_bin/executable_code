@@ -16,13 +16,12 @@ else
 fi
 
 directory_name=`basename $DIR`
-
 title="nvim ~ $directory_name"
 command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
 
-swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
+swaymsg "[app_id=^${directory_name}$]" focus >/dev/null 2>&1
 if [ $? -ne 0 ]; then
-  exec footclient -D "${DIR}" -T "$title" -e $command
+  exec footclient -D "${DIR}" -a $directory_name -T "$title" -e $command
   sleep 0.2
 fi
 swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
