@@ -8,7 +8,7 @@ alias ll="ls -thor"
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
-alias pm="pnpm"
+alias pn="pnpm"
 alias chmox="chmod +x"
 
 #fuck mkdir

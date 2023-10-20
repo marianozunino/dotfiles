@@ -89,8 +89,13 @@ local cmd = vim.cmd
 cmd([[
   autocmd BufWritePost ~/.local/share/chezmoi/* silent! ! chezmoi apply --source-path "%"
 ]])
+
 cmd([[
   autocmd FileType netrw lua vim.diagnostic.disable(0)
+]])
+
+cmd([[
+  au BufRead,BufNewFile *.templ set filetype=templ
 ]])
 
 -- vim.g.loaded_netrw = 1

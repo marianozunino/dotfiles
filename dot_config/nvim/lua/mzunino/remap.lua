@@ -22,6 +22,14 @@ vim.keymap.set("n", "<leader>gw", function()
 	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cWORD>") })
 end)
 
+vim.keymap.set("n", "<leader>wt", function()
+	require("telescope").extensions.git_worktree.git_worktrees()
+end)
+
+vim.keymap.set("n", "<leader>wT", function()
+	require("telescope").extensions.git_worktree.create_git_worktree()
+end)
+
 vim.keymap.set("n", "<leader>gr", ":Telescope lsp_references<cr>")
 vim.keymap.set("n", "<leader>tt", dev_folders)
 vim.keymap.set("n", "<leader>gg", tmux_switcher)
@@ -115,9 +123,12 @@ vim.keymap.set("n", "<Leader>cc", ":CloakToggle<cr>")
 
 vim.g.user_emmet_leader_key = ","
 
-vim.keymap.set("n", "<leader>gs", "<CMD>G<CR>")
-vim.keymap.set("n", "<leader>gq", "<CMD>G<CR><CMD>q<CR>")
+-- vim.keymap.set("n", "<leader>gs", "<CMD>G<CR>")
+-- vim.keymap.set("n", "<leader>gq", "<CMD>G<CR><CMD>q<CR>")
 vim.keymap.set("n", "<leader>gp", "<CMD>Git push<CR>")
+vim.keymap.set("n", "<leader>ff", ":lua vim.lsp.buf.format()<CR>")
+
+vim.keymap.set("n", "<leader>gc", ":!git cm '")
 
 vim.keymap.set("n", "]t", function()
 	-- jump to the previous item, skipping the groups

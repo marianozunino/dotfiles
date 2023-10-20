@@ -6,9 +6,9 @@ local mason_config = function()
 	for _, pkg_name in ipairs({
 		-- Servers
 		"rust_analyzer",
-		"tsserver",
+		-- "tsserver",
 		"lua-language-server",
-		"typescript-language-server",
+		-- "typescript-language-server",
 		"graphql-language-service-cli",
 		"gopls",
 		"templ",
@@ -38,7 +38,7 @@ local lsp_zero_config = function()
 	lsp.preset("recommended")
 
 	lsp.ensure_installed({
-		"tsserver",
+		-- "tsserver",
 		"rust_analyzer",
 		"lua_ls",
 		"templ",
@@ -122,6 +122,7 @@ local lsp_zero_config = function()
 				"go",
 				"graphql",
 				"svelte",
+				"templ",
 			},
 		},
 	})

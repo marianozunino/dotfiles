@@ -130,7 +130,6 @@
       "on-click": "wlrecord.sh -s"
     },
     "sway/window": {
-      "all-outputs": true,
       "format": "{}",
       "max-length": 50,
       "rewrite": {
@@ -158,7 +157,6 @@
       "clock"
     ],
     "sway/window": {
-      "all-outputs": true,
       "format": "{}",
       "max-length": 50,
       "rewrite": {
@@ -259,16 +257,16 @@
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "pulseaudio": {
-      "ignored-sinks": ["Easy Effects Sink", "HyperX DuoCast Analog Stereo"],
+      "ignored-sinks": ["Easy Effects Sink"],
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
         "default": ["󰕿", "󰖀", "󰕾"]
       },
       "on-click-right": "pavucontrol",
-      "on-scroll-up": "pamixer --sink 77 -ui 5",
-      "on-scroll-down": "pamixer --sink 77 -ud 5",
-      "on-click": "pamixer --sink 77 -t"
+      // "on-scroll-up": "pamixer --sink 77 -ui 5",
+      // "on-scroll-down": "pamixer --sink 77 -ud 5",
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "custom/randwall": {
       "format": "󰏘",
