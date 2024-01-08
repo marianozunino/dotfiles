@@ -16,14 +16,14 @@ NOTIFICATION_TITLE="$MODE_TEXT SDM"
 function store_password() {
   local password
   password=$(zenity --entry --title="SDM Password" --text="Enter your SDM password" --hide-text)
-  echo "$password" | secret-tool store --label="SDM UI" email "$EMAIL" type sdm-credential
+  echo "$password" | secret-tool store --label="SDM UI" username "$EMAIL" service sdm-credential
   echo "$password"
 }
 
 # Retrieve the password
 function get_password() {
   local password
-  password=$(secret-tool lookup type sdm-credential email "$EMAIL")
+  password=$(secret-tool lookup service sdm-credential username "$EMAIL")
   # If no password is found, then ask for it
   if [[ -z "$password" ]]; then
     password=$(store_password "$EMAIL")

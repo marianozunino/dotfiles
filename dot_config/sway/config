@@ -52,7 +52,8 @@ bindsym $mod+Shift+q kill
 #Rofi
 # bindsym $mod+d exec rofi -show drun -hide-scrollbar -lines 3 -eh 1 -width 40 -location 8 -xoffset 170 -yoffset 70 -padding 30 -disable-history -font "RobotoMono 18"
 bindsym $mod+d exec rofi -show combi -show-icons
-bindsym $mod+v exec rofi -modi clipboard:~/.bin/cliphist-rofi -show clipboard
+# bindsym $mod+v exec rofi -modi clipboard:~/.bin/cliphist-rofi -show clipboard
+bindsym $mod+v exec copyq toggle
 bindsym F4 exec switch-windows
 bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | rofi -dmenu -i -p "Project" -sort -matching fuzzy | xargs -i code ~/Dev/{}
 bindsym $mod+n exec ~/.bin/sdm-ui
@@ -196,6 +197,10 @@ for_window [app_id="sm"] move to workspace 4, workspace --no-auto-back-and-forth
 for_window [title="JetBrains Toolbox"] floating enable
 for_window [app_id="Spotify"] move to workspace 5, workspace --no-auto-back-and-forth 5
 
+#floating copyq
+for_window [app_id="com.github.hluk.copyq"] floating enable
+for_window [app_id="com.github.hluk.copyq"] resize set 1366 768
+
 # yubikey
 for_window [app_id="authenticator"] floating enable
 for_window [app_id="authenticator"] resize set 400 800
@@ -247,6 +252,7 @@ exec /usr/bin/lxpolkit
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec --no-startup-id copyq
 
 exec --no-startup-id autostart
 

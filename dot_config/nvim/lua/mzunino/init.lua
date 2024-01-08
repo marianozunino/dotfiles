@@ -1,42 +1,48 @@
-vim.g.mapleader = " "
+require("mzunino.launch")
+
+require("mzunino.remap")
+require("mzunino.options")
+require("mzunino.autocmd")
+
+spec("plugins.bfq")
+spec("plugins.cloak")
+spec("plugins.cmp")
+spec("plugins.colorizer")
+spec("plugins.colors")
+spec("plugins.comment")
+spec("plugins.conform")
+spec("plugins.copilot")
+spec("plugins.dressing")
+spec("plugins.fold")
+spec("plugins.gitsigns")
+spec("plugins.harpoon")
+spec("plugins.latex")
+spec("plugins.lsp")
+spec("plugins.lualine")
+spec("plugins.markdown")
+spec("plugins.mason")
+spec("plugins.navic")
+spec("plugins.nvim-lint")
+spec("plugins.oil")
+spec("plugins.schema-store")
+spec("plugins.snippets")
+spec("plugins.telescope")
+spec("plugins.treesitter")
+spec("plugins.trouble")
+spec("plugins.undotree")
+
+--
+-- Extras
+--
+spec("plugins.extras.gitlinker")
+spec("plugins.extras.indent-blankline")
+spec("plugins.extras.lastplace")
+spec("plugins.extras.noice")
+spec("plugins.extras.persistence")
+spec("plugins.extras.todo-comments")
+spec("plugins.extras.twilight")
+spec("plugins.extras.wakatime")
+-- spec("plugins.extras.alpha")
+-- spec("plugins.extras.neoscroll")
 
 require("mzunino.lazy")
-require("mzunino.set")
-require("mzunino.remap")
-
-local augroup = vim.api.nvim_create_augroup
-local MZuninoGroup = augroup("mzunino", {})
-
-local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup("HighlightYank", {})
-
-function R(name)
-	require("plenary.reload").reload_module(name)
-end
-
-autocmd("TextYankPost", {
-	group = yank_group,
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({
-			higroup = "IncSearch",
-			timeout = 40,
-		})
-	end,
-})
-
-autocmd({ "BufWritePre" }, {
-	group = MZuninoGroup,
-	pattern = "*",
-	command = [[%s/\s\+$//e]],
-})
-
-autocmd({ "BufWritePost" }, {
-	group = MZuninoGroup,
-	pattern = "~/.local/share/chezmoi/*",
-	command = [[! chezmoi apply --source-path "%"]],
-})
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25

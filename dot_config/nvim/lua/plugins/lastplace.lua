@@ -1,1 +1,0 @@
-return { "ethanholz/nvim-lastplace"}
