@@ -1,4 +1,5 @@
 vim.opt.guicursor = "a:block-blinkwait175-blinkoff150-blinkon175"
+vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 vim.opt.cursorline = true
 
 vim.opt.nu = true
@@ -44,7 +45,9 @@ vim.opt.shortmess:append("c")
 
 vim.g.neoformat_try_node_exe = 1
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.pumheight = 10
+vim.opt.pumblend = 10
 
 local group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 
@@ -60,18 +63,10 @@ vim.opt.foldnestmax = 3
 vim.opt.foldenable = false
 vim.opt.scrolloff = 999
 
-vim.g.copilot_filetypes = {
-	["dap-repl"] = false,
-	["markdown"] = true,
-	["yaml"] = true,
-}
-vim.g.copilot_node_command = "~/.local/share/asdf/shims/node"
-
 --
 -- neovide
 vim.g.neovide_cursor_vfx_mode = ""
 vim.g.neovide_cursor_animation_length = 0.05
-vim.opt.guifont = { "Fira Code Retina", ":h11" }
 
 vim.opt.title = true
 vim.opt.titlestring = "Code - %{substitute(getcwd(), $HOME, '~', '')}"
@@ -85,18 +80,12 @@ vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 3
 vim.g.netrw_localrmdir = "rm -r"
 
-local cmd = vim.cmd
-cmd([[
-  autocmd BufWritePost ~/.local/share/chezmoi/* silent! ! chezmoi apply --source-path "%"
-]])
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
-cmd([[
-  autocmd FileType netrw lua vim.diagnostic.disable(0)
-]])
-
-cmd([[
-  au BufRead,BufNewFile *.templ set filetype=templ
-]])
-
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.filetype.add({
+	extension = {
+		templ = "templ",
+	},
+})

@@ -1,9 +1,12 @@
-return {
+local M = {
 	"mbbill/undotree",
 	cmd = {
 		"UndotreeToggle",
 	},
-	config = function()
-		vim.opt.undodir = vim.fn.expand("~/.config/undodir")
-	end,
 }
+
+M.config = function()
+	vim.opt.undodir = vim.fn.expand("~/.config/undodir")
+end
+
+return M

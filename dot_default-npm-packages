@@ -3,6 +3,7 @@ typescript-language-server
 ts-node
 diff-so-fancy
 yarn
+pnpm
 npm-check
 @nestjs/cli
 npm-check-updates
