@@ -13,12 +13,38 @@ local M = {
 		local luasnip = require("luasnip")
 		local select_opts = { behavior = cmp.SelectBehavior.Select }
 
+		local kind_icons = {
+			Text = "",
+			Method = "󰆧",
+			Function = "󰊕",
+			Constructor = "",
+			Field = "󰇽",
+			Variable = "󰂡",
+			Class = "󰠱",
+			Interface = "",
+			Module = "",
+			Property = "󰜢",
+			Unit = "",
+			Value = "󰎠",
+			Enum = "",
+			Keyword = "󰌋",
+			Snippet = "",
+			Color = "󰏘",
+			File = "󰈙",
+			Reference = "",
+			Folder = "󰉋",
+			EnumMember = "",
+			Constant = "󰏿",
+			Struct = "",
+			Event = "",
+			Operator = "󰆕",
+			TypeParameter = "󰅲",
+			Codeium = "",
+			Emoji = "󰞅",
+		}
+
 		vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
-
-		-- Codeium
-		-- vim.api.nvim_set_hl(0, "CmpItemKindCodeium", { fg = "#00FF00" })
-
-		local icons = require("plugins.icons")
+		vim.api.nvim_set_hl(0, "CmpItemKindCodeium", { fg = "#a3be8c" })
 
 		cmp.setup({
 			snippet = {
@@ -35,21 +61,23 @@ local M = {
 				{ name = "calc" },
 				{ name = "emoji" },
 			},
-			fields = { "kind", "abbr", "menu" },
+			fields = { "menu", "kind", "abbr" },
 			formatting = {
 				format = function(entry, vim_item)
-					vim_item.kind = icons.kind[vim_item.kind]
+					vim_item.kind = kind_icons[vim_item.kind]
 					vim_item.menu = ({
-						nvim_lsp = "",
-						nvim_lua = "",
-						luasnip = "",
-						buffer = "",
-						path = "",
-						emoji = "",
+						path = "[Path]",
+						emoji = "[Emoji]",
+						buffer = "[Buffer]",
+						codeium = "[Codeium]",
+						nvim_lsp = "[LSP]",
+						luasnip = "[LuaSnip]",
+						nvim_lua = "[Lua]",
+						latex_symbols = "[LaTeX]",
 					})[entry.source.name]
 
 					if entry.source.name == "emoji" then
-						vim_item.kind = icons.misc.Smiley
+						vim_item.kind = kind_icons.Emoji
 						vim_item.kind_hl_group = "CmpItemKindEmoji"
 					end
 
@@ -106,6 +134,23 @@ local M = {
 				ghost_text = false,
 			},
 		})
+
+		-- gray
+		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
+		-- blue
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#569CD6" })
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
+		-- light blue
+		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
+		vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
+		vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
+		-- pink
+		vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#C586C0" })
+		vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+		-- front
+		vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#D4D4D4" })
+		vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
+		vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 	end,
 }
 

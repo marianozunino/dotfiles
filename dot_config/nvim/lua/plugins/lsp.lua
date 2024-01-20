@@ -24,6 +24,9 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	keymap(bufnr, "n", "<leader>cw", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	keymap(bufnr, "i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	keymap(bufnr, "n", "vd", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	-- restart lsp
+	keymap(bufnr, "n", "<leader>lr", ":LspRestart<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)

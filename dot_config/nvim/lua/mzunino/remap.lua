@@ -79,3 +79,6 @@ keymap("n", "<leader>gp", "<CMD>Git push<CR>")
 keymap("n", "<leader>ch", function()
 	vim.o.cmdheight = 1
 end)
+
+keymap("n", "<leader>w", ":w<CR>")
+keymap("n", "<leader>W", ":wa<CR>")
