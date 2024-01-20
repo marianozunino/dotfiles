@@ -1,163 +1,446 @@
 #!/bin/bash
 
+declare -A service_port_map
+
+service_port_map["oc-dev-feature01-activate-cache-redis"]="12291"
+service_port_map["oc-dev-feature01-activate-rds"]=12233
+service_port_map["oc-dev-feature01-activate-readonly-rds"]=12237
+service_port_map["oc-dev-feature01-activate-redis"]=12290
+service_port_map["oc-dev-feature01-es"]=12234
+service_port_map["oc-dev-feature01-es-logs"]=12235
+service_port_map["oc-dev-feature01-oc-rds"]=12232
+service_port_map["oc-dev-feature01-oc-readonly-rds"]=12236
+service_port_map["oc-dev-feature01-redis"]=12289
+service_port_map["oc-dev-feature01-rmq"]=12256
+service_port_map["oc-dev-internal-activate-cache-redis"]=11191
+service_port_map["oc-dev-internal-activate-rds"]=11133
+service_port_map["oc-dev-internal-activate-readonly-rds"]=11137
+service_port_map["oc-dev-internal-activate-redis"]=11190
+service_port_map["oc-dev-internal-athena-databricks"]=23000
+service_port_map["oc-dev-internal-es"]=11134
+service_port_map["oc-dev-internal-es-logs"]=11135
+service_port_map["oc-dev-internal-oc-rds"]=11132
+service_port_map["oc-dev-internal-oc-readonly-rds"]=11136
+service_port_map["oc-dev-internal-redis"]=11189
+service_port_map["oc-dev-internal-rmq"]=11156
+service_port_map["oc-nextrc-internal-activate-cache-redis"]=11891
+service_port_map["oc-nextrc-internal-activate-rds"]=11833
+service_port_map["oc-nextrc-internal-activate-readonly-rds"]=11837
+service_port_map["oc-nextrc-internal-activate-redis"]=11890
+service_port_map["oc-nextrc-internal-athena-databricks"]=10006
+service_port_map["oc-nextrc-internal-es"]=11834
+service_port_map["oc-nextrc-internal-es-logs"]=11835
+service_port_map["oc-nextrc-internal-oc-rds"]=11832
+service_port_map["oc-nextrc-internal-oc-readonly-rds"]=11836
+service_port_map["oc-nextrc-internal-redis"]=11889
+service_port_map["oc-nextrc-internal-rmq"]=11856
+service_port_map["oc-nextrc2-internal-activate-cache-redis"]=12091
+service_port_map["oc-nextrc2-internal-activate-rds"]=12033
+service_port_map["oc-nextrc2-internal-activate-readonly-rds"]=12037
+service_port_map["oc-nextrc2-internal-activate-redis"]=12090
+service_port_map["oc-nextrc2-internal-es"]=12034
+service_port_map["oc-nextrc2-internal-es-logs"]=12035
+service_port_map["oc-nextrc2-internal-oc-rds"]=12032
+service_port_map["oc-nextrc2-internal-oc-readonly-rds"]=12036
+service_port_map["oc-nextrc2-internal-redis"]=12089
+service_port_map["oc-nextrc2-internal-rmq"]=12056
+service_port_map["oc-prod-cefco-activate-cache-redis"]=9091
+service_port_map["oc-prod-cefco-activate-rds"]=9033
+service_port_map["oc-prod-cefco-activate-readonly-rds"]=9037
+service_port_map["oc-prod-cefco-activate-redis"]=9090
+service_port_map["oc-prod-cefco-athena-databricks"]=23002
+service_port_map["oc-prod-cefco-es"]=9034
+service_port_map["oc-prod-cefco-es-logs"]=9035
+service_port_map["oc-prod-cefco-oc-rds"]=9032
+service_port_map["oc-prod-cefco-oc-readonly-rds"]=9036
+service_port_map["oc-prod-cefco-redis"]=9089
+service_port_map["oc-prod-cefco-rmq"]=9056
+service_port_map["oc-prod-chevron-activate-cache-redis"]=2191
+service_port_map["oc-prod-chevron-activate-rds"]=2133
+service_port_map["oc-prod-chevron-activate-readonly-rds"]=2137
+service_port_map["oc-prod-chevron-activate-redis"]=2190
+service_port_map["oc-prod-chevron-athena-databricks"]=10005
+service_port_map["oc-prod-chevron-es-logs"]=2135
+service_port_map["oc-prod-chevron-oc-rds"]=2132
+service_port_map["oc-prod-chevron-oc-readonly-rds"]=2136
+service_port_map["oc-prod-chevron-redis"]=2189
+service_port_map["oc-prod-chevron-rmq"]=2156
+service_port_map["oc-prod-circlek-es-logs"]=1535
+service_port_map["oc-prod-circlek-oc-rds"]=1532
+service_port_map["oc-prod-circlek-oc-readonly-rds"]=1536
+service_port_map["oc-prod-circlek-redis"]=1589
+service_port_map["oc-prod-circlek-rmq"]=1556
+service_port_map["oc-prod-delek-activate-cache-redis"]=1091
+service_port_map["oc-prod-delek-activate-rds"]=1033
+service_port_map["oc-prod-delek-activate-readonly-rds"]=1037
+service_port_map["oc-prod-delek-activate-redis"]=1090
+service_port_map["oc-prod-delek-athena-databricks"]=23001
+service_port_map["oc-prod-delek-es"]=1034
+service_port_map["oc-prod-delek-es-logs"]=1035
+service_port_map["oc-prod-delek-oc-rds"]=1032
+service_port_map["oc-prod-delek-oc-readonly-rds"]=1036
+service_port_map["oc-prod-delek-redis"]=1089
+service_port_map["oc-prod-delek-rmq"]=1056
+service_port_map["oc-prod-gulf-activate-cache-redis"]=1691
+service_port_map["oc-prod-gulf-activate-rds"]=1633
+service_port_map["oc-prod-gulf-activate-readonly-rds"]=1637
+service_port_map["oc-prod-gulf-activate-redis"]=1690
+service_port_map["oc-prod-gulf-athena-databricks"]=23004
+service_port_map["oc-prod-gulf-es"]=1634
+service_port_map["oc-prod-gulf-es-logs"]=1635
+service_port_map["oc-prod-gulf-oc-rds"]=1632
+service_port_map["oc-prod-gulf-oc-readonly-rds"]=1636
+service_port_map["oc-prod-gulf-redis"]=1689
+service_port_map["oc-prod-gulf-rmq"]=1656
+service_port_map["oc-prod-hatch-core-db"]=3632
+service_port_map["oc-prod-hatch-core-db-replica"]=3634
+service_port_map["oc-prod-hatch-redis"]=3689
+service_port_map["oc-prod-hatch-redis-cache"]=3690
+service_port_map["oc-prod-hatch-rule-db"]=3633
+service_port_map["oc-prod-hatch-rule-db-replica"]=3635
+service_port_map["oc-prod-hatch-rule-db_rw"]=15438
+service_port_map["oc-prod-internal-activate-cache-redis"]=1191
+service_port_map["oc-prod-internal-activate-rds"]=1133
+service_port_map["oc-prod-internal-activate-readonly-rds"]=1137
+service_port_map["oc-prod-internal-activate-redis"]=1190
+service_port_map["oc-prod-internal-athena-databricks"]=10001
+service_port_map["oc-prod-internal-es"]=1134
+service_port_map["oc-prod-internal-es-logs"]=1135
+service_port_map["oc-prod-internal-oc-rds"]=1132
+service_port_map["oc-prod-internal-oc-readonly-rds"]=1136
+service_port_map["oc-prod-internal-redis"]=1189
+service_port_map["oc-prod-internal-rmq"]=1156
+service_port_map["oc-prod-mpc-activate-cache-redis"]=14091
+service_port_map["oc-prod-mpc-activate-rds"]=14033
+service_port_map["oc-prod-mpc-activate-readonly-rds"]=14037
+service_port_map["oc-prod-mpc-activate-redis"]=14090
+service_port_map["oc-prod-mpc-athena-databricks"]=23003
+service_port_map["oc-prod-mpc-es"]=14034
+service_port_map["oc-prod-mpc-es-logs"]=14035
+service_port_map["oc-prod-mpc-oc-rds"]=14032
+service_port_map["oc-prod-mpc-oc-readonly-rds"]=14036
+service_port_map["oc-prod-mpc-redis"]=1489
+service_port_map["oc-prod-mpc-rmq"]=14056
+service_port_map["oc-prod-musa-activate-cache-redis"]=1391
+service_port_map["oc-prod-musa-activate-rds"]=1333
+service_port_map["oc-prod-musa-activate-readonly-rds"]=1337
+service_port_map["oc-prod-musa-activate-redis"]=1390
+service_port_map["oc-prod-musa-es-logs"]=1335
+service_port_map["oc-prod-musa-oc-rds"]=1332
+service_port_map["oc-prod-musa-oc-readonly-rds"]=1336
+service_port_map["oc-prod-musa-redis"]=1389
+service_port_map["oc-prod-musa-rmq"]=1356
+service_port_map["oc-prod-upside-es-logs"]=2435
+service_port_map["oc-prod-upside-oc-rds"]=2432
+service_port_map["oc-prod-upside-oc-readonly-rds"]=2436
+service_port_map["oc-prod-upside-redis"]=2489
+service_port_map["oc-prod-upside-rmq"]=2456
+service_port_map["oc-prod-yesway-activate-cache-redis"]=2391
+service_port_map["oc-prod-yesway-activate-rds"]=2333
+service_port_map["oc-prod-yesway-activate-readonly-rds"]=2337
+service_port_map["oc-prod-yesway-activate-redis"]=2390
+service_port_map["oc-prod-yesway-athena-databricks"]=10008
+service_port_map["oc-prod-yesway-es"]=2334
+service_port_map["oc-prod-yesway-es-logs"]=2335
+service_port_map["oc-prod-yesway-oc-rds"]=2332
+service_port_map["oc-prod-yesway-oc-readonly-rds"]=2336
+service_port_map["oc-prod-yesway-redis"]=2389
+service_port_map["oc-prod-yesway-rmq"]=2356
+service_port_map["oc-prod2-mpc-activate-cache-redis"]=1891
+service_port_map["oc-prod2-mpc-activate-rds"]=1833
+service_port_map["oc-prod2-mpc-activate-readonly-rds"]=1837
+service_port_map["oc-prod2-mpc-activate-redis"]=1890
+service_port_map["oc-prod2-mpc-es"]=1834
+service_port_map["oc-prod2-mpc-es-logs"]=1835
+service_port_map["oc-prod2-mpc-oc-rds"]=1832
+service_port_map["oc-prod2-mpc-oc-readonly-rds"]=1836
+service_port_map["oc-prod2-mpc-redis"]=1889
+service_port_map["oc-prod2-mpc-rmq"]=1856
+service_port_map["oc-stage-cefco-activate-cache-redis"]=10991
+service_port_map["oc-stage-cefco-activate-rds"]=10933
+service_port_map["oc-stage-cefco-activate-readonly-rds"]=10937
+service_port_map["oc-stage-cefco-activate-redis"]=10990
+service_port_map["oc-stage-cefco-athena-databricks"]=10002
+service_port_map["oc-stage-cefco-es"]=10934
+service_port_map["oc-stage-cefco-es-logs"]=10935
+service_port_map["oc-stage-cefco-oc-rds"]=10932
+service_port_map["oc-stage-cefco-oc-readonly-rds"]=10936
+service_port_map["oc-stage-cefco-redis"]=10989
+service_port_map["oc-stage-cefco-rmq"]=10956
+service_port_map["oc-stage-chevron-activate-cache-redis"]=12191
+service_port_map["oc-stage-chevron-activate-rds"]=12133
+service_port_map["oc-stage-chevron-activate-readonly-rds"]=12137
+service_port_map["oc-stage-chevron-activate-redis"]=12190
+service_port_map["oc-stage-chevron-athena-databricks"]=10003
+service_port_map["oc-stage-chevron-es-logs"]=12135
+service_port_map["oc-stage-chevron-oc-rds"]=12132
+service_port_map["oc-stage-chevron-oc-readonly-rds"]=12136
+service_port_map["oc-stage-chevron-redis"]=12189
+service_port_map["oc-stage-chevron-rmq"]=12156
+service_port_map["oc-stage-circlek-es-logs"]=11535
+service_port_map["oc-stage-circlek-oc-rds"]=11532
+service_port_map["oc-stage-circlek-oc-readonly-rds"]=11536
+service_port_map["oc-stage-circlek-redis"]=11589
+service_port_map["oc-stage-circlek-rmq"]=11556
+service_port_map["oc-stage-delek-activate-cache-redis"]=11091
+service_port_map["oc-stage-delek-activate-rds"]=11033
+service_port_map["oc-stage-delek-activate-readonly-rds"]=11037
+service_port_map["oc-stage-delek-activate-redis"]=11090
+service_port_map["oc-stage-delek-athena-databricks"]=1026
+service_port_map["oc-stage-delek-es"]=11034
+service_port_map["oc-stage-delek-es-logs"]=11035
+service_port_map["oc-stage-delek-oc-rds"]=11032
+service_port_map["oc-stage-delek-oc-readonly-rds"]=11036
+service_port_map["oc-stage-delek-redis"]=11089
+service_port_map["oc-stage-delek-rmq"]=11056
+service_port_map["oc-stage-gulf-activate-cache-redis"]=11691
+service_port_map["oc-stage-gulf-activate-rds"]=11633
+service_port_map["oc-stage-gulf-activate-readonly-rds"]=11637
+service_port_map["oc-stage-gulf-activate-redis"]=11690
+service_port_map["oc-stage-gulf-athena-databricks"]=1029
+service_port_map["oc-stage-gulf-es"]=11634
+service_port_map["oc-stage-gulf-es-logs"]=11635
+service_port_map["oc-stage-gulf-oc-rds"]=11632
+service_port_map["oc-stage-gulf-oc-readonly-rds"]=11636
+service_port_map["oc-stage-gulf-redis"]=11689
+service_port_map["oc-stage-gulf-rmq"]=11656
+service_port_map["oc-stage-hatch-core-db"]=3732
+service_port_map["oc-stage-hatch-core-db-replica"]=3734
+service_port_map["oc-stage-hatch-redis"]=3789
+service_port_map["oc-stage-hatch-redis-cache"]=3790
+service_port_map["oc-stage-hatch-rule-db"]=3733
+service_port_map["oc-stage-hatch-rule-db-replica"]=3735
+service_port_map["oc-stage-hatch-rule-db_rw"]=15437
+service_port_map["oc-stage-internal-activate-cache-redis"]=11291
+service_port_map["oc-stage-internal-activate-rds"]=11233
+service_port_map["oc-stage-internal-activate-readonly-rds"]=11237
+service_port_map["oc-stage-internal-activate-redis"]=11290
+service_port_map["oc-stage-internal-es"]=11234
+service_port_map["oc-stage-internal-es-logs"]=11235
+service_port_map["oc-stage-internal-oc-rds"]=11232
+service_port_map["oc-stage-internal-oc-readonly-rds"]=11236
+service_port_map["oc-stage-internal-redis"]=11289
+service_port_map["oc-stage-internal-rmq"]=11256
+service_port_map["oc-stage-mpc-activate-cache-redis"]=11491
+service_port_map["oc-stage-mpc-activate-rds"]=11433
+service_port_map["oc-stage-mpc-activate-readonly-rds"]=11437
+service_port_map["oc-stage-mpc-activate-redis"]=11490
+service_port_map["oc-stage-mpc-athena-databricks"]=1025
+service_port_map["oc-stage-mpc-es"]=11434
+service_port_map["oc-stage-mpc-es-logs"]=11435
+service_port_map["oc-stage-mpc-oc-rds"]=11432
+service_port_map["oc-stage-mpc-oc-readonly-rds"]=11436
+service_port_map["oc-stage-mpc-redis"]=11489
+service_port_map["oc-stage-mpc-rmq"]=11456
+service_port_map["oc-stage-musa-activate-cache-redis"]=11391
+service_port_map["oc-stage-musa-activate-rds"]=11333
+service_port_map["oc-stage-musa-activate-readonly-rds"]=11337
+service_port_map["oc-stage-musa-activate-redis"]=11390
+service_port_map["oc-stage-musa-es-logs"]=11335
+service_port_map["oc-stage-musa-oc-rds"]=11332
+service_port_map["oc-stage-musa-oc-readonly-rds"]=11336
+service_port_map["oc-stage-musa-redis"]=11389
+service_port_map["oc-stage-musa-rmq"]=11356
+service_port_map["oc-stage-upside-es-logs"]=12435
+service_port_map["oc-stage-upside-oc-rds"]=12432
+service_port_map["oc-stage-upside-oc-readonly-rds"]=12436
+service_port_map["oc-stage-upside-redis"]=12489
+service_port_map["oc-stage-upside-rmq"]=12456
+service_port_map["oc-stage-yesway-activate-cache-redis"]=12391
+service_port_map["oc-stage-yesway-activate-rds"]=12333
+service_port_map["oc-stage-yesway-activate-readonly-rds"]=12337
+service_port_map["oc-stage-yesway-activate-redis"]=12390
+service_port_map["oc-stage-yesway-athena-databricks"]=10007
+service_port_map["oc-stage-yesway-es-logs"]=12335
+service_port_map["oc-stage-yesway-oc-rds"]=12332
+service_port_map["oc-stage-yesway-oc-readonly-rds"]=12336
+service_port_map["oc-stage-yesway-redis"]=12389
+service_port_map["oc-stage-yesway-rmq"]=12356
+service_port_map["oc-stage2-mpc-activate-cache-redis"]=11791
+service_port_map["oc-stage2-mpc-activate-rds"]=11733
+service_port_map["oc-stage2-mpc-activate-readonly-rds"]=11737
+service_port_map["oc-stage2-mpc-activate-redis"]=11790
+service_port_map["oc-stage2-mpc-es"]=11734
+service_port_map["oc-stage2-mpc-es-logs"]=11735
+service_port_map["oc-stage2-mpc-oc-rds"]=11732
+service_port_map["oc-stage2-mpc-oc-readonly-rds"]=11736
+service_port_map["oc-stage2-mpc-redis"]=11789
+service_port_map["oc-stage2-mpc-rmq"]=11756
+service_port_map["oc-uat-internal-activate-cache-redis"]=21191
+service_port_map["oc-uat-internal-activate-rds"]=21133
+service_port_map["oc-uat-internal-activate-readonly-rds"]=21137
+service_port_map["oc-uat-internal-activate-redis"]=21190
+service_port_map["oc-uat-internal-es"]=21134
+service_port_map["oc-uat-internal-es-logs"]=21135
+service_port_map["oc-uat-internal-oc-rds"]=21132
+service_port_map["oc-uat-internal-oc-readonly-rds"]=21136
+service_port_map["oc-uat-internal-redis"]=21189
+service_port_map["oc-uat-internal-rmq"]=21156
+service_port_map["oc-uat-musa-activate-cache-redis"]=21391
+service_port_map["oc-uat-musa-activate-rds"]=21333
+service_port_map["oc-uat-musa-activate-readonly-rds"]=21337
+service_port_map["oc-uat-musa-activate-redis"]=21390
+service_port_map["oc-uat-musa-es-logs"]=21335
+service_port_map["oc-uat-musa-oc-rds"]=15432
+service_port_map["oc-uat-musa-oc-readonly-rds"]=15433
+service_port_map["oc-uat-musa-redis"]=21389
+service_port_map["oc-uat-musa-rmq"]=21356
+service_port_map["oc-dev-feature01-rmq-tcp"]=https://127.0.0.1:12257
+service_port_map["oc-dev-internal-rmq-tcp"]=https://127.0.0.1:11157
+service_port_map["oc-nextrc-internal-rmq-tcp"]=https://127.0.0.1:11857
+service_port_map["oc-nextrc2-internal-rmq-tcp"]=https://127.0.0.1:12057
+service_port_map["oc-prod-cefco-rmq-tcp"]=https://127.0.0.1:9057
+service_port_map["oc-prod-chevron-rmq-tcp"]=https://127.0.0.1:2157
+service_port_map["oc-prod-circlek-rmq-tcp"]=https://127.0.0.1:1557
+service_port_map["oc-prod-delek-rmq-tcp"]=https://127.0.0.1:1057
+service_port_map["oc-prod-gulf-rmq-tcp"]=https://127.0.0.1:1657
+service_port_map["oc-prod-internal-rmq-tcp"]=https://127.0.0.1:1157
+service_port_map["oc-prod-mpc-rmq-tcp"]=https://127.0.0.1:1457
+service_port_map["oc-prod-musa-rmq-tcp"]=https://127.0.0.1:1357
+service_port_map["oc-prod-upside-rmq-tcp"]=https://127.0.0.1:2457
+service_port_map["oc-prod-yesway-rmq-tcp"]=https://127.0.0.1:2357
+service_port_map["oc-prod2-mpc-rmq-tcp"]=https://127.0.0.1:1857
+service_port_map["oc-stage-cefco-rmq-tcp"]=https://127.0.0.1:10957
+service_port_map["oc-stage-chevron-rmq-tcp"]=https://127.0.0.1:12157
+service_port_map["oc-stage-circlek-rmq-tcp"]=https://127.0.0.1:11557
+service_port_map["oc-stage-delek-rmq-tcp"]=https://127.0.0.1:11057
+service_port_map["oc-stage-gulf-rmq-tcp"]=https://127.0.0.1:11657
+service_port_map["oc-stage-internal-rmq-tcp"]=https://127.0.0.1:11257
+service_port_map["oc-stage-mpc-rmq-tcp"]=https://127.0.0.1:11457
+service_port_map["oc-stage-musa-rmq-tcp"]=https://127.0.0.1:11357
+service_port_map["oc-stage-upside-rmq-tcp"]=https://127.0.0.1:12457
+service_port_map["oc-stage-yesway-rmq-tcp"]=https://127.0.0.1:12357
+service_port_map["oc-stage2-mpc-rmq-tcp"]=https://127.0.0.1:11757
+service_port_map["oc-uat-internal-rmq-tcp"]=https://127.0.0.1:21157
+service_port_map["oc-uat-musa-rmq-tcp"]=https://127.0.0.1:21357
+
+# for key in "${!service_port_map[@]}"; do
+# 	echo "$key: ${service_port_map[$key]}"
+# done
+
 EMAIL=""
-DISCONNECT_MODE=false
-MODE_TEXT="[Connect Mode]"
 
-# Check if flag -d is present
-if [[ "$1" == "-d" ]]; then
-  DISCONNECT_MODE=true
-  MODE_TEXT="[Disconnect Mode]"
-fi
-
-NOTIFICATION_TITLE="$MODE_TEXT SDM"
+NOTIFICATION_TITLE="SDM"
 
 # Store the password securely
 function store_password() {
-  local password
-  password=$(zenity --entry --title="SDM Password" --text="Enter your SDM password" --hide-text)
-  echo "$password" | secret-tool store --label="SDM UI" username "$EMAIL" service sdm-credential
-  echo "$password"
+	local password
+	password=$(zenity --entry --title="SDM Password" --text="Enter your SDM password" --hide-text)
+	echo "$password" | secret-tool store --label="SDM UI" username "$EMAIL" service sdm-credential
+	echo "$password"
 }
 
 # Retrieve the password
 function get_password() {
-  local password
-  password=$(secret-tool lookup service sdm-credential username "$EMAIL")
-  # If no password is found, then ask for it
-  if [[ -z "$password" ]]; then
-    password=$(store_password "$EMAIL")
-  fi
-  echo "$password"
+	local password
+	password=$(secret-tool lookup service sdm-credential username "$EMAIL")
+	# If no password is found, then ask for it
+	if [[ -z "$password" ]]; then
+		password=$(store_password "$EMAIL")
+	fi
+	echo "$password"
 }
 
 # Authenticate the user
 function authenticate() {
-  local data
-  data=$(sdm status 2>/dev/null)
-  if [[ $? -ne 0 ]]; then
-    notify-send -u normal "$NOTIFICATION_TITLE" "No session was found, signing in... 🔑"
-    local password
-    password=$(get_password)
-    echo "$password" | sdm login --email "$EMAIL" > /dev/null
-    if [[ $? -ne 0 ]]; then
-      notify-send -u critical "$NOTIFICATION_TITLE" "Login failed! 😱"
-      exit 1
-    fi
-    notify-send -u normal "$NOTIFICATION_TITLE" "Logged in successfully! 🎉"
-  fi
+	local data
+	data=$(sdm status 2>/dev/null)
+	if [[ $? -ne 0 ]]; then
+		notify-send -u normal "$NOTIFICATION_TITLE" "No session was found, signing in... 🔑"
+		local password
+		password=$(get_password)
+		echo "$password" | sdm login --email "$EMAIL" >/dev/null
+		if [[ $? -ne 0 ]]; then
+			notify-send -u critical "$NOTIFICATION_TITLE" "Login failed! 😱"
+			exit 1
+		fi
+		notify-send -u normal "$NOTIFICATION_TITLE" "Logged in successfully! 🎉"
+	fi
 }
 
 # Get the status data
 function get_status_data() {
-  local data
-  data=$(sdm status |
-    grep -v "eks" |
-    sed 's/not connected/not_connected/g' |
-    grep connected |
-    tr -s ' ' |
-    cut -d ' ' -f 2,3,4 |
-    sort -k 2 |
-    awk '{print $2,$1,$3}' |
-    sed 's/^connected/⚡/g' |
-    column -t -s ' ' -o ' ')
-  echo "$data"
+	local data
+	data=$(sdm status |
+		grep -v "eks" |
+		sed 's/not connected/not_connected/g' |
+		grep connected |
+		tr -s ' ' |
+		cut -d ' ' -f 2,3,4 |
+		sort -k 2 |
+		awk '{print $2,$1,$3}' |
+		sed 's/^connected/⚡/g' |
+		column -t -s ' ' -o ' ')
+	echo "$data"
 }
 
-# Show the menu for disconnect mode
-function show_disconnect_menu() {
-  local status_data
-  status_data=$(get_status_data)
-  # Remove the "not_connected" lines
-  status_data=$(echo "$status_data" | grep -v not_connected)
-  show_menu "$status_data"
-}
-
-# Show the menu for connect mode
+# Show the menu for connect
 function show_connect_menu() {
-  local status_data
-  status_data=$(get_status_data)
-  # Replace the "not_connected" lines with the "🔌" emoji
-  status_data=$(echo "$status_data" | sed 's/not_connected/🔌/g')
-  show_menu "$status_data"
-}
+	local status_data
 
-# Show the main menu
-function show_menu() {
-  local status_data="$1"
-  local selected_option
-  selected_option=$(echo "$status_data" | rofi -dmenu -p "Select Service" -i -sort -matching fuzzy -markup-rows)
+	options=""
 
-  local status
-  local cluster
-  local port
-  status=$(echo "$selected_option" | cut -d ' ' -f 1)
-  cluster=$(echo "$selected_option" | cut -d ' ' -f 2)
-  port=$(echo "$selected_option" | cut -d ' ' -f 3)
+	for key in "${!service_port_map[@]}"; do
+		options="$key ${service_port_map[$key]}\n$options"
+	done
 
-  if [[ -z "$cluster" ]]; then
-    exit 0
-  fi
+	options=$(echo -e "$options" | column -t -s ' ' -o ' ')
 
-  if [[ $DISCONNECT_MODE = true ]]; then
-    notify-send -u normal "$NOTIFICATION_TITLE" "Disconnecting from $cluster...⏳"
-    sdm disconnect "$cluster" > /dev/null
-    if [[ $? -ne 0 ]]; then
-      notify-send -u critical "$NOTIFICATION_TITLE" "Disconnect failed! 😱"
-      exit 1
-    fi
-    notify-send -u normal "$NOTIFICATION_TITLE" "❌ Disconnected successfully!"
-    exit 0
-  else
-    if [[ "$status" = "⚡" ]]; then
-      notify-send -u normal "$NOTIFICATION_TITLE" "Copying port <b>$port</b> to clipboard... 📋"
-      wl-copy "$port"
-      exit 0
-    fi
-    notify-send -u normal "$NOTIFICATION_TITLE" "Connecting to <b>$cluster</b> 🔌"
-    sdm connect "$cluster"
-    if [[ $? -eq 0 ]]; then
-      notify-send -u normal "$NOTIFICATION_TITLE" "Connected to <b>$cluster</b> on port <b>$port</b> ⚡"
-      wl-copy "$port"
-    else
-      notify-send -u critical "$NOTIFICATION_TITLE" "Failed to connect to <b>$cluster</b> 😱"
-    fi
-  fi
+	selected_option=$(echo -e "${options[@]}" | rofi -dmenu -p "Select Service" -i -sort -matching fuzzy -markup-rows)
+
+	if [[ -z "$selected_option" ]]; then
+		exit 0
+	fi
+
+	cluster=$(echo "$selected_option" | cut -d ' ' -f 1)
+	cluster=${cluster//[[:blank:]]/}
+	port=${service_port_map[$cluster]}
+
+	notify-send -u normal "$NOTIFICATION_TITLE" "Connecting to <b>$cluster</b> 🔌"
+	authenticate
+	sdm connect "$cluster"
+
+	if [[ $? -eq 0 ]]; then
+		if [[ "$port" == *"https"* ]]; then
+			notify-send -u normal "$NOTIFICATION_TITLE" "Opening <b>$cluster</b> on port <b>$port</b> ⚡"
+			xdg-open "$port"
+		else
+			notify-send -u normal "$NOTIFICATION_TITLE" "Connected to <b>$cluster</b> on port <b>$port</b> ⚡"
+			wl-copy "$port"
+		fi
+	else
+		notify-send -u critical "$NOTIFICATION_TITLE" "Failed to connect to <b>$cluster</b> 😱"
+	fi
 }
 
 # Check if every dependency is installed
 function check_dependencies() {
-  local dependencies=(
-    "sdm"
-    "wl-copy"
-    "rofi"
-    "zenity"
-    "awk"
-    "cut"
-    "grep"
-    "sed"
-    "sort"
-    "tr"
-    "notify-send"
-    "secret-tool"
-  )
-  for dependency in "${dependencies[@]}"; do
-    if ! command -v "$dependency" &>/dev/null; then
-      echo "$dependency could not be found"
-      exit 1
-    fi
-  done
+	local dependencies=(
+		"sdm"
+		"wl-copy"
+		"rofi"
+		"zenity"
+		"awk"
+		"cut"
+		"grep"
+		"sed"
+		"sort"
+		"tr"
+		"notify-send"
+		"secret-tool"
+	)
+	for dependency in "${dependencies[@]}"; do
+		if ! command -v "$dependency" &>/dev/null; then
+			echo "$dependency could not be found"
+			exit 1
+		fi
+	done
 }
 
 # Main entry point
 function main() {
-  authenticate
-  notify-send -u normal "$NOTIFICATION_TITLE" "Getting results from SDM...⏳" -t 1700
-  if [[ $DISCONNECT_MODE = true ]]; then
-    show_disconnect_menu
-  else
-    show_connect_menu
-  fi
+	notify-send -u normal "$NOTIFICATION_TITLE" "Getting results from SDM...⏳" -t 1700
+	show_connect_menu
 }
 
 # Check dependencies and execute the main function
