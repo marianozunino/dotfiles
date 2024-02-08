@@ -12,6 +12,11 @@ local M = {
 	},
 }
 
+-- M.toggle_inlay_hints = function()
+-- 	local bufnr = vim.api.nvim_get_current_buf()
+-- 	vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
+-- end
+
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_buf_set_keymap
@@ -23,18 +28,16 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	keymap(bufnr, "n", "<leader>cw", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	keymap(bufnr, "n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 	keymap(bufnr, "i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap(bufnr, "n", "vd", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	-- restart lsp
+
 	keymap(bufnr, "n", "<leader>lr", ":LspRestart<CR>", opts)
+	keymap(bufnr, "n", "<leader>li", ":LspInfo<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
-
-	if client.supports_method("textDocument/inlayHint") then
-		vim.lsp.inlay_hint.enable(bufnr, true)
-	end
 end
 
 function M.common_capabilities()
@@ -43,16 +46,7 @@ function M.common_capabilities()
 	return capabilities
 end
 
-M.toggle_inlay_hints = function()
-	local bufnr = vim.api.nvim_get_current_buf()
-	vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
-end
-
 function M.config()
-	-- This is now being set by noice:
-	-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-	-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local lspconfig = require("lspconfig")

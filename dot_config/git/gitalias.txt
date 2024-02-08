@@ -1508,3 +1508,13 @@
 
   rs = restore --staged
   remove-tags = "!f() { git tag -l ${1} | xargs -I % echo \"git tag -d % && git push --delete origin %\" | sh; }; f"
+
+  sr = "!f() { \
+      current_branch=$(git rev-parse --abbrev-ref HEAD); \
+      git stash save -u 'Stash for switch-rebase' && \
+      git checkout $1 && \
+      git pull origin $1 && \
+      git checkout $current_branch && \
+      git rebase $1 && \
+      git stash pop; \
+  }; f"
