@@ -124,7 +124,6 @@ local M = {
 			window = {
 				completion = {
 					border = "rounded",
-					scrollbar = false,
 				},
 				documentation = {
 					border = "rounded",
@@ -133,6 +132,27 @@ local M = {
 			experimental = {
 				ghost_text = false,
 			},
+		})
+
+		cmp.setup.cmdline("/", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{
+					name = "cmdline",
+					option = {
+						ignore_cmds = { "Man", "!" },
+					},
+				},
+			}),
 		})
 
 		-- gray

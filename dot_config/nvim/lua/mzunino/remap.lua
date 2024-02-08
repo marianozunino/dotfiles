@@ -5,8 +5,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 keymap("n", "Y", "yy")
-keymap("n", "?", "?\\v")
-keymap("n", "/", "/\\v")
+-- keymap("n", "?", "?\\v")
+-- keymap("n", "/", "/\\v")
 
 keymap("n", "<leader><leader>", "<c-^>")
 
@@ -37,10 +37,10 @@ keymap("x", "p", [["_dP]])
 keymap({ "n", "o", "x" }, "<s-h>", "^")
 keymap({ "n", "o", "x" }, "<s-l>", "g_")
 
--- create a user command to exit all buffers without saving
-vim.api.nvim_create_user_command("Q", function()
+keymap("n", "<leader>q", ":q<CR>")
+keymap("n", "<leader>Q", function()
 	vim.api.nvim_command("bd!|qall!")
-end, { nargs = 0 })
+end)
 
 -- create a user command to save without formatting :noa w
 vim.api.nvim_create_user_command("W", function()
@@ -82,3 +82,7 @@ end)
 
 keymap("n", "<leader>w", ":w<CR>")
 keymap("n", "<leader>W", ":wa<CR>")
+
+-- format json using jq
+keymap("n", "<leader>jq", ":%!jq '.'<CR>")
+keymap("v", "<leader>jq", ":!jq '.'<CR>")

@@ -46,7 +46,8 @@ M.config = function()
 	end
 
 	local function file_browser()
-		local _, ret, _ = utils.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })
+		-- check if the current directory has a .git folder
+		local _, ret, _ = utils.get_os_command_output({ "stat", ".git" })
 		if ret == 0 then
 			builtin.git_files({
 				show_untracked = true,
