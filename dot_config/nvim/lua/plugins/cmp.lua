@@ -89,6 +89,7 @@ local M = {
 					return vim_item
 				end,
 			},
+
 			mapping = {
 				["<C-k>"] = cmp.mapping.select_prev_item(select_opts),
 				["<C-j>"] = cmp.mapping.select_next_item(select_opts),
@@ -142,7 +143,33 @@ local M = {
 		})
 
 		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
+			mapping = cmp.mapping.preset.cmdline({
+				-- Use default nvim history scrolling
+				["<C-j>"] = {
+					c = function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end,
+				},
+				["<C-k>"] = {
+					c = function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end,
+				},
+				["<C-n>"] = {
+					c = false,
+				},
+				["<C-p>"] = {
+					c = false,
+				},
+			}),
 			sources = cmp.config.sources({
 				{ name = "path" },
 			}, {

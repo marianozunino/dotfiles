@@ -15,20 +15,20 @@ local M = {
 
 		-- see below for full list of optional dependencies 👇
 	},
-	opts = {
+}
+
+M.config = function()
+	require("obsidian").setup({
 		workspaces = {
 			{
 				name = "personal",
-				path = "~/vaults/personal",
-			},
-			{
-				name = "work",
-				path = "~/vaults/work",
+				path = "~/Sync/Obsidian/Vault",
 			},
 		},
+	})
 
-		-- see below for full list of options 👇
-	},
-}
+	local keymap = vim.keymap.set
+	keymap("n", "<leader>os", "<cmd>ObsidianSearch<CR>")
+end
 
 return M

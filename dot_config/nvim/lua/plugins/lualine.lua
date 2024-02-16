@@ -1,7 +1,8 @@
 local M = {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		"nvim-tree/nvim-web-devicons", --[[ "ofseed/copilot-status.nvim" ]]
+		"nvim-tree/nvim-web-devicons",
+		"ofseed/copilot-status.nvim",
 	},
 }
 
@@ -40,9 +41,8 @@ M.config = function()
 			lualine_b = { "branch" },
 			lualine_c = { "diagnostics", get_file_name },
 			lualine_x = {
-				--[[
 				{
-				 "copilot",
+					"copilot",
 					show_running = true,
 					symbols = {
 						status = {
@@ -51,7 +51,7 @@ M.config = function()
 						},
 						spinners = require("copilot-status.spinners").meter,
 					},
-				}, ]]
+				},
 				"filetype",
 				"fileformat",
 				"encoding",
