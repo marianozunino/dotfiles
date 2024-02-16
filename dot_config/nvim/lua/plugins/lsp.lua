@@ -6,6 +6,7 @@ local M = {
 		{
 			"yioneko/nvim-vtsls",
 			"neovim/nvim-lspconfig",
+			"ray-x/guihua.lua",
 			"ray-x/go.nvim",
 			"folke/neodev.nvim",
 		},
@@ -47,6 +48,8 @@ function M.common_capabilities()
 end
 
 function M.config()
+	require("go").setup()
+
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local lspconfig = require("lspconfig")
@@ -77,7 +80,6 @@ function M.config()
 		callback = function(ev)
 			-- Enable completion triggered by <c-x><c-o>
 			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
 			lsp_keymaps(ev.buf)
 		end,
 	})

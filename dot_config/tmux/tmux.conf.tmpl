@@ -21,10 +21,8 @@ set -s escape-time 1
 
 #Mouse on
 set -g mouse on
-# Make tmux use 256 colors.
+
 # Make tmux act like xterm to prevent Vim issues:
-set -g default-terminal "tmux-256color"
-set -g terminal-overrides ',xterm-256color:Tc'
 
 # Only resize the screen size if the smaller screen user has their window
 # active. This way my screen won't be resized to an incredibly small window
@@ -67,6 +65,7 @@ bind-key M choose-window -F "#{window_index}: #{window_name}" "join-pane -v -t %
 ## Status bar design
 # status line
 set -g status-justify left
+set -g status-position top
 set -g status-bg default
 set -g status-fg colour12
 set -g status-interval 2
@@ -78,7 +77,10 @@ set-option -g visual-bell off
 set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
-set -g default-terminal "screen-256color"
+
+
+set -g default-terminal "tmux-256color"
+set -g terminal-overrides ',xterm-256color:Tc'
 
 
 # ============================
@@ -88,12 +90,48 @@ set -g @yank_selection_mouse 'clipboard'
 set -g @yank_selection 'clipboard'
 
 set -g @plugin 'tmux-plugins/tpm'
-
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'thewtex/tmux-mem-cpu-load'
-set -g @plugin 'rose-pine/tmux'
 set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'catppuccin/tmux'
+
+set -g @catppuccin_window_left_separator "█"
+set -g @catppuccin_window_right_separator "█"
+set -g @catppuccin_window_number_position "left"
+set -g @catppuccin_window_middle_separator "█ "
+
+set -g @catppuccin_window_default_fill "number"
+set -g @catppuccin_window_current_fill "number"
+
+set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(🔍),}"
+set -g @catppuccin_window_default_text "#W"
+
+set -g @catppuccin_status_modules_right "date_time {{ if eq .chezmoi.hostname "T14" }}battery{{ end }} session"
+set -g @catppuccin_status_left_separator  ""
+set -g @catppuccin_status_right_separator " "
+set -g @catppuccin_status_right_separator_inverse "yes"
+set -g @catppuccin_status_fill "all"
+set -g @catppuccin_status_connect_separator "no"
+set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
+
+# use rose-pine colors
+set -g @catppuccin_pane_color "#1e1e2e"
+set -g @catppuccin_pane_background_color "#181825"
+
+set -g @catppuccin_window_current_color "#eb6f92"
+set -g @catppuccin_window_current_background_color "#f5e0dc"
+
+set -g @catppuccin_window_default_color "#ebbcba"
+set -g @catppuccin_window_default_background_color "#f5e0dc"
+
+set -g @catppuccin_session_color "#9ccfd8"
+set -g @catppuccin_session_background_color "#f5e0dc"
+
+set -g @catppuccin_directory_color "#c4a7e7"
+set -g @catppuccin_directory_background_color "#f5e0dc"
+
+set -g @catppuccin_date_time_color "#f6c177"
+set -g @catppuccin_date_time_background_color "#f5e0dc"
 
 set -g @batt_icon_charge_tier8 ''
 set -g @batt_icon_charge_tier7 ''
@@ -104,19 +142,7 @@ set -g @batt_icon_charge_tier3 ''
 set -g @batt_icon_charge_tier2 ''
 set -g @batt_icon_charge_tier1 ''
 
-
-set -g @rose_pine_variant 'main' # Options are 'main', 'moon' or 'dawn'
-set -g @rose_pine_host 'on' # Enables hostname in the status bar
-
-# It accepts the date UNIX command format (man date for info)
-set -g @rose_pine_date_time '%a %d-%h %H:%M'
-# set -g @rose_pine_user 'on' # Turn on the username component in the statusbar
-set -g @rose_pine_bar_bg_disable 'on'
-set -g @rose_pine_battery {{ if eq .chezmoi.hostname "T14" }}'on'{{ else }}'off'{{ end }}
-set -g @rose_pine_disable_active_window_menu 'on'
-
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 if "test ! -d $XDG_CONFIG_HOME/tmux/plugins/tpm" \
    "run 'git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm'"
 run '$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm'
-

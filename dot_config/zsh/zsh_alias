@@ -3,6 +3,9 @@ alias src='omz reload'
 alias dc="cd"
 alias ls="ls --color"
 alias ll="ls -thor"
+alias k="kubectl"
+alias kns="kubens"
+alias kctx="kubectx"
 
 
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
