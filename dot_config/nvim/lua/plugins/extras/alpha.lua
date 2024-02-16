@@ -3,7 +3,7 @@ local M = {
 	event = "VimEnter",
 }
 
-function M.config()
+M.config = function()
 	local dashboard = require("alpha.themes.dashboard")
 	local nvim_version = vim.version()
 	local version = nvim_version.major .. "." .. nvim_version.minor .. "." .. nvim_version.patch

@@ -9,7 +9,6 @@ local M = {
 
 M.config = function()
 	local mappings = {
-		h = { "<cmd>nohlsearch<CR>", "No Highlight" },
 		g = { name = "GitLinker" },
 		T = { name = "Treesitter" },
 	}

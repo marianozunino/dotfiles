@@ -2,7 +2,7 @@ local M = {
 	"j-hui/fidget.nvim",
 }
 
-function M.config()
+M.config = function()
 	require("fidget").setup({
 		notification = {
 			window = {

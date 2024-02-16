@@ -2,7 +2,7 @@ local M = {
 	"nvim-treesitter/nvim-treesitter",
 }
 
-function M.config()
+M.config = function()
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
 			"javascript",

@@ -1,3 +1,15 @@
+# swayfx config
+smart_corner_radius on
+corner_radius 10
+default_dim_inactive 0.05
+blur enable
+blur_passes 2
+blur_radius 2
+layer_effects "waybar" "blur enable"; shadows enable
+shadows on
+shadow_blur_radius 20
+
+
 # General Config
 set $mod Mod4
 
@@ -48,7 +60,7 @@ bindsym $mod+g exec --no-startup-id gromit-mpx -t 0
 # start a terminal
 bindsym $mod+Return exec $term
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+c kill
 #Rofi
 # bindsym $mod+d exec rofi -show drun -hide-scrollbar -lines 3 -eh 1 -width 40 -location 8 -xoffset 170 -yoffset 70 -padding 30 -disable-history -font "RobotoMono 18"
 bindsym $mod+d exec rofi -show combi -show-icons
@@ -57,7 +69,6 @@ bindsym $mod+v exec copyq toggle
 bindsym F4 exec switch-windows
 bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | rofi -dmenu -i -p "Project" -sort -matching fuzzy | xargs -i code ~/Dev/{}
 bindsym $mod+n exec sdm-ui rofi 
-bindsym $mod+Shift+n exec ~/.bin/sdm-ui -d
 # Power
 bindsym XF86PowerOff exec wlogout -p layer-shell
 bindsym $mod+x exec rofi -show Power -modi Power:$HOME/.config/rofi/kill.sh
@@ -97,14 +108,11 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+w layout toggle tabbed split
+bindsym $mod+e exec thunar
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space floating toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -133,39 +141,15 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c exec swaymsg reload && notify-send "Reloaded sway config"
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id wlogout
+bindsym $mod+r  exec --no-startup-id ~/.bin/wlrecord.sh -s
 
-bindsym $mod+r mode "resize"
+# reload the configuration file
+bindsym $mod+Shift+r exec swaymsg reload && notify-send "Reloaded sway config"
 
-mode "resize" {
-# These bindings trigger as soon as you enter the resize mode
-
-# Pressing left will shrink the window’s width.
-# Pressing right will grow the window’s width.
-# Pressing up will shrink the window’s height.
-# Pressing down will grow the window’s height.
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
-
-# same bindings, but for the arrow keys
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
-
-# back to normal: Enter or Escape or $mod+r
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+r mode "default"
-}
-
-
+# take screenshots
 bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | swappy -f -
 
 # mod + F5 executes the script ~/.bin/pause-notifications
@@ -210,9 +194,11 @@ for_window [title="Do Not Panic"] floating enable
 for_window [title="File Operation Progress"] floating enable
 for_window [title="Unlock Keyring"] floating enable
 for_window [title="Confirm to replace files"] floating enable
+for_window [title="Extension: (Bitwarden - Free Password Manager) - Bitwarden — Firefox Nightly"] floating enable
 
 assign [class="^discord$"] 10
 assign [class="^WebCord$"] 10
+assign [class="^vesktop$"] 10
 
 assign [app_id="^jetbrains-idea$"] 3
 assign [title="^win0$"] 3
@@ -239,11 +225,9 @@ for_window [class=".*"] border pixel 0
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound<Paste>
-# Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
 
-bindsym $mod+Shift+r  exec --no-startup-id ~/.bin/wlrecord.sh -s
 
 #Startup stuff
 set $term footclient
@@ -253,7 +237,6 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec --no-startup-id copyq
-
 exec --no-startup-id autostart
 
 set $out1 DP-1
@@ -269,7 +252,6 @@ workspace 4 output  $out2
 workspace 6 output  $out2
 workspace 8 output  $out2
 workspace 10 output $out2
-
 
 input type:keyboard {
   xkb_layout us

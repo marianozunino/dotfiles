@@ -118,7 +118,7 @@ M.config = function()
 		},
 	}
 	-- add a shortcut to compile F5
-	vim.keymap.set("n", "<F5>", "<cmd>VimtexCompile<CR>", { silent = true })
+	vim.keymap.set("n", "<F5>", "<cmd>VimtexCompile<CR>", { silent = true, desc = "Compile Latex" })
 end
 
 return M

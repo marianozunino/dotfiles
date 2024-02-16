@@ -50,14 +50,13 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 # export GNUHOME="$XDG_DATA_HOME/gnupg"
 export JAVA_HOME="/usr/lib/jvm/default"
 
-export BROWSER="/opt/firefox/nightly/firefox-bin"
+export BROWSER="/opt/firefox/firefox-bin"
 
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+	export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 export GPG_TTY=$(tty)
 export QT_QPA_PLATFORM=xcb
 
 gpg-connect-agent updatestartuptty /bye >/dev/null
-

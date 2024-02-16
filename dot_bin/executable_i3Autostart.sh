@@ -8,8 +8,9 @@ slack &
 
 wl-paste --type text --watch cliphist store &
 wl-paste --type image --watch cliphist store &
+vesktop &
 
 foot --server &
 # wait for foot server to start
-sleep 1;
+sleep 1
 footclient -a dropdown

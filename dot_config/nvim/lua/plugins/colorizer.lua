@@ -2,7 +2,7 @@ local M = {
 	"NvChad/nvim-colorizer.lua",
 }
 
-function M.config()
+M.config = function()
 	require("colorizer").setup({
 		filetypes = {
 			"typescript",
@@ -13,6 +13,8 @@ function M.config()
 			"html",
 			"astro",
 			"lua",
+			"go",
+			"golang",
 		},
 		user_default_options = {
 			names = false,

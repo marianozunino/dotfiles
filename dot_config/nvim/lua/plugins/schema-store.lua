@@ -2,6 +2,6 @@ local M = {
 	"b0o/schemastore.nvim",
 }
 
-function M.config() end
+M.config = function() end
 
 return M

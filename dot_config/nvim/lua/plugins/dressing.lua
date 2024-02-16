@@ -3,7 +3,7 @@ local M = {
 	event = "VeryLazy",
 }
 
-function M.config()
+M.config = function()
 	require("dressing").setup({
 		input = {
 			enabled = true,

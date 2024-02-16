@@ -10,7 +10,7 @@ local M = {
 	},
 }
 
-function M.config()
+M.config = function()
 	require("noice").setup({
 		routes = {
 			{

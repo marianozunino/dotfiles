@@ -6,12 +6,12 @@ return {
 				enable = false,
 			},
 			diagnostics = {
-				globals = { "vim", "spec" },
+				globals = { "vim", "plug" },
 			},
 			runtime = {
 				version = "LuaJIT",
 				special = {
-					spec = "require",
+					plug = "require",
 				},
 			},
 			workspace = {

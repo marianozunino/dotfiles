@@ -2,7 +2,7 @@ local M = {
 	"SmiteshP/nvim-navic",
 }
 
-function M.config()
+M.config = function()
 	local icons = require("plugins.icons")
 
 	require("nvim-navic").setup({

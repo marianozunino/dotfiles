@@ -1,9 +1,8 @@
 local M = {
 	"kevinhwang91/nvim-bqf",
-	event = "VeryLazy",
 }
 
-function M.config()
+M.config = function()
 	require("bqf").setup({
 		auto_enable = true,
 		magic_window = true,

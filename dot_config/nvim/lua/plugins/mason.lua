@@ -1,5 +1,9 @@
 local M = {
 	"williamboman/mason.nvim",
+
+	dependencies = {
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	},
 }
 
 M.config = function()

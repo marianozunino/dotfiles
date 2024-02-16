@@ -18,36 +18,19 @@ M.config = function()
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 			tex = { "latexindent" },
-			go = { "gofmt" },
+			-- go = { "gofmt" },
+			go = { { "gofumpt", "goimports-reviser", "golines" } },
 		},
 		format_on_save = {
 			-- These options will be passed to conform.format()
 			timeout_ms = 500,
 			lsp_fallback = true,
-		},
-	})
-
-	vim.keymap.set({ "n", "v" }, "<leader>ff", function()
-		conform.format({
-			timeout_ms = 500,
-			lsp_fallback = true,
 			async = false,
-		})
-	end, { desc = "Format file or range (in visual mode)" })
-
-	local format_augroup = vim.api.nvim_create_augroup("format", { clear = true })
-
-	vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-		group = format_augroup,
-		callback = function(args)
-			conform.format({
-				timeout_ms = 500,
-				lsp_fallback = true,
-				async = false,
-				bufnr = args.buf,
-			})
-		end,
+		},
+		notify_on_error = false,
 	})
+
+	vim.keymap.set("n", "<leader>ff", conform.format, { desc = "Format file or range (in visual mode)" })
 end
 
 return M

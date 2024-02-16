@@ -1,5 +1,5 @@
 LAZY_PLUGIN_SPEC = {}
 
-function spec(item)
+function plug(item)
 	table.insert(LAZY_PLUGIN_SPEC, { import = item })
 end

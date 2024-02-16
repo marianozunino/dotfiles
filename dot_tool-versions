@@ -1,8 +1,9 @@
 nodejs 16.14.0
 chezmoi 2.31.0
 bitwarden v1.22.1
-golang 1.19.6 system
+golang 1.22.1
 flyctl 0.1.64
 pnpm 7.32.0
 bun 1.0.2
 sops 3.6.1
+dotnet 8.0.203
