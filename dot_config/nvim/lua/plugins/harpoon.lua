@@ -18,16 +18,16 @@ M.config = function()
 
 	vim.keymap.set("n", "<leader>a", function()
 		harpoon:list():append()
-	end)
+	end, { desc = "Harpoon: Append" })
 
-	vim.keymap.set("n", "<C-h>", function()
+	vim.keymap.set("n", "<leader>ha", function()
 		harpoon.ui:toggle_quick_menu(harpoon:list())
-	end)
+	end, { desc = "Harpoon: Toggle Quick Menu" })
 
 	for i = 1, 4 do
 		vim.keymap.set("n", "<leader>" .. i, function()
 			harpoon:list():select(i)
-		end)
+		end, { desc = "Harpoon: Select " .. i })
 	end
 end
 

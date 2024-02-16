@@ -18,13 +18,15 @@ M.config = function()
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 			tex = { "latexindent" },
-			go = { "gofmt" },
+			-- go = { "gofmt" },
+			go = { { "gofumpt", "goimports-reviser", "golines" } },
 		},
 		format_on_save = {
 			-- These options will be passed to conform.format()
 			timeout_ms = 500,
 			lsp_fallback = true,
 		},
+		notify_on_error = false,
 	})
 
 	vim.keymap.set({ "n", "v" }, "<leader>ff", function()

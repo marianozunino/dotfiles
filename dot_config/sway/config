@@ -57,7 +57,6 @@ bindsym $mod+v exec copyq toggle
 bindsym F4 exec switch-windows
 bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | rofi -dmenu -i -p "Project" -sort -matching fuzzy | xargs -i code ~/Dev/{}
 bindsym $mod+n exec sdm-ui rofi mariano.zunino@stuzo.com
-bindsym $mod+Shift+n exec ~/.bin/sdm-ui -d
 # Power
 bindsym XF86PowerOff exec wlogout -p layer-shell
 bindsym $mod+x exec rofi -show Power -modi Power:$HOME/.config/rofi/kill.sh

@@ -74,6 +74,10 @@ alias copy="xclip -sel clip"
 alias paste="xclip -sel clip -o"
 
 
+# Work related
+alias sstack='cd ~/Dev/stuzo/oc-docker-compose; docker-compose up postgres redis rabbitmq'
+
+
 open () {
     for i in $*
     do

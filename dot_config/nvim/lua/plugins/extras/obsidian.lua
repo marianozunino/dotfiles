@@ -29,6 +29,8 @@ M.config = function()
 
 	local keymap = vim.keymap.set
 	keymap("n", "<leader>os", "<cmd>ObsidianSearch<CR>")
+	keymap("n", "<leader>on", "<cmd>ObsidianNew<CR>")
+	keymap("n", "<leader>or", "<cmd>ObsidianRename<CR>")
 end
 
 return M

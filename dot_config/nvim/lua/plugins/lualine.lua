@@ -2,7 +2,7 @@ local M = {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"ofseed/copilot-status.nvim",
+		-- "ofseed/copilot-status.nvim",
 	},
 }
 
@@ -33,7 +33,7 @@ end
 M.config = function()
 	require("lualine").setup({
 		options = {
-			theme = "rose-pine", -- or theme = 'rose-pine-alt'
+			theme = "rose-pine-alt", -- or theme = 'rose-pine'
 			component_separators = { left = "", right = "" },
 			section_separators = { left = "", right = "" },
 		},
@@ -41,17 +41,17 @@ M.config = function()
 			lualine_b = { "branch" },
 			lualine_c = { "diagnostics", get_file_name },
 			lualine_x = {
-				{
-					"copilot",
-					show_running = true,
-					symbols = {
-						status = {
-							enabled = "",
-							disabled = "",
-						},
-						spinners = require("copilot-status.spinners").meter,
-					},
-				},
+				-- {
+				-- 	"copilot",
+				-- 	show_running = true,
+				-- 	symbols = {
+				-- 		status = {
+				-- 			enabled = "",
+				-- 			disabled = "",
+				-- 		},
+				-- 		spinners = require("copilot-status.spinners").meter,
+				-- 	},
+				-- },
 				"filetype",
 				"fileformat",
 				"encoding",

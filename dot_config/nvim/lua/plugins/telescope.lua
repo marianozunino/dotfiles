@@ -3,47 +3,29 @@ local M = {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"gbrlsnchs/telescope-lsp-handlers.nvim",
+		{ -- If encountering errors, see telescope-fzf-native README for install instructions
+			"nvim-telescope/telescope-fzf-native.nvim",
+
+			-- `build` is used to run some command when the plugin is installed/updated.
+			-- This is only run then, not every time Neovim starts up.
+			build = "make",
+
+			-- `cond` is a condition used to determine whether this plugin should be
+			-- installed and loaded.
+			cond = function()
+				return vim.fn.executable("make") == 1
+			end,
+		},
 	},
 	lazy = false,
 	cmd = "Telescope",
 }
 
 M.config = function()
-	local pickers = require("telescope.pickers")
-	local finders = require("telescope.finders")
-	local sorters = require("telescope.sorters")
 	local utils = require("telescope.utils")
-	local action_state = require("telescope.actions.state")
 	local actions = require("telescope.actions")
 	local builtin = require("telescope.builtin")
 	local trouble = require("trouble.providers.telescope")
-
-	local function dev_folders()
-		local name = "Development"
-		local cmd = {
-			vim.o.shell,
-			"-c",
-			"/bin/fd --base-directory ~/Dev --search-path . -t d -d 2 2>/dev/null",
-		}
-		pickers
-			.new(require("telescope.themes").get_dropdown({}), {
-				prompt_title = name,
-				finder = finders.new_table({ results = utils.get_os_command_output(cmd) }),
-				sorter = sorters.get_fuzzy_file(),
-				attach_mappings = function(prompt_bufnr)
-					actions.select_default:replace(function()
-						actions.close(prompt_bufnr)
-						local selection = action_state.get_selected_entry()
-						local command =
-							string.format("nohup sh -c 'code %s --tmux' disown", "~/Development/" .. selection[1])
-						local file = assert(io.popen(command, "r"))
-						file:close()
-					end)
-					return true
-				end,
-			})
-			:find()
-	end
 
 	local function file_browser()
 		-- check if the current directory has a .git folder
@@ -67,26 +49,39 @@ M.config = function()
 		end
 	end
 
-	vim.keymap.set("n", "<leader>gr", ":Telescope lsp_references<cr>")
-	vim.keymap.set("n", "<leader>tm", dev_folders)
-	vim.keymap.set("n", "<leader>/", file_browser)
+	local keymap = vim.keymap.set
 
-	vim.keymap.set("n", ";", builtin.buffers)
-	vim.keymap.set("n", "<leader>vh", builtin.help_tags)
+	keymap("n", "<leader>gr", ":Telescope lsp_references<cr>", { desc = "LSP References" })
+	keymap("n", "<leader>/", file_browser, { desc = "File Browser" })
 
-	vim.keymap.set("n", "<leader>gf", function()
+	keymap("n", ";", builtin.buffers, { desc = "Buffers" })
+
+	keymap("n", "<leader>gf", function()
 		vim.ui.input({ prompt = "Grep For:" }, function(search)
 			builtin.grep_string({ search = search })
 		end)
-	end)
+	end, { desc = "Grep for string" })
 
-	vim.keymap.set("n", "<leader>gw", function()
+	keymap("n", "<leader>gw", function()
 		builtin.grep_string({ search = vim.fn.expand("<cword>") })
-	end)
+	end, { desc = "Grep for word under cursor" })
 
-	vim.keymap.set("n", "<leader>gW", function()
+	keymap("n", "<leader>gW", function()
 		builtin.grep_string({ search = vim.fn.expand("<cWORD>") })
-	end)
+	end, { desc = "Grep for Word under cursor" })
+
+	keymap("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+	keymap("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+
+	-- Slightly advanced example of overriding default behavior and theme
+	keymap("n", "<leader>b", function()
+		-- You can pass additional configuration to telescope to change theme, layout, etc.
+		builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+			winblend = 10,
+			previewer = false,
+		}))
+	end, { desc = "[sb] Fuzzily search in current buffer" })
+
 	local icons = require("plugins.icons")
 
 	require("telescope").setup({
@@ -135,7 +130,11 @@ M.config = function()
 			layout_strategy = "horizontal",
 			file_ignore_patterns = { "^undodir/" },
 		},
-
+		extensions = {
+			["ui-select"] = {
+				require("telescope.themes").get_dropdown(),
+			},
+		},
 		pickers = {
 			live_grep = {
 				theme = "dropdown",
@@ -190,6 +189,9 @@ M.config = function()
 
 	require("telescope").load_extension("lsp_handlers")
 	require("telescope.builtin").quickfix()
+
+	pcall(require("telescope").load_extension, "fzf")
+	pcall(require("telescope").load_extension, "ui-select")
 end
 
 return M
