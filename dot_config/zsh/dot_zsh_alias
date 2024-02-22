@@ -4,7 +4,6 @@ alias dc="cd"
 alias ls="ls --color"
 alias ll="ls -thor"
 
-
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
@@ -33,10 +32,10 @@ alias gt="cd ~/Dev/"
 alias vim='nvim'
 
 # if chezmoi is installed use it to edit dotfiles
-if command -v chezmoi &> /dev/null; then
-  alias zshrc="chezmoi edit $ZDOTDIR/.zshrc"
+if command -v chezmoi &>/dev/null; then
+	alias zshrc="chezmoi edit $ZDOTDIR/.zshrc"
 else
-  alias zshrc="vim $ZDOTDIR/.zshrc"
+	alias zshrc="vim $ZDOTDIR/.zshrc"
 fi
 
 alias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
@@ -69,44 +68,40 @@ alias tf='terraform'
 alias copy="xclip -sel clip"
 alias paste="xclip -sel clip -o"
 
-
-open () {
-    for i in $*
-    do
-        setsid nohup xdg-open $i > /dev/null 2> /dev/null
-    done
+open() {
+	for i in $*; do
+		setsid nohup xdg-open $i >/dev/null 2>/dev/null
+	done
 }
 
+alias o=open
 
 transfer() {
-    curl --progress-bar --upload-file "$1" https://transfer.mzunino.com.uy/$(basename "$1") | tee /dev/null;
-    # curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
-    echo
+	curl --progress-bar --upload-file "$1" https://transfer.mzunino.com.uy/$(basename "$1") | tee /dev/null
+	# curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
+	echo
 }
 
-
 wacom() {
-  systemctl --user enable opentabletdriver --now
-  otd loadsettings ~/Sync/wacom/wacom.json
+	systemctl --user enable opentabletdriver --now
+	otd loadsettings ~/Sync/wacom/wacom.json
 }
 
 # chezmoi shorthand aliases
 alias ch='chezmoi'
 
 function gc {
-  if [[ "$1" == */* ]]
-  then
-    git clone "https://github.com/$1" "${@:2}"
-  else
-    git clone "https://github.com/marianozunino/$1" "${@:2}"
-  fi
+	if [[ "$1" == */* ]]; then
+		git clone "https://github.com/$1" "${@:2}"
+	else
+		git clone "https://github.com/marianozunino/$1" "${@:2}"
+	fi
 }
 
 alias gh-clone='gc'
 alias task='go-task'
 
-
-lf () {
+lf() {
 	LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
 	LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
 	if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
