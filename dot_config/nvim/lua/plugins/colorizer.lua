@@ -15,6 +15,8 @@ M.config = function()
 			"lua",
 			"go",
 			"golang",
+			"bash",
+			"sh",
 		},
 		user_default_options = {
 			names = false,

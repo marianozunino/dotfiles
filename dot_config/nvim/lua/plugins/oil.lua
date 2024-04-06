@@ -38,15 +38,15 @@ M.config = function()
 		-- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
 		skip_confirm_for_simple_edits = true,
 
-		-- view_options = {
-		-- 	-- Show files and directories that start with "."
-		-- 	show_hidden = false,
-		-- 	-- This function defines what is considered a "hidden" file
-		-- 	is_hidden_file = function(name)
-		-- 		local ignore_folders = { "node_modules", "dist", "build", "coverage" }
-		-- 		return vim.startswith(name, ".") or vim.tbl_contains(ignore_folders, name)
-		-- 	end,
-		-- },
+		view_options = {
+			-- Show files and directories that start with "."
+			show_hidden = false,
+			-- This function defines what is considered a "hidden" file
+			is_hidden_file = function(name)
+				local ignore_folders = { "node_modules", "dist", "build", "coverage" }
+				return vim.startswith(name, ".") or vim.tbl_contains(ignore_folders, name)
+			end,
+		},
 
 		-- Configuration for the floating window in oil.open_float
 		float = {
@@ -61,7 +61,8 @@ M.config = function()
 	})
 
 	vim.keymap.set("n", "<space>n", function()
-		require("oil").toggle_float()
+		-- require("oil").toggle_float()
+		require("oil").open()
 	end)
 end
 
