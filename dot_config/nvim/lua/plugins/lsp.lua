@@ -50,9 +50,12 @@ local on_attach = function(client, bufnr)
 	end
 
 	local map = function(keys, func, desc)
-		vim.keymap.set("n", keys, func, { desc = "LSP: " .. desc })
+		vim.keymap.set("n", keys, func, {
+			buffer = bufnr,
+			desc = "LSP: " .. desc,
+		})
 	end
-
+	--
 	map("K", vim.lsp.buf.hover, "Hover Documentation")
 	map("gi", vim.lsp.buf.implementation, "Goto Implementation")
 	map("gd", vim.lsp.buf.definition, "Goto Definition")

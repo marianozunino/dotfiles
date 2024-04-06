@@ -180,6 +180,7 @@ for_window [app_id="Evolution-alarm-notify"] floating enable
 for_window [app_id="sm"] move to workspace 4, workspace --no-auto-back-and-forth 4
 for_window [title="JetBrains Toolbox"] floating enable
 for_window [app_id="Spotify"] move to workspace 5, workspace --no-auto-back-and-forth 5
+for_window [title="Espanso Sync Tool"] floating enable
 
 #floating copyq
 for_window [app_id="com.github.hluk.copyq"] floating enable
