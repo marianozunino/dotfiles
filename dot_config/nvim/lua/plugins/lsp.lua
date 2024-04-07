@@ -60,10 +60,11 @@ local on_attach = function(client, bufnr)
 	map("gi", vim.lsp.buf.implementation, "Goto Implementation")
 	map("gd", vim.lsp.buf.definition, "Goto Definition")
 	map("gr", vim.lsp.buf.references, "Goto References")
-	map("gl", vim.diagnostic.open_float, "Open Diagnostics")
 	map("vd", vim.diagnostic.open_float, "Open Diagnostics")
+
 	map("<C-h>", vim.lsp.buf.signature_help, "Signature Help")
-	map("<C-h>", vim.lsp.buf.signature_help, "Signature Help")
+	map("<leader>D", vim.lsp.buf.type_definition, "Tye Definition")
+
 	map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 	map("<leader>cw", vim.lsp.buf.rename, "Rename")
 	map("<leader>r", vim.lsp.buf.rename, "Rename")
