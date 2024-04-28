@@ -112,7 +112,7 @@ set -g @catppuccin_status_left_separator  ""
 set -g @catppuccin_status_right_separator " "
 set -g @catppuccin_status_right_separator_inverse "yes"
 set -g @catppuccin_status_fill "all"
-set -g @catppuccin_status_connect_separator "no"
+set -g @catppuccin_status_connect_separator "yes"
 set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
 
 # use rose-pine colors
@@ -146,4 +146,5 @@ set -g @batt_icon_charge_tier1 ''
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 if "test ! -d $XDG_CONFIG_HOME/tmux/plugins/tpm" \
    "run 'git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm'"
+
 run '$XDG_CONFIG_HOME/tmux/plugins/tpm/tpm'

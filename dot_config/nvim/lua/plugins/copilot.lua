@@ -1,7 +1,7 @@
 local M = {
 	-- "github/copilot.vim",
 	"Exafunction/codeium.vim",
-	event = "BufEnter",
+	cmd = "CodeiumEnable",
 }
 
 M.config = function()

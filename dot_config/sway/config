@@ -151,6 +151,7 @@ bindsym $mod+Shift+r exec swaymsg reload && notify-send "Reloaded sway config"
 
 # take screenshots
 bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | swappy -f -
+bindsym $mod+shift+p exec --no-startup-id ~/.bin/screenshot-upload
 
 # mod + F5 executes the script ~/.bin/pause-notifications
 bindsym $mod+F5 exec --no-startup-id ~/.bin/pause-notifications
@@ -180,7 +181,9 @@ for_window [app_id="Evolution-alarm-notify"] floating enable
 for_window [app_id="sm"] move to workspace 4, workspace --no-auto-back-and-forth 4
 for_window [title="JetBrains Toolbox"] floating enable
 for_window [app_id="Spotify"] move to workspace 5, workspace --no-auto-back-and-forth 5
-for_window [title="Espanso Sync Tool"] floating enable
+for_window [title="Espanso Sync Tool"] floating enable, move to workspace 10
+for_window [app_id="yad"] floating enable
+
 
 #floating copyq
 for_window [app_id="com.github.hluk.copyq"] floating enable

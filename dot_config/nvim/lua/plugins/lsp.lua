@@ -74,6 +74,25 @@ local on_attach = function(client, bufnr)
 end
 
 M.config = function()
+	vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
+
+	local border = {
+		{ "🭽", "FloatBorder" },
+		{ "▔", "FloatBorder" },
+		{ "🭾", "FloatBorder" },
+		{ "▕", "FloatBorder" },
+		{ "🭿", "FloatBorder" },
+		{ "▁", "FloatBorder" },
+		{ "🭼", "FloatBorder" },
+		{ "▏", "FloatBorder" },
+	}
+
+	-- LSP settings (for overriding per client)
+	local handlers = {
+		["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+		["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+	}
+
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -86,6 +105,7 @@ M.config = function()
 				local base_opts = {
 					on_attach = on_attach,
 					capabilities = capabilities,
+					handlers = handlers,
 				}
 
 				local require_ok, server_opts = pcall(require, "plugins.lspsettings." .. server_name)

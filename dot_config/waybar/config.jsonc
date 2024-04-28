@@ -1,6 +1,8 @@
 [
   {
-    "output": ["DP-1"],
+    "output": [
+      "DP-1"
+    ],
     "position": "top",
     "layer": "top",
     "height": 16,
@@ -8,7 +10,11 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/window",
+      "sway/mode"
+    ],
     "modules-right": [
       "cpu",
       "memory",
@@ -71,7 +77,13 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "memory": {
       "format": "󰍛 {}%",
@@ -104,13 +116,27 @@
     },
     "backlight": {
       "format": "{icon} {percent}%",
-      "format-icons": ["", "", "", "", "", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",
@@ -139,7 +165,9 @@
     }
   },
   {
-    "output": ["HDMI-A-1"],
+    "output": [
+      "HDMI-A-1"
+    ],
     "position": "top",
     "layer": "top",
     "height": 16,
@@ -147,8 +175,15 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["sway/workspaces", "sway/window", "sway/mode"],
-    "modules-center": ["custom/playerctl", "custom/playerlabel"],
+    "modules-left": [
+      "sway/workspaces",
+      "sway/window",
+      "sway/mode"
+    ],
+    "modules-center": [
+      "custom/playerctl",
+      "custom/playerlabel"
+    ],
     "modules-right": [
       "custom/wf-recorder",
       "custom/randwall",
@@ -221,7 +256,13 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "memory": {
       "format": "󰍛 {}%",
@@ -254,14 +295,30 @@
     },
     "backlight": {
       "format": "{icon} {percent}%",
-      "format-icons": ["", "", "", "", "", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "pulseaudio": {
-      "ignored-sinks": ["Easy Effects Sink"],
+      "ignored-sinks": [
+        "Easy Effects Sink"
+      ],
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
       },
       "on-click-right": "pavucontrol",
       // "on-scroll-up": "pamixer --sink 77 -ui 5",
@@ -283,7 +340,9 @@
     }
   },
   {
-    "output": ["eDP-1"],
+    "output": [
+      "eDP-1"
+    ],
     "position": "top",
     "layer": "top",
     "height": 16,
@@ -367,7 +426,13 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{icon} {time}",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "memory": {
       "format": "󰍛 {}%",
@@ -400,13 +465,27 @@
     },
     "backlight": {
       "format": "{icon} {percent}%",
-      "format-icons": ["", "", "", "", "", "", "", "", ""]
+      "format-icons": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "pulseaudio": {
       "format": "{icon} {volume}%",
       "format-muted": "󰝟",
       "format-icons": {
-        "default": ["󰕿", "󰖀", "󰕾"]
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
       },
       "scroll-step": 5,
       "on-click-right": "pavucontrol",

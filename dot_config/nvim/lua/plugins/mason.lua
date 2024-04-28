@@ -26,6 +26,7 @@ M.config = function()
 		"gopls",
 		"templ",
 		"json-lsp",
+		"htmx-lsp",
 		-- "svelte-language-server",
 
 		-- Fixers/Linters

@@ -8,7 +8,10 @@ alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
 alias pm="pnpm"
+alias pn="pnpm"
 alias chmox="chmod +x"
+alias sstack="cd /home/forbi/Dev/stuzo/oc-docker-compose; docker-compose up redis postgres rabbitmq"
+alias gho="gh browse"
 
 #fuck mkdir
 alias mkdir="mkdir -pv"
@@ -110,3 +113,5 @@ lf() {
 	/bin/rm -fr "$LF_TEMPDIR"
 	unset LF_TEMPDIR
 }
+
+
