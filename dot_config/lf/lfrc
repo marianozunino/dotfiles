@@ -74,6 +74,8 @@ map dd cut
 
 map gd cd ~/Downloads
 
+cmd mkdir %mkdir "$@"
+map a push :mkdir<space>
 
 # define a custom 'rename' command without prompt for overwrite
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
@@ -129,4 +131,10 @@ cmd zip ${{
     cp -r $fx $1
     zip -r $1.zip $1
     rm -rf $1
+}}
+
+cmd mkdir ${{
+    printf "Make directory: "
+    read ans
+    mkdir -p $ans
 }}
