@@ -14,3 +14,4 @@ foot --server &
 # wait for foot server to start
 sleep 1
 footclient -a dropdown
+espanso service start --unmanaged

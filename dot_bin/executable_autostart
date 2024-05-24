@@ -2,12 +2,15 @@
 
 # runs a command with an optional delay
 function run {
-  delay=$1
-  shift # remove delay from args
-  if [ -z "$delay" ]; then
-    delay=0
-  fi
-  (sleep "$delay"; exec "$@") &
+	delay=$1
+	shift # remove delay from args
+	if [ -z "$delay" ]; then
+		delay=0
+	fi
+	(
+		sleep "$delay"
+		exec "$@"
+	) &
 }
 
 run 0 gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
@@ -36,3 +39,4 @@ run 1 vorta
 run 1 slack
 run 1 GTK_THEME=Mist evolution
 run 1 /opt/firefox/firefox-bin
+# run 1 /usr/bin/vivaldi

@@ -250,7 +250,6 @@ M.config = function()
 				["u"] = "Unstage",
 				["U"] = "UnstageStaged",
 				["$"] = "CommandHistory",
-				["#"] = "Console",
 				["Y"] = "YankSelected",
 				["<c-r>"] = "RefreshBuffer",
 				["<enter>"] = "GoToFile",

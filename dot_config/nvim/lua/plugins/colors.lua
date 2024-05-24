@@ -7,10 +7,12 @@ local M = {
 
 M.config = function()
 	require("rose-pine").setup({
-		extend_background_behind_borders = false,
+		-- extend_background_behind_borders = false,
 
+		disable_background = true,
 		styles = {
-			transparency = true,
+			-- transparency = true,
+			italic = false,
 		},
 
 		before_highlight = function(_, highlight, palette)
@@ -26,7 +28,10 @@ M.config = function()
 		end,
 	})
 	vim.cmd.colorscheme("rose-pine")
-	vim.api.nvim_set_hl(1, "Normal", { bg = "none" })
+	-- vim.api.nvim_set_hl(1, "Normal", { bg = "none" })
+	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 

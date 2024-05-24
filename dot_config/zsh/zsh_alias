@@ -11,8 +11,15 @@ alias kctx="kubectx"
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
-alias pn="pnpm"
-alias p="pnpm"
+
+alias yarn="corepack yarn"
+alias yarnpkg="corepack yarnpkg"
+alias pnpm="corepack pnpm"
+alias pn="corepack pnpm"
+alias pnpx="corepack pnpx"
+alias npm="corepack npm"
+alias npx="corepack npx"
+
 alias chmox="chmod +x"
 
 #fuck mkdir
@@ -132,3 +139,10 @@ croc-receive () {
   croc --yes mzunino
 }
 
+if [[ -v TMUX ]]; then
+    # inside tmux, we don't know if Sway got restarted
+    swaymsg(){
+        export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.$UID.$(pgrep -x sway).sock
+        command swaymsg "$@"
+    }
+fi

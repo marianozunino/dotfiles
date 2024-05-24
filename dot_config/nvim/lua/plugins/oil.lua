@@ -60,8 +60,7 @@ M.config = function()
 		},
 	})
 
-	vim.keymap.set("n", "<space>n", function()
-		-- require("oil").toggle_float()
+	vim.keymap.set("n", "-", function()
 		require("oil").open()
 	end)
 end

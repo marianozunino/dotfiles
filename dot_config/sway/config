@@ -165,10 +165,10 @@ bindsym button3 floating toggle
 bindsym $mod+button3 floating toggle
 
 
-#call scratchpad
-bindsym $mod+u [app_id="dropdown"] scratchpad show; [app_id="dropdown"] move position center
-#start terimte in scratchpad
+#Floating terminal
+bindsym $mod+u [app_id="dropdown"] scratchpad show, move position center, fullscreen disable, resize set 1366 768
 bindsym $mod+Shift+u exec --no-startup-id footclient -a dropdown
+for_window [app_id="dropdown"] floating enable, move scratchpad
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -199,6 +199,8 @@ for_window [title="File Operation Progress"] floating enable
 for_window [title="Unlock Keyring"] floating enable
 for_window [title="Confirm to replace files"] floating enable
 for_window [title="Extension: (Bitwarden - Free Password Manager) - Bitwarden — Firefox Nightly"] floating enable
+for_window [title="Bitwarden - Vivaldi"] floating enable
+
 
 assign [class="^discord$"] 10
 assign [class="^WebCord$"] 10
@@ -210,18 +212,15 @@ assign [title=".*Visual Studio Code*."] 3
 assign [app_id="^nvim ~ "] 3
 assign [title="^nvim ~ "] 3
 assign [app_id="firefox-nightly"] 2
+assign [instance="vivaldi-stable"] 2
+assign [class="Vivaldi-stable"] 2
 
 assign [app_id="^evolution$"] 7
 
 for_window [workspace=$ws1] layout tabbed
 assign [app_id="^Slack"] 1
 assign [app_id="^Chromium"] 1
-
 for_window [title="win0"] floating enable border none
-for_window [app_id="dropdown"] floating enable
-for_window [app_id="dropdown"] resize set 1366 768
-for_window [app_id="dropdown"] move scratchpad
-for_window [app_id="dropdown"] border pixel 5
 for_window [class=".*"] border pixel 0
 
 # multimedia

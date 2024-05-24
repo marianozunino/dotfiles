@@ -7,3 +7,4 @@ pnpm 7.32.0
 bun 1.0.2
 sops 3.6.1
 dotnet system
+java openjdk-17

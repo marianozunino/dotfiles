@@ -17,7 +17,7 @@ M.config = function()
 	})
 
 	vim.keymap.set("n", "<leader>a", function()
-		harpoon:list():append()
+		harpoon:list():add()
 	end, { desc = "Harpoon: Append" })
 
 	vim.keymap.set("n", "<leader>ha", function()
