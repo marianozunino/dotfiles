@@ -2,6 +2,7 @@ local M = {
 	-- "github/copilot.vim",
 	"Exafunction/codeium.vim",
 	cmd = "CodeiumEnable",
+	commit = "289eb72",
 }
 
 M.config = function()

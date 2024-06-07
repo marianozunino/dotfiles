@@ -20,6 +20,13 @@ M.config = function()
 			tex = { "latexindent" },
 			-- go = { "gofmt" },
 			go = { { "gofumpt", "goimports-reviser", "golines" } },
+			cs = { "csharpier" },
+		},
+		formatters = {
+			csharpier = {
+				command = "dotnet-csharpier",
+				args = { "--write-stdout" },
+			},
 		},
 		format_on_save = {
 			-- These options will be passed to conform.format()

@@ -1,5 +1,6 @@
 local M = {
-	"NvChad/nvim-colorizer.lua",
+	"norcalli/nvim-colorizer.lua",
+	branch = "master",
 }
 
 M.config = function()
