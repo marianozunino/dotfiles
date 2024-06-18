@@ -31,10 +31,11 @@ run 0 wl-paste --type text --watch cliphist store
 run 0 wl-paste --type image --watch cliphist store
 run 0 cliphist wipe
 
-run 0 foot --server
+# run 0 foot --server
 
 # Low Priority
-run 1 footclient -a dropdown
+# run 1 footclient -a dropdown
+run 1 wezterm-gui start --class dropdown
 run 1 vorta
 run 1 slack
 run 1 GTK_THEME=Mist evolution

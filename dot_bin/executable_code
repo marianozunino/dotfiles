@@ -2,26 +2,27 @@
 
 # if no	argument is given, use the current directory
 if [ $# -eq 0 ]; then
-    DIR="."
-    file_name=$DIR
+	DIR="."
+	file_name=$DIR
 else
-    # if the is a file, use the directory of the file
-    if [ -f $1 ]; then
-        file_name=$1
-        DIR=$(dirname $1)
-    else
-        DIR=$1
-        file_name=$DIR
-    fi
+	# if the is a file, use the directory of the file
+	if [ -f $1 ]; then
+		file_name=$1
+		DIR=$(dirname $1)
+	else
+		DIR=$1
+		file_name=$DIR
+	fi
 fi
 
-directory_name=`basename $DIR`
+directory_name=$(basename $DIR)
 title="nvim ~ $directory_name"
 command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
 
-swaymsg "[app_id=^${directory_name}$]" focus >/dev/null 2>&1
+swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1
+
 if [ $? -ne 0 ]; then
-  exec footclient -D "${DIR}" -a $directory_name -T "$title" -e $command
-  sleep 0.2
+	exec wezterm-gui start --cwd "${DIR}" --workspace "$title" --class "$title" $command
+	sleep 0.2
 fi
-swaymsg "[title=\"${title}\"]" focus >/dev/null 2>&1
+swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1

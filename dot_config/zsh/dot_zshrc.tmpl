@@ -1,5 +1,6 @@
 export ZSH_WAKATIME_PROJECT_DETECTION=true
-export PATH="/home/forbi/.turso:$PATH"
+export PATH="/home/forbi/.turso:/home/forbi/.local/share/cargo/bin:$PATH"
+
 
 . $ASDF_DIR/asdf.sh
 
@@ -26,6 +27,7 @@ zgen oh-my-zsh lib/history.zsh
 zgen oh-my-zsh lib/key-bindings.zsh
 zgen load zsh-users/zsh-syntax-highlighting
 zgen load sobolevn/wakatime-zsh-plugin
+zgen load Aloxaf/fzf-tab
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 zgen load zsh-users/zsh-autosuggestions
@@ -74,8 +76,8 @@ fi
 
 HISTFILE="$HOME/.config/zsh/zsh_history_{{ .chezmoi.hostname }}"
 
-HISTSIZE=9223372036854775807
-SAVEHIST=9223372036854775807
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
 HISTORY_IGNORE='(*.git/hooks*)'
 setopt interactivecomments
 setopt EXTENDED_HISTORY
@@ -153,5 +155,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
 eval "$(zoxide init zsh)"
+
+export PATH="$PATH:/home/forbi/.dotnet/tools"
+
+source ~/.local/share/zsh/rabbit-autocomplete.zsh

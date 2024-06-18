@@ -167,7 +167,8 @@ bindsym $mod+button3 floating toggle
 
 #Floating terminal
 bindsym $mod+u [app_id="dropdown"] scratchpad show, move position center, fullscreen disable, resize set 1366 768
-bindsym $mod+Shift+u exec --no-startup-id footclient -a dropdown
+# bindsym $mod+Shift+u exec --no-startup-id footclient -a dropdown
+bindsym $mod+Shift+u exec --no-startup-id wezterm-gui start --class dropdown
 for_window [app_id="dropdown"] floating enable, move scratchpad
 
 # Make the currently focused window a scratchpad
