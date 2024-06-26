@@ -22,33 +22,15 @@ M.config = function()
 			col = 1,
 		},
 		signs = {
-			add = {
-				text = icons.ui.BoldLineMiddle,
-			},
-			change = {
-				text = icons.ui.BoldLineDashedMiddle,
-			},
-			delete = {
-				text = icons.ui.TriangleShortArrowRight,
-			},
-			topdelete = {
-				text = icons.ui.TriangleShortArrowRight,
-			},
-			changedelete = {
-				text = icons.ui.BoldLineMiddle,
-			},
+			add = { text = icons.ui.BoldLineMiddle },
+			change = { text = icons.ui.BoldLineDashedMiddle },
+			delete = { text = icons.ui.TriangleShortArrowRight },
+			topdelete = { text = icons.ui.TriangleShortArrowRight },
+			changedelete = { text = icons.ui.BoldLineMiddle },
 		},
-		on_attach = function(bufnr)
+		on_attach = function()
 			local gs = require("gitsigns")
-
-			local function map(mode, l, r, opts)
-				opts = opts or {}
-				opts.buffer = bufnr
-				vim.keymap.set(mode, l, r, opts)
-			end
-
-			-- Navigation
-			map("n", "]c", function()
+			vim.keymap.set("n", "]c", function()
 				if vim.wo.diff then
 					return "]c"
 				end
@@ -56,9 +38,9 @@ M.config = function()
 					gs.next_hunk()
 				end)
 				return "<Ignore>"
-			end, { expr = true })
+			end, { expr = true, desc = "Next git hunk" })
 
-			map("n", "[c", function()
+			vim.keymap.set("n", "[c", function()
 				if vim.wo.diff then
 					return "[c"
 				end
@@ -66,7 +48,7 @@ M.config = function()
 					gs.prev_hunk()
 				end)
 				return "<Ignore>"
-			end, { expr = true })
+			end, { expr = true, desc = "Previous git hunk" })
 		end,
 	})
 end

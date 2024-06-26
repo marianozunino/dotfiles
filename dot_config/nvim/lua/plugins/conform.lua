@@ -12,6 +12,7 @@ M.config = function()
 	conform.setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
+			graphql = { { "prettierd", "prettier" } },
 			javascript = { { "prettierd", "prettier" } },
 			typescript = { { "prettierd", "prettier" } },
 			json = { { "prettierd", "prettier" } },

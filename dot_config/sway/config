@@ -69,6 +69,7 @@ bindsym $mod+v exec copyq toggle
 bindsym F4 exec switch-windows
 bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | rofi -dmenu -i -p "Project" -sort -matching fuzzy | xargs -i code ~/Dev/{}
 bindsym $mod+n exec sdm-ui rofi 
+bindsym $mod+shift+n exec ~/.bin/rmq-rofi.sh
 # Power
 bindsym XF86PowerOff exec wlogout -p layer-shell
 bindsym $mod+x exec rofi -show Power -modi Power:$HOME/.config/rofi/kill.sh
@@ -170,6 +171,7 @@ bindsym $mod+u [app_id="dropdown"] scratchpad show, move position center, fullsc
 # bindsym $mod+Shift+u exec --no-startup-id footclient -a dropdown
 bindsym $mod+Shift+u exec --no-startup-id wezterm-gui start --class dropdown
 for_window [app_id="dropdown"] floating enable, move scratchpad
+for_window [class="davmail-DavGateway"] floating enable, move scratchpad
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -216,7 +218,9 @@ assign [app_id="firefox-nightly"] 2
 assign [instance="vivaldi-stable"] 2
 assign [class="Vivaldi-stable"] 2
 
-assign [app_id="^evolution$"] 7
+assign [app_id="thunderbird"] 7
+for_window [app_id="thunderbird"] floating enable
+for_window [title=".*- Mozilla Thunderbird$" app_id="thunderbird"] floating disable
 
 for_window [workspace=$ws1] layout tabbed
 assign [app_id="^Slack"] 1
@@ -234,7 +238,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease 
 
 
 #Startup stuff
-set $term footclient
+set $term wezterm-gui
 
 exec /usr/bin/lxpolkit
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
