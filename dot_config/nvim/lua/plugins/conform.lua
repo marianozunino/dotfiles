@@ -38,7 +38,7 @@ M.config = function()
 		notify_on_error = false,
 	})
 
-	vim.keymap.set("n", "<leader>ff", conform.format, { desc = "Format file or range (in visual mode)" })
+	-- vim.keymap.set("n", "<leader>ff", conform.format, { desc = "Format file or range (in visual mode)" })
 end
 
 return M
