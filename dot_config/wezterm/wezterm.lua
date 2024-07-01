@@ -7,6 +7,7 @@ wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
 end)
 
 return {
+	window_close_confirmation = "NeverPrompt",
 	colors = theme.colors(),
 	enable_tab_bar = false,
 	font_size = 12.0,

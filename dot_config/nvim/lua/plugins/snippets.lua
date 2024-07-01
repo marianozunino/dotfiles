@@ -7,6 +7,9 @@ local M = {
 
 M.config = function()
 	require("luasnip.loaders.from_vscode").lazy_load()
+	print(vim.fn.stdpath("config"))
+
+	require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/lua/plugins/snippets/" })
 	require("luasnip").config.set_config({
 		history = true,
 		updateevents = "TextChanged,TextChangedI",
