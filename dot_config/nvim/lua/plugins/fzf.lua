@@ -1,6 +1,6 @@
 local M = {
 	"ibhagwan/fzf-lua",
-	dependencies = { "nvim-tree/nvim-web-devicons", "xvzc/chezmoi.nvim" },
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
 		{
 			"<leader>/",
@@ -8,27 +8,6 @@ local M = {
 				require("fzf-lua").files({ cwd_prompt = false, preview_opts = "hidden" })
 			end,
 			desc = "Find Files",
-		},
-		{
-			desc = "Chezmoi Files",
-			"<leader>cf",
-			function()
-				require("fzf-lua").files({
-					prompt = "Chezmoi: ",
-					cmd = "chezmoi managed --path-style absolute",
-					file_icons = false, -- show file icons?
-					actions = {
-						["default"] = function(selected)
-							local file = selected[1]
-
-							require("chezmoi.commands").edit({
-								targets = file,
-								args = { "--watch" },
-							})
-						end,
-					},
-				})
-			end,
 		},
 		{
 			";",

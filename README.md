@@ -1,19 +1,11 @@
 # Collections of my dotfiles
 
-## Deploy
-
+## Install
 ```bash
-# manually install chezmoi if needed 
-mkdir -p ~/.bin
-cd ~/.bin
-
-sh -c "$(curl -fsLS git.io/chezmoi)"
-export -U PATH=$HOME/.bin/:$PATH
-
-chezmoi init --apply marianozunino
+chezmoi init --apply marianozunino --branch wayland
 ```
 
-To preview the change,
+To preview the change:
 
 ```bash
 chezmoi apply --dry-run --verbose

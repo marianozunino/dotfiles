@@ -1,7 +1,6 @@
 export ZSH_WAKATIME_PROJECT_DETECTION=true
 export PATH="/home/forbi/.turso:/home/forbi/.local/share/cargo/bin:$PATH"
 
-
 . $ASDF_DIR/asdf.sh
 
 # append completions to fpath
@@ -50,9 +49,6 @@ fi
 #####################################
 #load local alias
 source $ZDOTDIR/.zsh_alias
-if [ -f ~/dotfiles/zsh_local_alias ]; then
-	source ~/dotfiles/zsh_local_alias
-fi
 
 #####################################
 #           BASE16 THEME            #
@@ -74,7 +70,7 @@ fi
 #          ZSH CONFIG               #
 #####################################
 
-HISTFILE="$HOME/.config/zsh/zsh_history_{{ .chezmoi.hostname }}"
+HISTFILE="$HOME/.config/zsh/zsh_history_{{ .hostname }}"
 
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000

@@ -1472,6 +1472,7 @@
   ### Use with shell alias `gitp = git` ###
 
   ull = pull
+  u = push
   ush = push
   uhs = push
   uhsup = push -u origin HEAD

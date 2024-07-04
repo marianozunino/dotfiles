@@ -15,13 +15,13 @@ window#waybar {
 }
 
 #workspaces {
-	background: #282828;
-	margin: 5px 5px 5px 5px;
-  padding: 0px 5px 0px 5px;
-	border-radius: 16px;
-  border: solid 0px #f4d9e1;
-  font-weight: normal;
-  font-style: normal;
+    background: #282828;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 5px 0px 5px;
+    border-radius: 16px;
+    border: solid 0px #f4d9e1;
+    font-weight: normal;
+    font-style: normal;
 }
 
 #workspaces button {
@@ -37,27 +37,27 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  background: #c4a7e7;
-  color: #000000;
+    background: #c4a7e7;
+    color: #000000;
 }
 
 #workspaces button.urgent {
-  background: #BF616A;
-  color: #000000;
+    background: #BF616A;
+    color: #000000;
 }
 
 #workspaces button:hover {
-	background-color: #E6B9C6;
-	color: black;
-	border-radius: 16px;
+    background-color: #E6B9C6;
+    color: black;
+    border-radius: 16px;
 }
 
 #custom-date, #clock, #battery, #network, #custom-launcher {
-	background: transparent;
-	padding: 5px 5px 5px 5px;
-	margin: 5px 5px 5px 5px;
-  border-radius: 8px;
-  border: solid 0px #f4d9e1;
+    background: transparent;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px;
+    border-radius: 8px;
+    border: solid 0px #f4d9e1;
 }
 
 
@@ -70,18 +70,18 @@ window#waybar {
 }
 
 #custom-date {
-	color: #D3869B;
+    color: #D3869B;
 }
 
 #custom-power {
-	color: #24283b;
-	background-color: #db4b4b;
-	border-radius: 5px;
-	margin-right: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 0px;
-	padding: 5px 10px;
+    color: #24283b;
+    background-color: #db4b4b;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    padding: 5px 10px;
 }
 
 #tray {
@@ -172,22 +172,22 @@ window#waybar {
 }
 
 #custom-playerctl {
-	background: #282828;
-	padding-left: 15px;
-  padding-right: 17px;
-	border-radius: 16px;
+    background: #282828;
+    padding-left: 15px;
+    padding-right: 17px;
+    border-radius: 16px;
 
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
 
-  font-weight: normal;
-  font-style: normal;
-  font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
 }
 
 #custom-playerlabel {
-	  background: #282828;
+    background: #282828;
     padding-left: 10px;
     padding-right: 15px;
     border-radius: 16px;

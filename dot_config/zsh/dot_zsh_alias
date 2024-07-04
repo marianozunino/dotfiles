@@ -147,3 +147,12 @@ if [[ -v TMUX ]]; then
     }
 fi
 
+
+# expose local port to internet using my gh domain
+function expose() {
+    if [ -z "$1" ]; then
+      echo "Usage: expose <port>"
+      return
+    fi
+    ssh marianozunino@srv.us -R 1:localhost:$1
+}
