@@ -9,8 +9,8 @@ local M = {
 
 M.config = function()
 	local mappings = {
-		g = { name = "GitLinker" },
-		T = { name = "Treesitter" },
+		{ "<leader>T", group = "Treesitter" },
+		{ "<leader>g", group = "GitLinker" },
 	}
 
 	local which_key = require("which-key")
@@ -46,12 +46,7 @@ M.config = function()
 		},
 	})
 
-	local opts = {
-		mode = "n", -- NORMAL mode
-		prefix = "<leader>",
-	}
-
-	which_key.register(mappings, opts)
+	which_key.add(mappings)
 end
 
 return M

@@ -1,6 +1,9 @@
 local M = {
 	"ibhagwan/fzf-lua",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"echasnovski/mini.icons",
+		-- "nvim-tree/nvim-web-devicons"
+	},
 	keys = {
 		{
 			"<leader>/",

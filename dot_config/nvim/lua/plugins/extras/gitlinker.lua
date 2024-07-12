@@ -13,9 +13,17 @@ M.config = function()
 	vim.keymap.set("n", "<leader>gY", "<cmd>lua require('gitlinker').get_buf_range_url('n', 'blame')<cr>")
 
 	local wk = require("which-key")
-	wk.register({
-		["<leader>gy"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", "Get Git URL" },
-		["<leader>gY"] = { "<cmd>lua require('gitlinker').get_buf_range_url('n', 'blame')<cr>", "Get Git Blame URL" },
+	wk.add({
+		{
+			"<leader>gY",
+			"<cmd>lua require('gitlinker').get_buf_range_url('n', 'blame')<cr>",
+			desc = "Get Git Blame URL",
+		},
+		{
+			"<leader>gy",
+			"<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>",
+			desc = "Get Git URL",
+		},
 	})
 end
 

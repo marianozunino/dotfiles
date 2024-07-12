@@ -56,7 +56,7 @@ alias pluginconf="vim ~/.config/nvim/plugins.vim"
 alias i3conf="vim ~/.config/i3/config"
 alias cssh="vim ~/.ssh/config"
 
-alias syu='yay -Syyu'
+alias yay='paru'
 alias g='git'
 alias next='feh --no-fehbg -z --bg-scale ~/Pictures/*'
 
