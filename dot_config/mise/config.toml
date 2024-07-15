@@ -6,6 +6,7 @@ flyctl = "0.1.64"
 sops = "3.6.1"
 dotnet = "system"
 java = "openjdk-17"
+node = "16.14.0"
 
 [settings]
 # plugins can read the versions files used by other version managers (if enabled by the plugin)
@@ -37,7 +38,7 @@ paranoid = false       # see MISE_PARANOID
 
 shorthands_file = '~/.config/mise/shorthands.toml' # path to the shorthands file, see `MISE_SHORTHANDS_FILE`
 disable_default_shorthands = false # disable the default shorthands, see `MISE_DISABLE_DEFAULT_SHORTHANDS`
-disable_tools = ['node']           # disable specific tools, generally used to turn off core tools
+# disable_tools = ['node']           # disable specific tools, generally used to turn off core tools
 
 env_file = '.env' # load env vars from a dotenv file, see `MISE_ENV_FILE`
 

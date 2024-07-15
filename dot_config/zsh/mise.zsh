@@ -5,6 +5,7 @@ eval "$(/home/forbi/.local/bin/mise activate zsh)"
 if ! command -v mise &> /dev/null
 then
 	echo "Installing mise..."
+	mkdir -p ~/.local/bin
 	curl https://mise.jdx.dev/mise-latest-linux-x64 > ~/.local/bin/mise
 	chmod +x ~/.local/bin/mise
 fi
