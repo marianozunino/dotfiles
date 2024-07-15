@@ -1,7 +1,7 @@
 # Install/Load Zap
 source "$ZDOTDIR/zap.zsh"
 
-export PATH="$HOME/.local/bin:$HOME/.bin:$HOME/.dotnet/tools":$PATH
+export PATH=~/.local/bin:~/.bin:~/.dotnet/tools:$PATH
 
 plug "zap-zsh/supercharge"
 
@@ -20,8 +20,9 @@ plug "zap-zsh/exa"
 plug "zap-zsh/vim"
 
 MNML_INFOLN=()
-MNML_PROMPT=(mnml_ssh  mnml_pyenv mnml_status 'mnml_cwd 2 0' mnml_git mnml_keymap )
+MNML_PROMPT=(mnml_ssh mnml_status 'mnml_cwd 2 0' mnml_git mnml_keymap )
 MNML_RPROMPT=()
+MNML_NORMAL_CHAR="◉"
 plug "subnixr/minimal"
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -45,6 +46,7 @@ HISTFILE="$ZDOTDIR/zsh_history_{{ .hostname }}"
 HISTFILESIZE=1000000000
 HISTSIZE=1000000000
 HISTORY_IGNORE='(*.git/hooks*)'
+LESSHISTFILE="-"
 
 # keybinds
 bindkey '^ ' autosuggest-accept
