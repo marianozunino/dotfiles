@@ -1,8 +1,6 @@
 alias fly='flyctl'
-alias src='omz reload'
+alias src='exec zsh'
 alias dc="cd"
-alias ls="ls --color"
-alias ll="ls -thor"
 alias k="kubectl"
 alias kns="kubens"
 alias kctx="kubectx"
@@ -42,13 +40,6 @@ alias gt="cd ~/Dev/"
 #edit files
 alias vim='nvim'
 
-# if chezmoi is installed use it to edit dotfiles
-if command -v chezmoi &> /dev/null; then
-  alias zshrc="chezmoi edit $ZDOTDIR/.zshrc"
-else
-  alias zshrc="vim $ZDOTDIR/.zshrc"
-fi
-
 alias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias doomconf="vim ~/.config/gzdoom/gzdoom.ini"
 alias vimrc="cd ~/.config/nvim/ && vim init.lua"
@@ -79,80 +70,13 @@ alias tf='terraform'
 alias copy="xclip -sel clip"
 alias paste="xclip -sel clip -o"
 
-
 # Work related
 alias sstack='cd ~/Dev/stuzo/oc-docker-compose; docker-compose up postgres redis rabbitmq'
 alias gho="gh browse"
 
-
-open () {
-    for i in $*
-    do
-        setsid nohup xdg-open $i > /dev/null 2> /dev/null
-    done
-}
-
-
-transfer() {
-    curl --progress-bar --upload-file "$1" https://transfer.mzunino.com.uy/$(basename "$1") | tee /dev/null;
-    # curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
-    echo
-}
-
-
-wacom() {
-  systemctl --user enable opentabletdriver --now
-  otd loadsettings ~/Sync/wacom/wacom.json
-}
-
 # chezmoi shorthand aliases
 alias ch='chezmoi'
-
-function gc {
-  if [[ "$1" == */* ]]
-  then
-    git clone "https://github.com/$1" "${@:2}"
-  else
-    git clone "https://github.com/marianozunino/$1" "${@:2}"
-  fi
-}
 
 alias gh-clone='gc'
 alias task='go-task'
 
-
-lf () {
-	LF_TEMPDIR="$(mktemp -d -t lf-tempdir-XXXXXX)"
-	LF_TEMPDIR="$LF_TEMPDIR" lf-run -last-dir-path="$LF_TEMPDIR/lastdir" "$@"
-	if [ "$(cat "$LF_TEMPDIR/cdtolastdir" 2>/dev/null)" = "1" ]; then
-		cd "$(cat "$LF_TEMPDIR/lastdir")"
-	fi
-	/bin/rm -fr "$LF_TEMPDIR"
-	unset LF_TEMPDIR
-}
-
-croc-send () {
-  croc send --code mzunino "$@"
-}
-
-croc-receive () {
-  croc --yes mzunino
-}
-
-if [[ -v TMUX ]]; then
-    # inside tmux, we don't know if Sway got restarted
-    swaymsg(){
-        export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.$UID.$(pgrep -x sway).sock
-        command swaymsg "$@"
-    }
-fi
-
-
-# expose local port to internet using my gh domain
-function expose() {
-    if [ -z "$1" ]; then
-      echo "Usage: expose <port>"
-      return
-    fi
-    ssh marianozunino@srv.us -R 1:localhost:$1
-}

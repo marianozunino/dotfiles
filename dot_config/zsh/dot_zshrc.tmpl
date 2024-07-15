@@ -1,81 +1,37 @@
-export ZSH_WAKATIME_PROJECT_DETECTION=true
-export PATH="/home/forbi/.turso:/home/forbi/.local/share/cargo/bin:$PATH"
+# Install/Load Zap
+source "$ZDOTDIR/zap.zsh"
 
+export PATH="$HOME/.local/bin:$HOME/.bin:$HOME/.dotnet/tools":$PATH
 
-. $ASDF_DIR/asdf.sh
+plug "zap-zsh/supercharge"
 
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+plug "$ZDOTDIR/mise.zsh"
+plug "$ZDOTDIR/tmux.zsh"
+plug "$ZDOTDIR/pnpm.zsh"
+plug "$ZDOTDIR/functions.zsh"
+plug "$ZDOTDIR/alias.zsh"
 
-#####################################
-#               ZGEN                #
-#####################################
-if [[ ! -d ~/.config/zgen ]];then
-	git clone https://github.com/tarjoilija/zgen.git "${HOME}/.config/zgen"
-fi
-source "${HOME}/.config/zgen/zgen.zsh"
-
-_has() {
-	return $( whence $1 >/dev/null )
-}
-
-zgen oh-my-zsh
-zgen oh-my-zsh plugins/gitfast
-zgen oh-my-zsh plugins/common-aliases
-zgen oh-my-zsh lib/completion.zsh
-zgen oh-my-zsh lib/history.zsh
-zgen oh-my-zsh lib/key-bindings.zsh
-zgen load zsh-users/zsh-syntax-highlighting
-zgen load sobolevn/wakatime-zsh-plugin
-zgen load Aloxaf/fzf-tab
-
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-zgen load zsh-users/zsh-autosuggestions
-
+plug "esc/conda-zsh-completion"
+plug "zsh-users/zsh-autosuggestions"
+plug "hlissner/zsh-autopair"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
+plug "zap-zsh/exa"
+plug "zap-zsh/vim"
 
 MNML_INFOLN=()
 MNML_PROMPT=(mnml_ssh  mnml_pyenv mnml_status 'mnml_cwd 2 0' mnml_git mnml_keymap )
 MNML_RPROMPT=()
+plug "subnixr/minimal"
 
-zgen load subnixr/minimal
-
-#fzf plugin
-if _has fzf; then
-	zgen load junegunn/fzf shell/completion.zsh
-	zgen load junegunn/fzf shell/key-bindings.zsh
-fi
-
-#####################################
-#               ALIAS               #
-#####################################
-#load local alias
-source $ZDOTDIR/.zsh_alias
-
-#####################################
-#           BASE16 THEME            #
-#####################################
-source $ZDOTDIR/rose-pine.sh
-
-#####################################
-#               FZF                 #
-#####################################
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f'
-if _has fzf && _has rg; then
-	export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --vimgrep --glob "!.git/*"'
-	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-	export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-fi
+plug "zap-zsh/fzf"
+plug "Aloxaf/fzf-tab"
 
-#####################################
-#          ZSH CONFIG               #
-#####################################
+plug "$ZDOTDIR/tmux.zsh"
 
-HISTFILE="$HOME/.config/zsh/zsh_history_{{ .hostname }}"
-
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000000
-HISTORY_IGNORE='(*.git/hooks*)'
+# History Config
 setopt interactivecomments
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -85,76 +41,12 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
+HISTFILE="$ZDOTDIR/zsh_history_{{ .hostname }}"
+HISTFILESIZE=1000000000
+HISTSIZE=1000000000
+HISTORY_IGNORE='(*.git/hooks*)'
 
-# enable control-s and control-q
-stty start undef
-stty stop undef
-setopt noflowcontrol
+# keybinds
+bindkey '^ ' autosuggest-accept
 
-#complete with ...
-expand-or-complete-with-dots() {
-echo -n "\e[31m......\e[0m"
-zle expand-or-complete
-zle redisplay
-}
-# zle -N expand-or-complete-with-dots
-# bindkey "^I" expand-or-complete-with-dots
-
-tmuxLauncher(){
-	x=$(/bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | fzf)
-	git rev-parse --git-dir 2> /dev/null
-	if [[ $? -ne 0 ]] ;then
-		tmux rename-window $x; cd "/home/forbi/Dev/$x"
-	else
-		tmux new-window -n $x -c "/home/forbi/Dev/$x"
-	fi
-	zle reset-prompt
-}
-
-zle -N tmuxLauncher
-bindkey "^f" tmuxLauncher
-bindkey "^t" tmuxLauncher
-
-#ssh?
-# if VIMRUNTIME is set, then we're in vim, so don't do anything
-if [ "$VIMRUNTIME" ]; then
-	# elif [ $TERM_PROGRAM = "vscode" ]; then
-	#     echo "VSCODE"
-elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	echo "Welcome stranger..."
-#startx?
-elif [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
- 	startx
-  exit
-elif [ -z $TMUX ]; then
-	tmux ls 2> /dev/null
-	if [ $? -ne 0 ]; then
-		echo "Press any to to cancel the tmux love..."
-		read -t 0.7 -n 1 -s -r
-		if [ $? -ne 0 ]; then
-			tmux new -s default
-		fi
-	else
-		# attach to the default session or create it if it doesn't exist
-		tmux attach -t default || tmux new -s default
-	fi
-fi
-
-
-
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
-
-# pnpm
-export PNPM_HOME="/home/forbi/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 eval "$(zoxide init zsh)"
-
-export PATH="$PATH:/home/forbi/.dotnet/tools"
-
-source ~/.local/share/zsh/rabbit-autocomplete.zsh
-
