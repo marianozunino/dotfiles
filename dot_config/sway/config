@@ -201,7 +201,7 @@ for_window [title="Do Not Panic"] floating enable
 for_window [title="File Operation Progress"] floating enable
 for_window [title="Unlock Keyring"] floating enable
 for_window [title="Confirm to replace files"] floating enable
-for_window [title="Extension: (Bitwarden - Free Password Manager) - Bitwarden — Firefox Nightly"] floating enable
+for_window [title="Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox"] floating enable
 for_window [title="Bitwarden - Vivaldi"] floating enable
 
 
@@ -215,6 +215,7 @@ assign [title=".*Visual Studio Code*."] 3
 assign [app_id="^nvim ~ "] 3
 assign [title="^nvim ~ "] 3
 assign [app_id="firefox-nightly"] 2
+assign [app_id="firefox"] 2
 assign [instance="vivaldi-stable"] 2
 assign [class="Vivaldi-stable"] 2
 

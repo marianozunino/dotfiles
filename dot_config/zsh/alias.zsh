@@ -5,6 +5,9 @@ alias k="kubectl"
 alias kns="kubens"
 alias kctx="kubectx"
 
+alias cat="bat"
+alias df="duf"
+
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
