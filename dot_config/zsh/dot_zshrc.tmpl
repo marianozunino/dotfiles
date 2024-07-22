@@ -1,6 +1,10 @@
 # Install/Load Zap
 source "$ZDOTDIR/zap.zsh"
 
+export MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
+export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+
 export PATH=~/.local/bin:~/.bin:~/.dotnet/tools:~/.local/share/npm/bin/:$PATH
 
 plug "zap-zsh/supercharge"

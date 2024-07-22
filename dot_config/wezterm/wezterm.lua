@@ -15,13 +15,7 @@ return {
 
 	window_background_opacity = 0.92,
 	window_decorations = "NONE",
-	keys = {
-		{
-			key = "f",
-			mods = "CTRL",
-			action = wezterm.action.ToggleFullScreen,
-		},
-	},
+	keys = {},
 	window_padding = {
 		left = 0,
 		right = 0,
