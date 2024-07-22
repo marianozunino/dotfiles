@@ -68,7 +68,7 @@ bindsym $mod+d exec rofi -show combi -show-icons
 bindsym $mod+v exec copyq toggle
 bindsym F4 exec switch-windows
 bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | rofi -dmenu -i -p "Project" -sort -matching fuzzy | xargs -i code ~/Dev/{}
-bindsym $mod+n exec sdm-ui rofi 
+bindsym $mod+n exec /home/forbi/.local/share/mise/installs/go/1.22.1/bin/sdm-ui rofi 
 bindsym $mod+shift+n exec ~/.bin/rmq-rofi.sh
 # Power
 bindsym XF86PowerOff exec wlogout -p layer-shell

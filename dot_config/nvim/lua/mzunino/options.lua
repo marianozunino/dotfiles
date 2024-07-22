@@ -104,5 +104,6 @@ vim.g.netrw_winsize = 25
 vim.filetype.add({
 	extension = {
 		templ = "templ",
+		njk = "html",
 	},
 })

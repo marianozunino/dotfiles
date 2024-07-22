@@ -8,6 +8,9 @@ alias kctx="kubectx"
 alias cat="bat"
 alias df="duf"
 
+alias yay="paru --needed --bottomup"
+alias yeet="sudo pacman -Rns"
+
 alias orphan="doas pacman -Rns (pacman -Qtdq)"
 alias syncRepo="git fetch --all; git reset --hard origin/master"
 alias sistra="cd ~/dev/sistra ; npm run dev"
@@ -50,7 +53,6 @@ alias pluginconf="vim ~/.config/nvim/plugins.vim"
 alias i3conf="vim ~/.config/i3/config"
 alias cssh="vim ~/.ssh/config"
 
-alias yay='paru'
 alias g='git'
 alias next='feh --no-fehbg -z --bg-scale ~/Pictures/*'
 
