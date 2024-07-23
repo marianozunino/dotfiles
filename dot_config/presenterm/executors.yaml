@@ -1,0 +1,11 @@
+c:
+  filename: snippet.c
+  commands:
+    - ["gcc", "snippet.c", "-o", "$pwd/snippet"]
+    - ["$pwd/snippet"]
+
+cpp:
+  filename: snippet.c
+  commands:
+    - ["gcc", "snippet.c", "-o", "$pwd/snippet"]
+    - ["$pwd/snippet"]

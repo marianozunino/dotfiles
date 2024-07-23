@@ -1,0 +1,6 @@
+defaults:
+  theme: dark
+snippet:
+  exec:
+    enable: true
+
