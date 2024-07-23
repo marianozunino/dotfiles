@@ -64,10 +64,6 @@ function expose() {
   ssh marianozunino@srv.us -R 1:localhost:$1
 }
 
-function src() {
-  source ~/.zshrc
-}
-
 function _has {
   return $( whence $1 >/dev/null )
 }

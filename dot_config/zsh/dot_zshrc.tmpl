@@ -1,58 +1,42 @@
 # Install/Load Zap
 source "$ZDOTDIR/zap.zsh"
 
-export MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH
-export PATH=/usr/local/texlive/2024/bin/x86_64-linux:$PATH
+# Set global paths
+plug "$ZDOTDIR/path.zsh"
 
-export PATH=~/.local/bin:~/.bin:~/.dotnet/tools:~/.local/share/npm/bin/:$PATH
-
+# Load Plugins
 plug "zap-zsh/supercharge"
 
 plug "$ZDOTDIR/mise.zsh"
 plug "$ZDOTDIR/tmux.zsh"
 plug "$ZDOTDIR/pnpm.zsh"
+
+# My Aliases/Functions
 plug "$ZDOTDIR/functions.zsh"
 plug "$ZDOTDIR/alias.zsh"
 
-plug "esc/conda-zsh-completion"
 plug "zsh-users/zsh-autosuggestions"
 plug "hlissner/zsh-autopair"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 plug "zap-zsh/exa"
-plug "zap-zsh/vim"
 
-MNML_INFOLN=()
-MNML_PROMPT=(mnml_ssh mnml_status 'mnml_cwd 2 0' mnml_git mnml_keymap )
-MNML_RPROMPT=()
-MNML_NORMAL_CHAR="◉"
-plug "subnixr/minimal"
+# My custom vim config
+plug "zap-zsh/vim"
+plug "$ZDOTDIR/keymap.zsh"
+
+# My custom prompt
+plug "$ZDOTDIR/prompt.zsh"
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f'
 plug "zap-zsh/fzf"
 plug "Aloxaf/fzf-tab"
 
+# My Tmux Launcher
 plug "$ZDOTDIR/tmux.zsh"
 
-# History Config
-setopt interactivecomments
-setopt EXTENDED_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_BEEP
-HISTFILE="$ZDOTDIR/zsh_history_{{ .hostname }}"
-HISTFILESIZE=1000000000
-HISTSIZE=1000000000
-HISTORY_IGNORE='(*.git/hooks*)'
-LESSHISTFILE="-"
-
-# keybinds
-bindkey '^ ' autosuggest-accept
+# My History Config
+plug "$ZDOTDIR/history.zsh"
 
 eval "$(zoxide init zsh)"
