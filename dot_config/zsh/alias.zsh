@@ -4,6 +4,7 @@ alias dc="cd"
 alias k="kubectl"
 alias kns="kubens"
 alias kctx="kubectx"
+alias lf="yazi"
 
 alias cat="bat"
 alias df="duf"
