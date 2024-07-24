@@ -6,6 +6,7 @@ function update_path() {
         "$HOME/.bin"
         "$HOME/.dotnet/tools"
         "$HOME/.local/share/npm/bin"
+        "$HOME/.local/share/cargo/bin"
     )
 
     for dir in "${dirs[@]}"; do
