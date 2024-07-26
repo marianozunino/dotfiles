@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+swaymsg '[class="obsidian"]' focus && exit
+
+if [ $? -ne 0 ]; then
+	obsidian && swaymsg '[class="obsidian"]' focus >/dev/null 2>&1
+fi

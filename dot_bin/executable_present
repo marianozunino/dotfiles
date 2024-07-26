@@ -17,7 +17,7 @@ fi
 
 directory_name=$(basename $DIR)
 title="presenterm ~ $directory_name"
-command="presenterm -p $file_name"
+command="presenterm $file_name"
 
 swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1
 

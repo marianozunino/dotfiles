@@ -13,3 +13,16 @@ zle -N down-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
 bindkey -M vicmd "^j" down-line-or-beginning-search
 bindkey -M viins "^j" down-line-or-beginning-search
+
+# Yank to the system clipboard
+function vi-yank-wl() {
+   zle vi-yank
+   if [[ -z $CUTBUFFER ]]; then
+     #
+   else
+    echo "$CUTBUFFER" | wl-copy
+   fi
+}
+zle -N vi-yank-wl
+bindkey -M vicmd "y" vi-yank-wl
+

@@ -5,6 +5,7 @@ alias k="kubectl"
 alias kns="kubens"
 alias kctx="kubectx"
 alias lf="yazi"
+alias slides=presenterm
 
 alias cat="bat"
 alias df="duf"

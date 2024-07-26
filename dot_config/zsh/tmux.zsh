@@ -31,5 +31,4 @@ function tmuxLauncher {
  }
 
  zle -N tmuxLauncher
- bindkey "^f" tmuxLauncher
  bindkey "^t" tmuxLauncher
