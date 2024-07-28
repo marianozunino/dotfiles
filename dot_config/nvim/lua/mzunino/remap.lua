@@ -76,19 +76,11 @@ keymap("n", "<leader>ch", function()
 end, { desc = "Reset cmdheight" })
 
 keymap("n", "<leader>w", function()
-	if vim.g.vscode then
-		require("vscode-neovim").call("workbench.action.files.save")
-	else
-		vim.api.nvim_command("w")
-	end
+	vim.api.nvim_command("w")
 end, { desc = "Save" })
 
 keymap("n", "<leader>W", function()
-	if vim.g.vscode then
-		require("vscode-neovim").call("saveAll")
-	else
-		vim.api.nvim_command("wa")
-	end
+	vim.api.nvim_command("wa")
 end, { desc = "Save all" })
 
 -- format json using jq

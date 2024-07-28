@@ -10,6 +10,7 @@ M.config = function()
 		continuous = 1,
 		executable = "latexmk",
 		options = {
+			"-xelatex",
 			"-shell-escape",
 			"-verbose",
 			"-file-line-error",
