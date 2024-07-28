@@ -2,8 +2,8 @@ alias fly='flyctl'
 alias src='exec zsh'
 alias dc="cd"
 alias k="kubectl"
-alias kns="kubens"
-alias kctx="kubectx"
+alias ks="kubens"
+alias kx="kubectx"
 alias lf="yazi"
 alias slides=presenterm
 

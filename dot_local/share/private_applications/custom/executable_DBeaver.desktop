@@ -5,7 +5,7 @@ Terminal=false
 Name=DBeaver
 GenericName=SQL Database Client
 Comment=Universal Database Manager and SQL Client.
-Exec=bash -c "GTK_THEME=Raleigh /opt/dbeaver/dbeaver"
+Exec=bash -c "GDK_BACKEND=x11 NO_AT_BRIDGE=1 GTK_THEME=Raleigh /opt/dbeaver/dbeaver"
 Categories=IDE;Development
 WM_CLASS=DBeaver
 StartupWMClass=DBeaver
