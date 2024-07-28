@@ -1,0 +1,41 @@
+#!/bin/env bash
+
+# Nombre del archivo C a monitorear
+archivo_c="main.cpp"
+
+if [ $# -eq 1 ]; then
+    echo "Archivo de entrada: $1"
+    archivo_c=$1
+fi
+
+if [ ! -f $archivo_c ]; then
+    echo "El archivo $archivo_c no existe."
+    exit 1
+fi
+
+# Función para compilar y ejecutar el programa
+compile_and_run() {
+    gcc -o programa $archivo_c
+    if [ $? -eq 0 ]; then
+        ./programa
+    else
+        echo "Error de compilación."
+    fi
+}
+
+echo "Presiona Ctrl+C para detener el monitoreo."
+echo "Monitoreando cambios en $archivo_c"
+echo "------------------------------"
+
+compile_and_run
+
+# Bucle infinito para monitorear cambios
+while true; do
+    # Espera a que ocurra un evento en el archivo
+    inotifywait -e modify $archivo_c >/dev/null 2>&1
+
+    clear
+
+    # Compila y ejecuta el programa
+    compile_and_run
+done
