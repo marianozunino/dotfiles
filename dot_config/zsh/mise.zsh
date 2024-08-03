@@ -8,6 +8,7 @@ then
 	mkdir -p ~/.local/bin
 	curl https://mise.jdx.dev/mise-latest-linux-x64 > ~/.local/bin/mise
 	chmod +x ~/.local/bin/mise
+	~/.local/bin/mise install
 fi
 
 

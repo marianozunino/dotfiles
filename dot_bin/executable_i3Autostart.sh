@@ -15,3 +15,5 @@ foot --server &
 sleep 1
 footclient -a dropdown
 espanso service start --unmanaged
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

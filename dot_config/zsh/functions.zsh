@@ -58,5 +58,11 @@ function _has {
   return $( whence $1 >/dev/null )
 }
 
+function sm {
+  /opt/sublime_merge/sublime_merge $1
+}
+
 
 source ~/.local/share/zsh/rabbit-autocomplete.zsh
+source ~/.local/share/zsh/run-on-pod-autocomplete.zsh
+

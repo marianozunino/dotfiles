@@ -73,7 +73,7 @@ bindsym $mod+n exec /home/forbi/.local/share/mise/installs/go/1.22.1/bin/sdm-ui 
 bindsym $mod+o exec ~/.bin/obsidian-launcher
 bindsym $mod+shift+n exec ~/.bin/rmq-rofi.sh
 # Power
-bindsym XF86PowerOff exec wlogout -p layer-shell
+# bindsym XF86PowerOff exec wlogout -p layer-shell
 bindsym $mod+x exec rofi -show Power -modi Power:$HOME/.config/rofi/kill.sh
 
 # change focus
@@ -153,7 +153,8 @@ bindsym $mod+r  exec --no-startup-id ~/.bin/wlrecord.sh -s
 bindsym $mod+Shift+r exec swaymsg reload && notify-send "Reloaded sway config"
 
 # take screenshots
-bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | swappy -f -
+# bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | swappy -f -
+bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | satty --filename - --fullscreen --copy-command wl-copy
 bindsym $mod+shift+p exec --no-startup-id ~/.bin/screenshot-upload
 
 # mod + F5 executes the script ~/.bin/pause-notifications
@@ -188,6 +189,8 @@ for_window [title="JetBrains Toolbox"] floating enable
 for_window [app_id="Spotify"] move to workspace 5, workspace --no-auto-back-and-forth 5
 for_window [title="Espanso Sync Tool"] floating enable, move to workspace 10
 for_window [app_id="yad"] floating enable
+for_window [class="Pinentry-gtk"] floating enable
+
 
 
 #floating copyq
