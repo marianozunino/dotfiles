@@ -10,8 +10,8 @@ keymap("n", "<leader><leader>", "<c-^>", { desc = "Switch to last buffer" })
 
 keymap("n", "<M-h>", ":vertical resize +3<CR>", { desc = "Resize window" })
 keymap("n", "<M-l>", ":vertical resize -3<CR>", { desc = "Resize window" })
-keymap("n", "<M-j>", ":resize +3<CR>", { desc = "Resize window" })
-keymap("n", "<M-k>", ":resize -3<CR>", { desc = "Resize window" })
+keymap("n", "<M-k>", ":resize +3<CR>", { desc = "Resize window" })
+keymap("n", "<M-j>", ":resize -3<CR>", { desc = "Resize window" })
 
 vim.cmd([[
   nnoremap <silent> <C-j> <C-d>

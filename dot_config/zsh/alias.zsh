@@ -10,7 +10,7 @@ alias slides=presenterm
 alias cat="bat"
 alias df="duf"
 
-alias yay="paru --needed --bottomup"
+alias yay="paru --bottomup"
 alias yeet="sudo pacman -Rns"
 
 alias orphan="doas pacman -Rns (pacman -Qtdq)"

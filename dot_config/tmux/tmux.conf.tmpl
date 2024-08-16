@@ -59,15 +59,6 @@ bind -r L resize-pane -R 5
 bind-key m choose-window -F "#{window_index}: #{window_name}" "join-pane -h -t %%"
 bind-key M choose-window -F "#{window_index}: #{window_name}" "join-pane -v -t %%"
 
-######################
-### DESIGN CHANGES ###
-######################
-## Status bar design
-# status line
-set -g status-justify left
-set -g status-position top
-set -g status-bg default
-set -g status-fg colour12
 set -g status-interval 2
 # messaging
 # Info on left (I don't have a session display for now)
@@ -93,8 +84,9 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-battery'
+
+set -g status-position top
 set -g @plugin 'catppuccin/tmux'
-# set -g @plugin 'christoomey/vim-tmux-navigator'
 
 set -g @catppuccin_window_left_separator "█"
 set -g @catppuccin_window_right_separator "█"
@@ -107,7 +99,7 @@ set -g @catppuccin_window_current_fill "number"
 set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(🔍),}"
 set -g @catppuccin_window_default_text "#W"
 
-set -g @catppuccin_status_modules_right "date_time {{ if eq .hostname "T14" }}battery{{ end }} session"
+set -g @catppuccin_status_modules_right "date_time {{ if eq .hostname "T14" }}battery{{ end }}session"
 set -g @catppuccin_status_left_separator  ""
 set -g @catppuccin_status_right_separator " "
 set -g @catppuccin_status_right_separator_inverse "yes"
