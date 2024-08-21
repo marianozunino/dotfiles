@@ -1,7 +1,7 @@
 [tools]
 usage = "latest"
 nodejs = "16.14.0"
-golang = "1.22.1"
+golang = "1.23.0"
 flyctl = "0.1.64"
 sops = "3.6.1"
 dotnet = "system"

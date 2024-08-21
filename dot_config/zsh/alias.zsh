@@ -50,7 +50,6 @@ alias vim='nvim'
 
 alias tmuxrc="vim $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias doomconf="vim ~/.config/gzdoom/gzdoom.ini"
-alias vimrc="cd ~/.config/nvim/ && vim init.lua"
 alias pluginconf="vim ~/.config/nvim/plugins.vim"
 alias i3conf="vim ~/.config/i3/config"
 alias cssh="vim ~/.ssh/config"

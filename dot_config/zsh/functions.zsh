@@ -66,3 +66,9 @@ function sm {
 source ~/.local/share/zsh/rabbit-autocomplete.zsh
 source ~/.local/share/zsh/run-on-pod-autocomplete.zsh
 
+
+function vimrc {
+  cd `ch source-path`
+  nvim ~/.config/nvim/init.lua
+  cd -
+}
