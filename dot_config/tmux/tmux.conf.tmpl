@@ -33,7 +33,6 @@ setw -g aggressive-resize on
 set -g history-limit 100000
 #stop the maddness!
 set-option -g allow-rename off
-set-option -g allow-passthrough on
 #####
 
 # PREFIX r: Instantly reload tmux's configuration file.
@@ -69,6 +68,8 @@ set-option -g visual-bell off
 set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
+
+set-option -g allow-passthrough on
 
 
 set -g default-terminal "tmux-256color"
