@@ -51,6 +51,10 @@ local M = {
 }
 
 M.config = function()
+	local config = require("fzf-lua.config")
+	local actions = require("trouble.sources.fzf").actions
+	config.defaults.actions.files["ctrl-q"] = actions.open
+
 	local fzf_lua = require("fzf-lua")
 
 	fzf_lua.setup({
@@ -64,6 +68,9 @@ M.config = function()
 			fzf_opts = {
 				["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
 			},
+		},
+		lsp = {
+			actions = { ["default"] = _G.my_action },
 		},
 	})
 

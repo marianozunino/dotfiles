@@ -1,23 +1,61 @@
-#!/bin/sh
+#!/bin/bash
 
-filename=$(date +%F_%T.mkv)
+# Set variables
+VIDEOS_DIR="$HOME/Videos/wf-recorder"
+FILENAME="$(date +%F_%T).mkv"
+FULL_PATH="$VIDEOS_DIR/$FILENAME"
 
-if [ -z $(pgrep wf-recorder) ]; then
-  notify-send "Recording Started ($active)"
-  wf-recorder -f $HOME/Videos/wf-recorder/$filename -a  -g "$(slurp -c "#FFFFFF")"
-  if [ $? -eq 1 ]; then
-    notify-send -a "Recorder" -u critical "Recording Failed"
-  fi
-  sleep 2
-  while [ ! -z $(pgrep -x slurp) ]; do wait; done
+# Function to send notifications
+notify() {
+  notify-send -a "Recorder" "$@"
+}
+
+# Function to update Waybar
+update_waybar() {
   pkill -RTMIN+8 waybar
-else
+}
+
+# Check if wf-recorder is already running
+if pgrep -x wf-recorder >/dev/null; then
   killall -s SIGINT wf-recorder
-  notify-send "Recording Complete"
-  while [ ! -z $(pgrep -x wf-recorder) ]; do wait; done
-  pkill -RTMIN+8 waybar
-  # name="$(zenity --entry --text "enter a filename")"
-  # use rofi instead of zenity
-  name="$(rofi -dmenu -p "enter a filename")"
-  mv $(ls -d $HOME/Videos/wf-recorder/* -t | head -n1) $HOME/Videos/wf-recorder/$name.mkv
+  notify "🟢 Recording Complete"
+
+  # Wait for wf-recorder to finish
+  while pgrep -x wf-recorder >/dev/null; do sleep 0.1; done
+
+  update_waybar
+
+  # Prompt for new filename using rofi
+  new_name=$(rofi -dmenu -p "Enter a filename (without extension)")
+
+  if [ -n "$new_name" ]; then
+    latest_recording=$(ls -t "$VIDEOS_DIR"/*.mkv | head -n1)
+    mv "$latest_recording" "$VIDEOS_DIR/${new_name}.mkv"
+  fi
+else
+  # Use slurp to select a geometry
+  geometry=$(slurp -c "#FFFFFF")
+
+  if [ -z "$geometry" ]; then
+    notify -u critical "Select a Region"
+    exit 1
+  fi
+
+  notify "🔴 Recording Started"
+
+  # Ensure the output directory exists
+  mkdir -p "$VIDEOS_DIR"
+
+  # Start recording
+  wf-recorder -f "$FULL_PATH" -a -g "$geometry"
+
+  if [ $? -ne 0 ]; then
+    notify -u critical "Recording Failed"
+    exit 1
+  fi
+
+  # Wait for slurp to finish
+  while pgrep -x slurp >/dev/null; do sleep 0.1; done
+
+  update_waybar
 fi

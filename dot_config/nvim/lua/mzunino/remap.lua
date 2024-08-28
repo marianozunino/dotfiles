@@ -87,4 +87,8 @@ end, { desc = "Save all" })
 keymap("n", "<leader>jq", ":%!jq '.'<CR>", { desc = "Format json using jq" })
 keymap("v", "<leader>jq", ":!jq '.'<CR>", { desc = "Format json using jq" })
 
+-- Navigate quickfix list
+keymap("n", "qj", "<cmd>cnext<cr>", { desc = "Next quickfix item" })
+keymap("n", "qk", "<cmd>cprev<cr>", { desc = "Previous quickfix item" })
+
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })

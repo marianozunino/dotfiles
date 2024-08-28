@@ -73,8 +73,8 @@ alias vd='vim -c ":VimwikiMakeDiaryNote"'
 ## launch index page from command line
 alias vw='vim -c ":VimwikiIndex"'
 alias tf='terraform'
-alias copy="xclip -sel clip"
-alias paste="xclip -sel clip -o"
+alias copy="wl-copy"
+alias paste="wl-paste"
 
 # Work related
 alias sstack='cd ~/Dev/stuzo/oc-docker-compose; docker-compose up postgres redis rabbitmq'
@@ -85,3 +85,4 @@ alias ch='chezmoi'
 
 alias gh-clone='gc'
 alias task='go-task'
+alias sdu='sdm-ui fzf'

@@ -13,6 +13,9 @@ M.config = function()
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "[Diag] Next Issue" })
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "[Diag] Next Issue" })
 
+	vim.keymap.set("n", "<a-k>", "<cmd>Trouble fzf prev<cr>", { desc = "Previous trouble" })
+	vim.keymap.set("n", "<a-j>", "<cmd>Trouble fzf next<cr>", { desc = "Next trouble" })
+
 	local icons = require("plugins.icons")
 	local default_diagnostic_config = {
 		signs = {

@@ -4,6 +4,7 @@ local M = {
 
 M.config = function()
 	require("nvim-treesitter.configs").setup({
+		ignore_install = {},
 		ensure_installed = {
 			"javascript",
 			"typescript",

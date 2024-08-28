@@ -1,4 +1,4 @@
-plug("plugins.bfq")
+-- plug("plugins.bfq")
 plug("plugins.cloak")
 plug("plugins.cmp")
 plug("plugins.colorizer")

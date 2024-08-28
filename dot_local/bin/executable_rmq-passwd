@@ -15,16 +15,8 @@ kubectl config use-context $context >/dev/null
 kubectl config set-context --current --namespace=oc-app >/dev/null
 
 # is second argument provided then silent exit
-if [ -n "$2" ]; then
-	password=$(kubectl get secret oc-secrets -o jsonpath="{.data.rabbit_passwd}" | base64 --decode)
-	# put it in clipboard (using wayland)
-	printf "$password"
-	exit 0
-else
-	printf "Host: %s\n" $(kubectl get configmap oc-config -o jsonpath="{.data.rabbit_host}") &
-	printf "Password: %s\n" $(kubectl get secret oc-secrets -o jsonpath="{.data.rabbit_passwd}" | base64 --decode) &
-	wait
-fi
+password=$(kubectl get secret oc-secrets -o jsonpath="{.data.rabbit_passwd}" | base64 --decode)
+printf "$password" | wl-copy
 
 # reset context
 kubectl config use-context $current_context >/dev/null
