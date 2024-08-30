@@ -72,3 +72,8 @@ function vimrc {
   nvim ~/.config/nvim/init.lua
   cd -
 }
+
+# Search PID that uses port $1
+function pp {
+  lsof -i :$1
+}

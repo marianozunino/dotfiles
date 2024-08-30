@@ -24,6 +24,7 @@ M.config = function()
 			-- go = { "gofmt" },
 			go = { "gofumpt", "goimports-reviser", "golines" },
 			cs = { "csharpier" },
+			templ = { "templ" },
 		},
 		formatters = {
 			csharpier = {
