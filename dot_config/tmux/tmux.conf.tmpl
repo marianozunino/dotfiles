@@ -89,6 +89,9 @@ set -g @plugin 'tmux-plugins/tmux-battery'
 
 set -g status-position top
 set -g @plugin 'catppuccin/tmux'
+{{ if eq .hostname "T14" -}}
+set -g @plugin 'tmux-plugins/tmux-battery'
+{{- end }}
 
 set -g @catppuccin_window_left_separator "█"
 set -g @catppuccin_window_right_separator "█"
@@ -101,7 +104,7 @@ set -g @catppuccin_window_current_fill "number"
 set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag,(🔍),}"
 set -g @catppuccin_window_default_text "#W"
 
-set -g @catppuccin_status_modules_right "date_time {{ if eq .hostname "T14" }}battery{{ end }}session"
+set -g @catppuccin_status_modules_right "date_time {{ if eq .hostname "T14" }}battery {{ end }}session"
 set -g @catppuccin_status_left_separator  ""
 set -g @catppuccin_status_right_separator " "
 set -g @catppuccin_status_right_separator_inverse "yes"
