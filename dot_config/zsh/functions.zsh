@@ -74,6 +74,6 @@ function vimrc {
 }
 
 # Search PID that uses port $1
-function pp {
+function ppid {
   lsof -i :$1
 }

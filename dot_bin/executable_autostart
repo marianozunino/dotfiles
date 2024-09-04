@@ -40,5 +40,5 @@ run 1 vorta
 run 1 slack
 run 1 davmail
 run 1 gtk-launch correo
-run 1 /opt/firefox/firefox-bin
+run 1 /usr/bin/zen-browser
 # run 1 /usr/bin/vivaldi
