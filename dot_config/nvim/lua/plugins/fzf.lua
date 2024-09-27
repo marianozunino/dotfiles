@@ -8,7 +8,10 @@ local M = {
 		{
 			"<leader>/",
 			function()
-				require("fzf-lua").files({ cwd_prompt = false, preview_opts = "hidden" })
+				require("fzf-lua").files({
+					cwd_prompt = false,
+					preview_opts = "hidden",
+				})
 			end,
 			desc = "Find Files",
 		},

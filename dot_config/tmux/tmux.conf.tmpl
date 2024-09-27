@@ -30,7 +30,7 @@ set -g mouse on
 setw -g aggressive-resize on
 
 # Store a lot of history.
-set -g history-limit 100000
+set -g history-limit 10000 # 10k
 #stop the maddness!
 set-option -g allow-rename off
 #####
@@ -69,7 +69,9 @@ set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
 
-set-option -g allow-passthrough on
+set -gq allow-passthrough all
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
 
 
 set -g default-terminal "tmux-256color"
