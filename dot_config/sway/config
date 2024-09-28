@@ -1,4 +1,22 @@
-# swayfx config
+# 1. General Settings
+# Variables
+set $term kitty
+set $mod Mod4
+
+font pango:monospace 12
+floating_modifier $mod
+
+# 2. Appearance
+## Window Decoration
+default_border pixel 1
+default_floating_border pixel 1
+client.focused #19141D #19141D #CACACA #19141D #CACACA
+
+## Gaps
+gaps inner 5
+gaps outer 5
+
+## SwayFX Settings
 smart_corner_radius on
 corner_radius 10
 default_dim_inactive 0.05
@@ -9,21 +27,7 @@ layer_effects "waybar" "blur enable"; shadows enable
 shadows on
 shadow_blur_radius 20
 
-
-# General Config
-set $mod Mod4
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 12
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# Border Style
-client.focused #19141D #19141D #CACACA #19141D #CACACA
-
-
+# 3. Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -35,92 +39,53 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-#disable titlebar
-default_border pixel 1
-default_floating_border pixel 1
+# 4. Key Bindings
+## System Controls
+bindsym $mod+Shift+r exec swaymsg reload && notify-send "Reloaded sway config"
+bindsym $mod+Shift+e exec --no-startup-id wlogout
 
-#gaps
-gaps inner 5
-gaps outer 5
+## Application Launchers
+bindsym $mod+Return   exec $term
+bindsym $mod+d        exec fuzzel
+bindsym $mod+v        exec copyq toggle
+bindsym $mod+t        exec  ~/.bin/code
+bindsym $mod+shift+t  exec ~/.bin/present
+bindsym $mod+n        exec /home/forbi/.local/share/mise/installs/go/1.23.0/bin/sdm-ui dmenu
+bindsym $mod+o        exec ~/.bin/obsidian-launcher
+bindsym $mod+e        exec nemo
 
-#enable popup
-popup_during_fullscreen smart
-
-
-
-bindsym $mod+bracketright move workspace to output right
-bindsym $mod+bracketleft move workspace to output left
-# toggle gromit
-bindsym $mod+g exec --no-startup-id gromit-mpx -t 0
-
-#
-
-# keybinds
-
-# start a terminal
-bindsym $mod+Return exec $term
-# kill focused window
+## Window Management
 bindsym $mod+c kill
-#Rofi
-# bindsym $mod+d exec rofi -show drun -hide-scrollbar -lines 3 -eh 1 -width 40 -location 8 -xoffset 170 -yoffset 70 -padding 30 -disable-history -font "RobotoMono 18"
-bindsym $mod+d exec rofi -show combi -show-icons
-# bindsym $mod+v exec rofi -modi clipboard:~/.bin/cliphist-rofi -show clipboard
-bindsym $mod+v exec copyq toggle
-bindsym F4 exec switch-windows
-bindsym $mod+t exec /bin/fd --base-directory ~/Dev --search-path .  -t d -d 2 | rofi -dmenu -i -p "Project" -sort -matching fuzzy | xargs -i code ~/Dev/{}
-bindsym $mod+shift+t exec /bin/fd --base-directory ~/Documents --search-path . ^slide.md$ | rofi -dmenu -i -p "Presentation" -sort -matching fuzzy | xargs -i present ~/Documents/{}
-bindsym $mod+n exec /home/forbi/.local/share/mise/installs/go/1.23/bin/sdm-ui dmenu
-bindsym $mod+o exec ~/.bin/obsidian-launcher
-bindsym $mod+shift+n exec ~/.bin/rmq-rofi.sh
-# Power
-# bindsym XF86PowerOff exec wlogout -p layer-shell
-bindsym $mod+x exec rofi -show Power -modi Power:$HOME/.config/rofi/kill.sh
+bindsym $mod+f fullscreen toggle
+bindsym $mod+space floating toggle
+bindsym $mod+a focus parent
 
-# change focus
+### Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout toggle tabbed split
+bindsym $mod+semicolon split h
+
+### Focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+### Move
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+semicolon split h
-
-# split in vertical orientation
-#bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout toggle tabbed split
-bindsym $mod+e exec nemo
-
-# toggle tiling / floating
-bindsym $mod+space floating toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# switch to workspace
+## Workspace Management
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -132,7 +97,6 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -144,45 +108,41 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+bindsym $mod+bracketright move workspace to output right
+bindsym $mod+bracketleft move workspace to output left
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec --no-startup-id wlogout
-bindsym $mod+r  exec --no-startup-id ~/.bin/wlrecord.sh -s
+## Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
-# reload the configuration file
-bindsym $mod+Shift+r exec swaymsg reload && notify-send "Reloaded sway config"
+## Floating Terminal
+bindsym $mod+u [app_id="dropdown"] scratchpad show, move position center, fullscreen disable, resize set 1366 768
+bindsym $mod+Shift+u exec --no-startup-id wezterm-gui start --class dropdown
 
-# take screenshots
-# bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | swappy -f -
+## Other
+bindsym $mod+g exec --no-startup-id gromit-mpx -t 0
+bindsym F4 exec switch-windows
+bindsym $mod+r exec --no-startup-id ~/.bin/wlrecord.sh -s
 bindsym $mod+p exec --no-startup-id grim -g "$(slurp -d)" - | satty --filename - --fullscreen --copy-command wl-copy
 bindsym $mod+shift+p exec --no-startup-id ~/.bin/screenshot-upload
-
-# mod + F5 executes the script ~/.bin/pause-notifications
 bindsym $mod+F5 exec --no-startup-id ~/.bin/pause-notifications
 
-# The middle button over a titlebar kills the window
+# 5. Mouse Bindings
 bindsym --border button2 kill
-# The middle button and a modifer over any part of the window kills the window
 bindsym --whole-window $mod+button2 kill
-# The right button toggles floating
 bindsym button3 floating toggle
 bindsym $mod+button3 floating toggle
 
+# 6. Multimedia Keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
-#Floating terminal
-bindsym $mod+u [app_id="dropdown"] scratchpad show, move position center, fullscreen disable, resize set 1366 768
-# bindsym $mod+Shift+u exec --no-startup-id footclient -a dropdown
-bindsym $mod+Shift+u exec --no-startup-id wezterm-gui start --class dropdown
+# 7. Window Rules
 for_window [app_id="dropdown"] floating enable, move scratchpad
 for_window [class="davmail-DavGateway"] floating enable, move scratchpad
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show
-
-# App 2 WS
 for_window [app_id="Evolution-alarm-notify"] floating enable
 for_window [app_id="sm"] move to workspace 4, workspace --no-auto-back-and-forth 4
 for_window [title="JetBrains Toolbox"] floating enable
@@ -190,30 +150,25 @@ for_window [app_id="Spotify"] move to workspace 5, workspace --no-auto-back-and-
 for_window [title="Espanso Sync Tool"] floating enable, move to workspace 10
 for_window [app_id="yad"] floating enable
 for_window [class="Pinentry-gtk"] floating enable
-
-
-
-#floating copyq
 for_window [app_id="com.github.hluk.copyq"] floating enable
 for_window [app_id="com.github.hluk.copyq"] resize set 1366 768
-
-# yubikey
 for_window [app_id="authenticator"] floating enable
 for_window [app_id="authenticator"] resize set 400 800
-
 for_window [title="File Operation Progress"] floating enable
 for_window [title="Do Not Panic"] floating enable
-for_window [title="File Operation Progress"] floating enable
 for_window [title="Unlock Keyring"] floating enable
 for_window [title="Confirm to replace files"] floating enable
 for_window [title="Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox"] floating enable
 for_window [title="Bitwarden - Vivaldi"] floating enable
+for_window [app_id="thunderbird"] floating enable
+for_window [title=".*- Mozilla Thunderbird$" app_id="thunderbird"] floating disable
+for_window [title="win0"] floating enable border none
+for_window [class=".*"] border pixel 0
 
-
+# 8. Workspace Assignments
 assign [class="^discord$"] 10
 assign [class="^WebCord$"] 10
 assign [class="^vesktop$"] 10
-
 assign [app_id="^jetbrains-idea$"] 3
 assign [title="^win0$"] 3
 assign [title=".*Visual Studio Code*."] 3
@@ -221,52 +176,17 @@ assign [app_id="^nvim ~ "] 3
 assign [title="^nvim ~ "] 3
 assign [app_id="firefox-nightly"] 2
 assign [app_id="firefox"] 2
+assign [app_id="zen-alpha"] 2
 assign [instance="vivaldi-stable"] 2
 assign [class="Vivaldi-stable"] 2
-
 assign [app_id="thunderbird"] 7
-for_window [app_id="thunderbird"] floating enable
-for_window [title=".*- Mozilla Thunderbird$" app_id="thunderbird"] floating disable
-
-for_window [workspace=$ws1] layout tabbed
 assign [app_id="^Slack"] 1
 assign [app_id="^Chromium"] 1
-for_window [title="win0"] floating enable border none
-for_window [class=".*"] border pixel 0
 
-# multimedia
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound<Paste>
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
+# 9. Workspace Layouts
+for_window [workspace=$ws1] layout tabbed
 
-
-#Startup stuff
-set $term wezterm-gui
-
-exec /usr/bin/lxpolkit
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec --no-startup-id copyq
-exec --no-startup-id autostart
-
-set $out1 DP-1
-set $out2 HDMI-A-1
-
-workspace 1 output  $out1
-workspace 3 output  $out1
-workspace 5 output  $out1
-workspace 7 output  $out1
-workspace 9 output  $out1
-workspace 2 output  $out2
-workspace 4 output  $out2
-workspace 6 output  $out2
-workspace 8 output  $out2
-workspace 10 output $out2
-
+# 10. Input Configuration
 input type:keyboard {
   xkb_layout us
   xkb_variant altgr-intl
@@ -284,3 +204,39 @@ input "2:10:TPPS/2_Elan_TrackPoint" {
     accel_profile "flat"
     pointer_accel 0.7
 }
+
+# 11. Output Configuration
+set $out1 DP-1
+set $out2 HDMI-A-1
+
+workspace 1 output  $out1
+workspace 3 output  $out1
+workspace 5 output  $out1
+workspace 7 output  $out1
+workspace 9 output  $out1
+workspace 2 output  $out2
+workspace 4 output  $out2
+workspace 6 output  $out2
+workspace 8 output  $out2
+workspace 10 output $out2
+
+# 12. Autostart Applications
+exec --no-startup-id ~/.bin/randwall
+exec --no-startup-id ~/.bin/waybar.sh
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+exec --no-startup-id /usr/bin/lxpolkit
+exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
+exec --no-startup-id easyeffects --gapplication-service
+exec --no-startup-id swaync
+exec --no-startup-id kitty --class dropdown
+exec --no-startup-id slack
+exec --no-startup-id davmail
+exec --no-startup-id gtk-launch correo
+exec --no-startup-id gtk-launch ZenBrowser
+exec --no-startup-id vesktop
+

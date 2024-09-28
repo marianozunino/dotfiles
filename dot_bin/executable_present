@@ -1,29 +1,46 @@
-#!/bin/env bash
+#!/bin/bash
 
-# if no	argument is given, use the current directory
-if [ $# -eq 0 ]; then
-	DIR="."
-	file_name=$DIR
-else
-	# if the is a file, use the directory of the file
-	if [ -f $1 ]; then
-		file_name=$1
-		DIR=$(dirname $1)
-	else
-		DIR=$1
-		file_name=$DIR
+set -e # Exit immediately if a command exits with a non-zero status.
+
+# Function to launch Neovim in a specific directory
+launch_presentation() {
+	local DIR="$1"
+	local directory_name=$(basename "$DIR")
+	local title="presenterm ~ $directory_name"
+	local command="presenterm $DIR"
+
+	# Try to focus an existing window
+	if ! swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1; then
+		# Launch the application
+		kitty -d $DIR -T "$title" --class "$title" $command &
+
+		# Wait for the window to be created and try to focus
+		for i in 0.1 1; do
+			sleep $i
+			if swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1; then
+				break
+			fi
+		done
 	fi
+}
+
+# Directory to search for projects
+DOCS_DIR="$HOME/Documents"
+
+selected_presentation=$(fd --base-directory "$DOCS_DIR" --search-path . '^slide.md$' |
+	sed 's/^/󰐩 /' |
+	fuzzel --dmenu --prompt="Presentation: " |
+	sed 's/^󰐩 //')
+
+if [ -n "$selected_presentation" ]; then
+	full_path="$DOCS_DIR/$selected_presentation"
+	if [ -f "$full_path" ]; then
+		launch_presentation "$full_path"
+	else
+		echo "Error: Selected item is not a file: $full_path" >&2
+		exit 1
+	fi
+else
+	echo "No presentation selected." >&2
+	exit 0
 fi
-
-directory_name=$(basename $DIR)
-title="presenterm ~ $directory_name"
-command="presenterm $file_name"
-
-swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1
-
-if [ $? -ne 0 ]; then
-	exec wezterm-gui start --cwd "${DIR}" --class "$title" $command
-	sleep 0.2
-fi
-
-swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1

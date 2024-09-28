@@ -1,28 +1,48 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
-# if no	argument is given, use the current directory
-if [ $# -eq 0 ]; then
-	DIR="."
-	file_name=$DIR
-else
-	# if the is a file, use the directory of the file
-	if [ -f $1 ]; then
-		file_name=$1
-		DIR=$(dirname $1)
-	else
-		DIR=$1
-		file_name=$DIR
+set -e # Exit immediately if a command exits with a non-zero status.
+
+# Function to launch Neovim in a specific directory
+launch_neovim() {
+	local DIR="$1"
+	local directory_name=$(basename "$DIR")
+	local title="nvim ~ $directory_name"
+	# local command="tmux new -c $DIR\" -A -s \"$directory_name\" nvim \"$DIR\""
+	local command="tmux new -c $DIR -A -s $directory_name nvim $DIR"
+
+	# Try to focus an existing window
+	if ! swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1; then
+		# Launch the application
+		kitty -d $DIR -T "$title" --class "$title" $command &
+
+		# Wait for the window to be created and try to focus
+		for i in 0.1 1; do
+			sleep $i
+			if swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1; then
+				break
+			fi
+		done
 	fi
+}
+
+# Directory to search for projects
+DEV_DIR="$HOME/Dev"
+
+# Use fuzzel to select a project with folder icons
+selected_project=$(fd --base-directory "$DEV_DIR" --search-path . -t d -d 2 |
+	sed 's/^/ /' |
+	fuzzel --dmenu --prompt="Project: " |
+	sed 's/^ //')
+
+if [ -n "$selected_project" ]; then
+	full_path="$DEV_DIR/$selected_project"
+	if [ -d "$full_path" ]; then
+		launch_neovim "$full_path"
+	else
+		echo "Error: Selected item is not a directory: $full_path" >&2
+		exit 1
+	fi
+else
+	echo "No project selected." >&2
+	exit 0
 fi
-
-directory_name=$(basename $DIR)
-title="nvim ~ $directory_name"
-command="tmux new -c $DIR -A -s $directory_name nvim $file_name"
-
-swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1
-
-if [ $? -ne 0 ]; then
-	exec wezterm-gui start --cwd "${DIR}" --workspace "$title" --class "$title" $command
-	sleep 0.2
-fi
-swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1

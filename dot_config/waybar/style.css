@@ -52,7 +52,7 @@ window#waybar {
     border-radius: 16px;
 }
 
-#custom-date, #clock, #battery, #network, #custom-launcher {
+#custom-date, #clock, #battery, #network, #custom-launcher, #custom-notification {
     background: transparent;
     padding: 5px 5px 5px 5px;
     margin: 5px 5px 5px 5px;
@@ -262,4 +262,17 @@ window#waybar {
     margin-right: 5px;
     padding: 0px 11px 0px 9px;
     font-weight: bold;
+}
+
+#custom-notification {
+  color: #E6B9C6;
+  background-color: #282828;
+  border-radius: 0px 0px 0px 0px;
+  padding-left: 13px;
+  padding-right: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
 }
