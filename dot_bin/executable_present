@@ -7,7 +7,7 @@ launch_presentation() {
 	local DIR="$1"
 	local directory_name=$(basename "$DIR")
 	local title="presenterm ~ $directory_name"
-	local command="presenterm $DIR"
+	local command="/home/forbi/.local/share/cargo/bin/presenterm $DIR"
 
 	# Try to focus an existing window
 	if ! swaymsg "[app_id=\"${title}\"]" focus >/dev/null 2>&1; then
