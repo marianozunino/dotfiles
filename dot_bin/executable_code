@@ -29,7 +29,7 @@ launch_neovim() {
 DEV_DIR="$HOME/Dev"
 
 # Use fuzzel to select a project with folder icons
-selected_project=$(fd --base-directory "$DEV_DIR" --search-path . -t d -d 2 |
+selected_project=$(fd --base-directory "$DEV_DIR" --search-path . -t d -H '^.git$' -x echo {//} |
 	sed 's/^/ /' |
 	fuzzel --dmenu --prompt="Project: " |
 	sed 's/^ //')

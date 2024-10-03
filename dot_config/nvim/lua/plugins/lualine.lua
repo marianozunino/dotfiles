@@ -35,7 +35,8 @@ M.config = function()
 	require("lualine").setup({
 		options = {
 			-- theme = "rose-pine-alt", -- or theme = 'rose-pine'
-			theme = "catppuccin",
+			-- theme = "catppuccin",
+			theme = "rose-pine",
 			component_separators = { left = "", right = "" },
 			section_separators = { left = "", right = "" },
 		},

@@ -43,9 +43,13 @@ M.config = function()
 			-- this will change the font size on wezterm when in zen mode
 			-- See alse also the Plugins/Wezterm section in this projects README
 			wezterm = {
-				enabled = true,
+				enabled = false,
 				-- can be either an absolute font size or the number of incremental steps
 				font = "+2", -- (10% increase per step)
+			},
+			kitty = {
+				enabled = true,
+				font = "+2", -- font size increment
 			},
 		},
 	})

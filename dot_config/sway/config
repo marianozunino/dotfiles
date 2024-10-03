@@ -17,15 +17,15 @@ gaps inner 5
 gaps outer 5
 
 ## SwayFX Settings
-smart_corner_radius on
-corner_radius 10
-default_dim_inactive 0.05
-blur enable
-blur_passes 2
-blur_radius 2
-layer_effects "waybar" "blur enable"; shadows enable
-shadows on
-shadow_blur_radius 20
+# smart_corner_radius on
+# corner_radius 10
+# default_dim_inactive 0.05
+# blur enable
+# blur_passes 2
+# blur_radius 2
+# layer_effects "waybar" "blur enable"; shadows enable
+# shadows on
+# shadow_blur_radius 20
 
 # 3. Workspaces
 set $ws1 "1"
