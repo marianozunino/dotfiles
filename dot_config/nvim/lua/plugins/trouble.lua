@@ -22,7 +22,15 @@ M.config = function()
 	end, { desc = "Next trouble" })
 
 	local icons = require("plugins.icons")
-	local default_diagnostic_config = {
+	vim.diagnostic.config({
+		virtual_text = {
+			prefix = "",
+			suffix = "",
+			format = function(diagnostic)
+				return "󰍡 " .. diagnostic.message .. " "
+			end,
+		},
+		underline = false,
 		signs = {
 			text = {
 				[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
@@ -31,10 +39,6 @@ M.config = function()
 				[vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
 			},
 		},
-		virtual_text = true,
-		update_in_insert = false,
-		underline = false,
-		severity_sort = true,
 		float = {
 			focusable = true,
 			style = "minimal",
@@ -43,9 +47,7 @@ M.config = function()
 			header = "",
 			prefix = "",
 		},
-	}
-
-	vim.diagnostic.config(default_diagnostic_config)
+	})
 end
 
 return M

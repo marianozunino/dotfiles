@@ -1,29 +1,28 @@
-vim.opt.conceallevel = 1
 local M = {
 	"epwalsh/obsidian.nvim",
-	-- version = "*", -- recommended, use latest release instead of latest commit
-	branch = "main",
-	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-	-- event = {
-	--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-	--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-	--   "BufReadPre path/to/my-vault/**.md",
-	--   "BufNewFile path/to/my-vault/**.md",
-	-- },
-	dependencies = {
-		-- Required.
-		"nvim-lua/plenary.nvim",
+	version = "*", -- recommended, use latest release instead of latest commit
 
-		-- see below for full list of optional dependencies 👇
+	lazy = false,
+	ft = "markdown",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
+			---@module 'render-markdown'
+			---@type render.md.UserConfig
+			opts = {},
+		},
 	},
 }
 
 M.config = function()
+	vim.opt.conceallevel = 1
 	require("obsidian").setup({
 		workspaces = {
 			{
 				name = "personal",
-				path = "~/Sync/Obsidian/Vault",
+				path = "~/Documents/Vault/",
 			},
 		},
 	})

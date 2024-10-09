@@ -16,6 +16,8 @@ M.config = function()
 			"tsx",
 			"jsdoc",
 			"c_sharp",
+			"markdown",
+			"markdown_inline",
 		},
 		highlight = {
 			enable = true,

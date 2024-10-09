@@ -77,3 +77,6 @@ function vimrc {
 function ppid {
   lsof -i :$1
 }
+
+eval "$(rop completion zsh)"
+eval "$(goq completion zsh)"
