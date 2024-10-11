@@ -1,6 +1,9 @@
 local M = {
 	"Exafunction/codeium.vim",
 	cmd = "CodeiumEnable",
+	keys = {
+		{ "<leader>ce", "<cmd>CodeiumEnable<cr>", desc = "Codeium Enable" },
+	},
 }
 
 M.config = function()
